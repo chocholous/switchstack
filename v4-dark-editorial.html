@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Switch Stack — Issue 01 · Noir Edition</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,300;0,7..72,400;0,7..72,700;0,7..72,900;1,7..72,300;1,7..72,400&family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f8f4ee;
+  --ink: #111;
+  --gray: #666;
+  --light: #ccc;
+  --red: #d62828;
+  --red-bg: #d6282812;
+  --blue: #003049;
+  --cream: #f8f4ee;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 17px; }
+body { background: var(--ink); color: var(--cream); font-family: 'Literata', Georgia, serif; line-height: 1.75; }
+
+/* === COVER === */
+.cover {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 3rem;
+  position: relative;
+  overflow: hidden;
+  background: var(--ink);
+}
+.cover::before {
+  content: 'CO₂';
+  position: absolute;
+  top: -5%;
+  right: -3%;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(15rem, 30vw, 40rem);
+  color: #ffffff06;
+  line-height: 0.85;
+  pointer-events: none;
+}
+.cover-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 1rem;
+}
+.cover h1 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.6rem, 6vw, 5.5rem);
+  line-height: 0.95;
+  max-width: 900px;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.03em;
+}
+.cover h1 em { font-style: normal; color: var(--red); }
+.cover-deck {
+  font-size: 1.15rem;
+  font-weight: 300;
+  max-width: 560px;
+  color: #aaa;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+.cover-meta {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  color: #555;
+  text-transform: uppercase;
+  display: flex;
+  gap: 2rem;
+}
+.scroll-hint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #444;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 0.8; } }
+
+/* === STATS RIBBON === */
+.ribbon {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 3px solid var(--red);
+  border-bottom: 1px solid #222;
+}
+@media (max-width: 700px) { .ribbon { grid-template-columns: repeat(2, 1fr); } }
+.ribbon-cell {
+  padding: 1.5rem 2rem;
+  border-right: 1px solid #222;
+}
+.ribbon-cell:last-child { border-right: none; }
+.ribbon-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.2rem; color: var(--red); line-height: 1; }
+.ribbon-unit { font-family: 'Space Mono', monospace; font-size: 0.58rem; color: #666; letter-spacing: 0.08em; margin-top: 0.2rem; }
+.ribbon-desc { font-size: 0.72rem; color: #888; margin-top: 0.4rem; }
+
+/* === CONTENT SECTION === */
+.content {
+  background: var(--bg);
+  color: var(--ink);
+  padding: 4rem 0;
+}
+.content-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 3rem;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 4rem;
+}
+@media (max-width: 840px) { .content-inner { grid-template-columns: 1fr; padding: 0 2rem; } }
+
+/* PROSE */
+.prose h2 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1.6rem;
+  margin: 3rem 0 0.8rem;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+.prose h2:first-child { margin-top: 0; }
+.prose h2::before {
+  content: '—';
+  display: block;
+  color: var(--red);
+  font-size: 1.2rem;
+  margin-bottom: 0.3rem;
+}
+.prose p { margin-bottom: 1.1rem; color: #333; }
+.prose p.lead { font-size: 1.1rem; color: var(--ink); font-weight: 400; }
+.prose p.lead::first-letter {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 4rem;
+  float: left;
+  line-height: 0.75;
+  margin: 0.1em 0.12em 0 0;
+  color: var(--red);
+}
+.prose blockquote {
+  margin: 2rem 0;
+  padding: 1.5rem 2rem;
+  border-left: 4px solid var(--red);
+  background: var(--red-bg);
+  font-style: italic;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #333;
+}
+.prose blockquote cite {
+  display: block;
+  font-style: normal;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.05em;
+  color: var(--gray);
+  margin-top: 0.7rem;
+}
+.prose .impact-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.4rem 1rem;
+  margin: 1.5rem 0;
+  padding: 1.2rem;
+  background: var(--ink);
+  color: var(--cream);
+}
+.prose .impact-grid .ig-num {
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  font-size: 0.78rem;
+  color: var(--red);
+  white-space: nowrap;
+  padding: 0.3rem 0;
+}
+.prose .impact-grid .ig-desc {
+  font-size: 0.82rem;
+  padding: 0.3rem 0;
+  border-bottom: 1px solid #333;
+  color: #bbb;
+}
+.prose .impact-grid .ig-desc:last-child { border-bottom: none; }
+.prose .divider { text-align: center; margin: 2.5rem 0; color: var(--red); font-family: 'Space Mono', monospace; font-size: 0.7rem; letter-spacing: 1em; }
+
+/* MARGIN NOTES (sidebar) */
+.margin {
+  padding-top: 0.5rem;
+}
+.margin-note {
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #ddd;
+}
+.margin-note:last-child { border-bottom: none; }
+.margin-note h4 {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 0.8rem;
+}
+.margin-note .mn-big {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 2.6rem;
+  line-height: 1;
+  color: var(--ink);
+}
+.margin-note .mn-unit {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--gray);
+  margin-top: 0.2rem;
+}
+.margin-note .mn-text {
+  font-size: 0.78rem;
+  color: var(--gray);
+  margin-top: 0.5rem;
+  line-height: 1.55;
+}
+.mn-table { width: 100%; border-collapse: collapse; font-size: 0.76rem; margin-top: 0.6rem; }
+.mn-table td { padding: 0.35rem 0; border-bottom: 1px solid #e0dcd4; color: #555; }
+.mn-table td:last-child { font-family: 'Space Mono', monospace; font-weight: 700; font-size: 0.7rem; color: var(--red); text-align: right; }
+
+/* === ATTRIBUTION SECTION === */
+.attrib-wrap {
+  background: var(--ink);
+  color: var(--cream);
+  padding: 4rem 0;
+}
+.attrib-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 3rem;
+}
+@media (max-width: 700px) { .attrib-inner { padding: 0 2rem; } }
+.attrib-inner h2 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+}
+.attrib-inner > p { color: #999; font-size: 0.92rem; max-width: 620px; margin-bottom: 2rem; }
+.att-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+@media (max-width: 700px) { .att-grid { grid-template-columns: 1fr; } }
+.att-card { border: 1px solid #333; padding: 1.5rem; }
+.att-card h3 { font-family: 'Space Mono', monospace; font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--red); margin-bottom: 1rem; }
+.att-label { font-size: 0.68rem; color: #888; margin-bottom: 0.3rem; }
+.att-bar { display: flex; height: 18px; border-radius: 2px; overflow: hidden; margin-bottom: 0.5rem; }
+.att-seg { display: flex; align-items: center; justify-content: center; font-family: 'Space Mono', monospace; font-size: 0.55rem; font-weight: 700; color: #fff; min-width: 16px; }
+.att-leg { display: flex; flex-wrap: wrap; gap: 0.2rem 0.6rem; font-size: 0.62rem; color: #888; margin-bottom: 0.5rem; }
+.att-dot { display: inline-block; width: 6px; height: 6px; border-radius: 1px; margin-right: 3px; vertical-align: middle; }
+.att-fn { font-size: 0.58rem; color: #666; font-style: italic; margin-top: 0.8rem; line-height: 1.45; }
+
+/* === CLOSING SECTION === */
+.outro {
+  background: var(--bg);
+  color: var(--ink);
+  padding: 4rem 3rem;
+  text-align: center;
+}
+@media (max-width: 700px) { .outro { padding: 3rem 2rem; } }
+.outro blockquote {
+  font-family: 'Literata', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 1.4rem;
+  line-height: 1.5;
+  max-width: 520px;
+  margin: 0 auto 0.6rem;
+}
+.outro cite { font-family: 'Space Mono', monospace; font-size: 0.62rem; color: var(--gray); letter-spacing: 0.1em; }
+
+/* FOOTER */
+.foot {
+  background: var(--ink);
+  padding: 1.5rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #222;
+}
+.foot-brand { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; color: var(--cream); }
+.foot-brand span { color: var(--red); }
+.foot a { color: var(--red); text-decoration: none; font-family: 'Space Mono', monospace; font-size: 0.65rem; }
+
+/* ANIMATIONS */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+.cover { animation: fadeUp 0.8s ease-out; }
+.ribbon { animation: fadeUp 0.5s ease-out 0.2s both; }
+</style>
+</head>
+<body>
+
+<!-- ════════════ COVER ════════════ -->
+<section class="cover">
+  <div class="cover-tag">The Switch Stack · Issue 01</div>
+  <h1>Carbon, Methane &amp; Nanoplastics:<br><em>Why Your Footprint Doesn't Stand a Chance</em></h1>
+  <p class="cover-deck">If you want to understand the true scale of environmental destruction, you have to look past the frontlines. The numbers make our household recycling efforts look like a drop in a toxic ocean.</p>
+  <div class="cover-meta"><span>March 2026</span><span>Biweekly</span></div>
+  <div class="scroll-hint">↓ Scroll</div>
+</section>
+
+<!-- ════════════ RIBBON ════════════ -->
+<div class="ribbon">
+  <div class="ribbon-cell"><div class="ribbon-num">5.5%</div><div class="ribbon-unit">of global emissions</div><div class="ribbon-desc">Military at peacetime</div></div>
+  <div class="ribbon-cell"><div class="ribbon-num">237</div><div class="ribbon-unit">Mt CO₂e / 3 yrs</div><div class="ribbon-desc">Ukraine war total</div></div>
+  <div class="ribbon-cell"><div class="ribbon-num">31</div><div class="ribbon-unit">Mt CO₂e total</div><div class="ribbon-desc">Gaza incl. rebuild</div></div>
+  <div class="ribbon-cell"><div class="ribbon-num">27%</div><div class="ribbon-unit">of Ukraine carbon</div><div class="ribbon-desc">Reconstruction debt</div></div>
+</div>
+
+<!-- ════════════ MAIN CONTENT ════════════ -->
+<section class="content">
+<div class="content-inner">
+
+<div class="prose">
+
+  <h2>The Global and Daily Math of Destruction</h2>
+
+  <p class="lead">Before we even look at active combat, we have to look at the baseline. The Global Military Complex—the everyday operations of the world's armed forces—accounts for roughly 5.5% of all global greenhouse gas emissions. That is about 2,750 million tonnes of CO₂e per year, or roughly 7.5 million tonnes every single day. If the global military were a country, it would be the fourth-largest polluter on Earth.</p>
+
+  <blockquote>
+    The military's environmental exceptionalism allows them to pollute with impunity, as if the carbon emissions spitting from their tanks and fighter jets don't count. This has to stop; to tackle the climate crisis we need accountability.
+    <cite>— Dr. Benjamin Neimark, Queen Mary University of London</cite>
+  </blockquote>
+
+  <p>When a conflict actually breaks out, the localized spikes are staggering. Ukraine and Gaza are likely the very first conflicts in human history where environmental impact is being measured in real-time.</p>
+
+  <p>The <strong>Gaza Conflict</strong>: roughly 281,000 tonnes of CO₂e in the first 60 days alone—with a long-term total projected at 31 million tonnes including reconstruction. The <strong>Ukraine War</strong>: 237 million tonnes of CO₂e over three years—equivalent to the combined annual emissions of four Central European countries. For historical context: during the <strong>1991 Gulf War</strong>, burning Kuwaiti oil wells consumed 4–6 million barrels of crude per day, with CO₂ emissions reaching roughly 2% of global output.</p>
+
+  <p>To offset the entire three-year Ukraine war, every resident of Prague would need to live completely carbon-free for about 19 years.</p>
+
+  <div class="divider">· · · · ·</div>
+
+  <h2>The Micro-Math: Cost of a Single Strike</h2>
+
+  <p>To understand how we reach hundreds of millions of tonnes, you have to look at the individual pieces on the board.</p>
+
+  <div class="impact-grid">
+    <div class="ig-num">5 kg</div><div class="ig-desc">One hand grenade — about 5 hours of your daily footprint.</div>
+    <div class="ig-num">125 kg</div><div class="ig-desc">One 500 lb bomb at detonation—plus hundreds more in manufacturing.</div>
+    <div class="ig-num">30,000+ kg</div><div class="ig-desc">One cruise missile lifecycle. That is ~3.2 years of your per-capita emissions.</div>
+    <div class="ig-num">13–15 t</div><div class="ig-desc">One F-35 flight hour (~5,600 L fuel). More than a Czech person emits in an entire year.</div>
+    <div class="ig-num">10,000s t</div><div class="ig-desc">One drone hit on a chemical plant—secondary fires and methane leaks in a single afternoon.</div>
+  </div>
+
+  <p>We can measure this destruction, but we cannot undo it. As Kurt Vonnegut famously fantasized in <em>Slaughterhouse-Five</em> while watching a war movie in reverse:</p>
+
+  <blockquote>
+    Airplanes suck bombs back up into their bellies, undoing the destruction below. Weapons travel back to their factories, and workers dismantle them and return the materials to the Earth.
+    <cite>— Kurt Vonnegut, Slaughterhouse-Five (1969)</cite>
+  </blockquote>
+
+  <p>In reality, war takes pieces from our world, never to return.</p>
+
+  <div class="divider">· · · · ·</div>
+
+  <h2>The Carbon Debt of Rebuilding</h2>
+
+  <p>Roughly 27% of the war's total carbon footprint in Ukraine—about 62 million tonnes—is the projected cost of post-war rebuilding. Over a quarter of the climate damage isn't from bombs exploding—it is the staggering "carbon debt" of manufacturing millions of tonnes of cement and steel needed to replace every leveled hospital and apartment block. Even without this, direct warfare still accounts for 82 million tonnes—the single largest category at 34%.</p>
+
+  <div class="divider">· · · · ·</div>
+
+  <h2>The "Green" War Machine Paradox</h2>
+
+  <p>The defense industry is playing a bizarre game of environmental optics. In the West, it's all about ESG marketing—greenwashing the apocalypse to keep stock prices high.</p>
+
+  <blockquote>
+    We believe sustainability strengthens our business model. Our ESG Roadmap drives growth, reduces environmental risk and ensures excellent governance. Sustainability builds trust with our customers.
+    <cite>— Eric Béranger, CEO of MBDA (2024 ESG report on doubling missile production without "compromising sustainability")</cite>
+  </blockquote>
+
+  <p>In the East, "sustainability" means supply chain resilience and state propaganda. China builds zero-carbon military parks for grid immunity. Russian leadership masks the leveling of entire regions behind euphemisms.</p>
+
+  <blockquote>
+    I have decided to conduct a special military operation. Its purpose is to protect people who have been subjected to abuse and genocide… And for this we will strive for the demilitarization and denazification of Ukraine.
+    <cite>— Vladimir Putin, February 24, 2022 (televised invasion address)</cite>
+  </blockquote>
+
+  <p>Whether Western corporate greenwashing or Eastern "defascisation" propaganda, the green label vanishes the second the trigger is pulled.</p>
+
+  <div class="divider">· · · · ·</div>
+
+  <h2>The Asymmetry of Purpose</h2>
+
+  <p>The global meat industry and commercial air traffic emit far more carbon than these wars. But here is the critical difference: <em>the asymmetry of purpose.</em> Civilian industries, as flawed as they are, serve a function—feeding eight billion people and connecting the global economy. War is driven by fiercely protected human agendas. Militaries will gladly poison their own soil to claim <em>Lebensraum</em>, destabilize a rival, or redraw lines on a map.</p>
+
+  <div class="divider">· · · · ·</div>
+
+  <h2>The Invisible Legacy: 300 Years or "Eat It All"</h2>
+
+  <p>The carbon and the methane are just the headlines. The real tragedy of war is the poison left behind in the dirt and the water. Carbon disperses globally; physical pollution stays exactly where it falls.</p>
+
+  <p><strong>The Kakhovka Dam:</strong> In June 2023, a massive wall of water scoured the land, picking up landmines, raw sewage, heavy metals, agricultural pesticides, and pulverized plastic—flushing this toxic soup directly into the Black Sea.</p>
+
+  <p><strong>The Poisoned Breadbasket:</strong> Every detonated shell impregnates soil with lead, cadmium, and mercury. It takes 100 to 300 years to naturally clean these toxins. In Ukraine—one of the world's largest agricultural exporters—we face a grim choice: spend billions on remediation, or let the crops absorb the metals and eventually eat it ourselves.</p>
+
+  <p><strong>Pulverized Plastics:</strong> Modern war runs on synthetics. Heat and blast waves pulverize drone casings and uniform fibers into nanoplastics that bypass biological barriers, infiltrating the soil's microbiome and the local water table.</p>
+
+  <p><strong>Toxic Dust:</strong> When Soviet-era apartment blocks become rubble, they release clouds of asbestos and carcinogenic concrete dust, guaranteeing a spike in respiratory diseases for the people who eventually clear the debris.</p>
+
+  <div class="divider">· · · · ·</div>
+
+  <h2>The Quiet Rebellion of the Everyday</h2>
+
+  <p>So, where does that leave you and your recycling bin?</p>
+
+  <p>When you look at the math, it is easy to feel defeated. A single cruise missile erases over three years of your ecological discipline. But maybe the math isn't the point.</p>
+
+  <p>In a world that is willing to burn 300 years of ecological health to move a border by three kilometers, sweeping your own porch isn't about saving the world by yourself. It is an act of quiet rebellion. It is a fundamental refusal to surrender to the destruction. We sort our plastics and care about our local environment because it proves we still know what it means to build, to preserve, and to give a damn about the ground we stand on.</p>
+
+  <p>The war machine will do what it does. But when the smoke finally clears, someone still has to know how to take care of what is left.</p>
+
+</div>
+
+<!-- MARGIN NOTES -->
+<aside class="margin">
+  <div class="margin-note">
+    <h4>Weapon vs. Person</h4>
+    <table class="mn-table">
+      <tr><td>Czech per capita / day</td><td>~26 kg</td></tr>
+      <tr><td>Hand grenade</td><td>5 kg</td></tr>
+      <tr><td>500 lb bomb (det.)</td><td>125 kg</td></tr>
+      <tr><td>Cruise missile</td><td>30,000+ kg</td></tr>
+      <tr><td>F-35 / 1 hr</td><td>13–15,000 kg</td></tr>
+      <tr><td>F-16 / 1 hr</td><td>~8,000 kg</td></tr>
+    </table>
+    <p class="mn-text" style="font-size:0.65rem;color:#999;margin-top:0.5rem;">Per capita ≈ 9.5 t CO₂/yr (CZ, 2022). Household (~2.3 ppl) ≈ 60 kg/day.</p>
+  </div>
+
+  <div class="margin-note">
+    <h4>Soil Remediation</h4>
+    <div class="mn-big">300</div>
+    <div class="mn-unit">years to naturally clean</div>
+    <p class="mn-text">Heavy metals from artillery: lead, cadmium, mercury. Ukraine's fertile chernozem—the breadbasket of Europe—now absorbs the residue of every shell.</p>
+  </div>
+
+  <div class="margin-note">
+    <h4>Conflict Totals</h4>
+    <table class="mn-table">
+      <tr><td>Ukraine (3 yrs)</td><td>237 Mt</td></tr>
+      <tr><td>Gaza (long-term)</td><td>~31 Mt</td></tr>
+      <tr><td>Gaza (60 days)</td><td>281k t</td></tr>
+      <tr><td>Kuwait fires '91</td><td>~130 Mt</td></tr>
+      <tr><td>Global military / yr</td><td>2,750 Mt</td></tr>
+    </table>
+  </div>
+
+  <div class="margin-note">
+    <h4>The Vonnegut Fantasy</h4>
+    <p class="mn-text" style="font-style:italic;">"Airplanes suck bombs back up into their bellies, undoing the destruction below."</p>
+    <p class="mn-text" style="font-size:0.65rem;color:#999;">— Slaughterhouse-Five, 1969</p>
+  </div>
+
+  <div class="margin-note">
+    <h4>Sources</h4>
+    <p class="mn-text">IGAW (Feb 2025) · CEOBS &amp; SGR (2022) · UNEP · SSRN / Queen Mary / Lancaster (2024–25) · Hobbs &amp; Radke, Science (1992)</p>
+  </div>
+</aside>
+
+</div>
+</section>
+
+<!-- ════════════ ATTRIBUTION ════════════ -->
+<section class="attrib-wrap">
+<div class="attrib-inner">
+  <h2>Who Pollutes What</h2>
+  <p>For the first time, researchers track not just total emissions but who generates each share. The asymmetry is stark.</p>
+
+  <div class="att-grid">
+    <div class="att-card">
+      <h3>Ukraine · 237 Mt CO₂e (3 years)</h3>
+      <div class="att-label">By category</div>
+      <div class="att-bar">
+        <div class="att-seg" style="width:34%;background:var(--red);">34%</div>
+        <div class="att-seg" style="width:27%;background:#4a7ab5;">27%</div>
+        <div class="att-seg" style="width:21%;background:#4a9e6e;">21%</div>
+        <div class="att-seg" style="width:8%;background:#c8a030;">8%</div>
+        <div class="att-seg" style="width:10%;background:#666;">10%</div>
+      </div>
+      <div class="att-leg">
+        <span><span class="att-dot" style="background:var(--red)"></span>Warfare 82Mt</span>
+        <span><span class="att-dot" style="background:#4a7ab5"></span>Rebuild 62Mt</span>
+        <span><span class="att-dot" style="background:#4a9e6e"></span>Fires 49Mt</span>
+        <span><span class="att-dot" style="background:#c8a030"></span>Energy 19Mt</span>
+        <span><span class="att-dot" style="background:#666"></span>Other 18Mt</span>
+      </div>
+      <div class="att-label" style="margin-top:0.8rem;">By side</div>
+      <div class="att-bar">
+        <div class="att-seg" style="width:67%;background:var(--red);">Russia</div>
+        <div class="att-seg" style="width:18%;background:#4a7ab5;">Ukraine</div>
+        <div class="att-seg" style="width:15%;background:#666;">Global</div>
+      </div>
+      <div class="att-leg">
+        <span><span class="att-dot" style="background:var(--red)"></span>Russia: aggressor, majority destruction, Nord Stream (14Mt CH₄)</span>
+        <span><span class="att-dot" style="background:#4a7ab5"></span>Ukraine: defense, fortifications, strikes on RU oil</span>
+        <span><span class="att-dot" style="background:#666"></span>Rerouted aviation 14Mt, refugees 3Mt</span>
+      </div>
+      <p class="att-fn">IGAW attributes full total to Russia as initiating aggressor. Exact per-side split unpublished.</p>
+    </div>
+
+    <div class="att-card">
+      <h3>Gaza · 281k tCO₂e first 60 days</h3>
+      <div class="att-label">Direct emissions</div>
+      <div class="att-bar">
+        <div class="att-seg" style="width:52%;background:var(--red);">Israel 52%</div>
+        <div class="att-seg" style="width:47.7%;background:#4a7ab5;">US supply 48%</div>
+        <div class="att-seg" style="width:0.3%;background:#666;font-size:0;"></div>
+      </div>
+      <div class="att-leg">
+        <span><span class="att-dot" style="background:var(--red)"></span>Israel: IDF jets, tanks, artillery</span>
+        <span><span class="att-dot" style="background:#4a7ab5"></span>US: 200 cargo flights (~134k t)</span>
+        <span><span class="att-dot" style="background:#666"></span>Hamas rockets: 713 t (&lt;0.3%)</span>
+      </div>
+      <div class="att-label" style="margin-top:0.8rem;">Long-term: ~31 Mt CO₂e</div>
+      <div class="att-bar">
+        <div class="att-seg" style="width:50%;background:var(--red);">Israel 50%</div>
+        <div class="att-seg" style="width:30%;background:#4a7ab5;">US 30%</div>
+        <div class="att-seg" style="width:13%;background:#c8a030;">Rebuild</div>
+        <div class="att-seg" style="width:7%;background:#666;">Hamas</div>
+      </div>
+      <div class="att-leg">
+        <span><span class="att-dot" style="background:var(--red)"></span>Israel ops 50%</span>
+        <span><span class="att-dot" style="background:#4a7ab5"></span>US logistics 30%</span>
+        <span><span class="att-dot" style="background:#c8a030"></span>Reconstruction ~30Mt</span>
+        <span><span class="att-dot" style="background:#666"></span>Hamas + generators ~7%</span>
+      </div>
+      <p class="att-fn">Queen Mary / SSRN: 99%+ of first 60 days attributable to Israel &amp; US supply chain. 31Mt long-term dominated by rebuilding 100k+ buildings.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ════════════ OUTRO ════════════ -->
+<section class="outro">
+  <blockquote>&ldquo;Dear future generations: Please accept our apologies. We were rolling drunk on petroleum.&rdquo;</blockquote>
+  <cite>— Kurt Vonnegut, A Man Without a Country</cite>
+</section>
+
+<footer class="foot">
+  <div class="foot-brand">Switch <span>Stack</span></div>
+  <a href="https://github.com/chocholous/switch-stack">GitHub</a>
+</footer>
+
+</body>
+</html>
