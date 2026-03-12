@@ -3,110 +3,147 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Switch Stack</title>
+<title>The Switch Stack — Issue 01</title>
+<meta name="description" content="Where the numbers flip the narrative. Environmental intelligence, biweekly.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #0a0a0c;
-  --surface: #131316;
-  --border: #222228;
-  --text: #e5e3dd;
-  --text2: #8a877f;
-  --red: #e04030;
-  --glow: #e0403018;
+  --ink: #1a1714;
+  --paper: #f5f0e8;
+  --paper-dark: #ebe4d8;
+  --accent: #c43e2a;
+  --muted: #7a7168;
+  --rule: #c8bfb0;
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: 16px; }
-body { background: var(--bg); color: var(--text); font-family: 'Outfit', system-ui, sans-serif; line-height: 1.6; min-height: 100vh; }
+html { font-size: 17px; }
+body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', system-ui, sans-serif; line-height: 1.6; -webkit-font-smoothing: antialiased; }
 
-.page { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
-
-/* HEADER */
-.hdr {
-  padding: 3rem 0 2rem;
-  text-align: center;
-  position: relative;
+/* MASTHEAD */
+.masthead {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.2rem 2rem 0;
 }
-.hdr::after {
-  content: '';
-  display: block;
-  width: 60px;
-  height: 3px;
-  background: var(--red);
-  margin: 1.5rem auto 0;
-}
-.hdr-title {
-  font-weight: 900;
-  font-size: clamp(3rem, 8vw, 6rem);
-  letter-spacing: -0.04em;
-  line-height: 0.9;
-}
-.hdr-title span { color: var(--red); }
-.hdr-sub {
-  font-family: 'Newsreader', serif;
-  font-style: italic;
-  font-weight: 400;
-  font-size: 1.1rem;
-  color: var(--text2);
-  margin-top: 0.8rem;
-}
-.hdr-meta {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.6rem;
-  letter-spacing: 0.25em;
+.masthead-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--text2);
-  margin-top: 1rem;
+  color: var(--muted);
+  padding-bottom: 0.8rem;
+}
+.masthead-bar {
+  height: 5px;
+  background: var(--accent);
+}
+.masthead-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: clamp(2.8rem, 6vw, 4.5rem);
+  text-align: center;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  padding: 1.2rem 0 0.4rem;
+}
+.masthead-title span { color: var(--accent); }
+.masthead-subtitle {
+  text-align: center;
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-bottom: 1rem;
+}
+.masthead-rule {
+  border: none;
+  border-top: 3px double var(--ink);
 }
 
-/* ISSUE LABEL */
-.issue-label {
+/* ISSUE STRIP */
+.issue-strip {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0.8rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--rule);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* HERO — featured article */
+.hero {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3rem 2rem 2.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+@media (max-width: 780px) { .hero { grid-template-columns: 1fr; } }
+
+.hero-text { }
+.hero-kicker {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.6rem;
+  font-size: 0.62rem;
+  font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--red);
-  margin: 3rem 0 1.5rem;
-  padding-bottom: 0.6rem;
-  border-bottom: 1px solid var(--border);
+  color: var(--accent);
+  margin-bottom: 0.8rem;
 }
-
-/* CARD GRID */
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-  margin-bottom: 2rem;
+.hero h2 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+  margin-bottom: 1rem;
 }
-@media (max-width: 700px) { .card-grid { grid-template-columns: 1fr; } }
-
-.card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  text-decoration: none;
+.hero h2 a {
   color: inherit;
-  transition: border-color 0.3s, box-shadow 0.3s, transform 0.2s;
-  position: relative;
-  overflow: hidden;
+  text-decoration: none;
+  transition: color 0.2s;
 }
-.card:hover {
-  border-color: var(--red);
-  box-shadow: 0 0 40px var(--glow);
-  transform: translateY(-3px);
+.hero h2 a:hover { color: var(--accent); }
+.hero-deck {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: #4a4640;
+  line-height: 1.65;
+  margin-bottom: 1.2rem;
 }
+.hero-link {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 2px;
+  transition: opacity 0.2s;
+}
+.hero-link:hover { opacity: 0.7; }
 
-.card-preview {
-  height: 200px;
-  overflow: hidden;
+.hero-preview {
   position: relative;
-  border-bottom: 1px solid var(--border);
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  background: #fff;
 }
-.card-preview iframe {
+.hero-preview iframe {
   width: 400%;
   height: 400%;
   transform: scale(0.25);
@@ -114,56 +151,114 @@ body { background: var(--bg); color: var(--text); font-family: 'Outfit', system-
   border: none;
   pointer-events: none;
 }
-.card-overlay {
+.hero-preview-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 40%, var(--surface) 100%);
+  background: linear-gradient(180deg, transparent 50%, var(--paper) 100%);
+  pointer-events: none;
+}
+.hero-preview a {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
 }
 
-.card-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+/* DIVIDER */
+.section-rule {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+.section-rule hr {
+  border: none;
+  border-top: 1px solid var(--rule);
+}
 
-.card-version {
+/* ARTICLES GRID */
+.articles {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 2rem 1rem;
+}
+.articles-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--rule);
+}
+.articles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+@media (max-width: 780px) { .articles-grid { grid-template-columns: 1fr; } }
+
+.article-card {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s;
+}
+.article-card:hover { transform: translateY(-3px); }
+
+.article-card-preview {
+  aspect-ratio: 16/10;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid var(--rule);
+  background: #fff;
+  margin-bottom: 1rem;
+}
+.article-card-preview iframe {
+  width: 400%;
+  height: 400%;
+  transform: scale(0.25);
+  transform-origin: top left;
+  border: none;
+  pointer-events: none;
+}
+.article-card-preview .card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 60%, var(--paper) 100%);
+  pointer-events: none;
+}
+
+.article-card-kicker {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.58rem;
+  font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--red);
-  margin-bottom: 0.5rem;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
 }
-.card-title {
-  font-weight: 800;
-  font-size: 1.3rem;
+.article-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 1.15rem;
   line-height: 1.2;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   margin-bottom: 0.5rem;
 }
-.card-desc {
-  font-family: 'Newsreader', serif;
-  font-size: 0.88rem;
-  color: var(--text2);
-  line-height: 1.6;
+.article-card p {
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.55;
   flex: 1;
-}
-.card-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-top: 1rem;
-}
-.tag {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.55rem;
-  letter-spacing: 0.08em;
-  padding: 0.2rem 0.5rem;
-  border: 1px solid var(--border);
-  color: var(--text2);
-  border-radius: 2px;
 }
 
 /* ABOUT */
 .about {
-  border-top: 1px solid var(--border);
-  padding: 2.5rem 0;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem;
+  border-top: 1px solid var(--rule);
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 3rem;
@@ -174,144 +269,146 @@ body { background: var(--bg); color: var(--text); font-family: 'Outfit', system-
   font-size: 0.6rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--red);
-  margin-bottom: 0.8rem;
+  color: var(--accent);
+  margin-bottom: 0.6rem;
 }
 .about p {
-  font-family: 'Newsreader', serif;
-  font-size: 0.92rem;
-  color: var(--text2);
-  line-height: 1.7;
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.65;
 }
 
 /* FOOTER */
-.foot {
-  border-top: 1px solid var(--border);
-  padding: 1.5rem 0;
+.footer {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.5rem 2rem;
+  border-top: 3px double var(--ink);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.6rem;
-  color: var(--text2);
+  flex-wrap: wrap;
+  gap: 1rem;
 }
-.foot a { color: var(--red); text-decoration: none; }
-.foot a:hover { text-decoration: underline; }
+.footer-brand {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 1.1rem;
+}
+.footer-brand span { color: var(--accent); }
+.footer-links {
+  font-size: 0.72rem;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+}
+.footer-links a { color: var(--accent); text-decoration: none; }
+.footer-links a:hover { text-decoration: underline; }
 
 /* ANIMATIONS */
-@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-.hdr { animation: fadeUp 0.6s ease-out; }
-.card { animation: fadeUp 0.5s ease-out both; }
-.card:nth-child(1) { animation-delay: 0.1s; }
-.card:nth-child(2) { animation-delay: 0.2s; }
-.card:nth-child(3) { animation-delay: 0.3s; }
-.card:nth-child(4) { animation-delay: 0.4s; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+.hero { animation: fadeUp 0.6s ease-out; }
+.articles-grid .article-card { animation: fadeUp 0.5s ease-out both; }
+.articles-grid .article-card:nth-child(1) { animation-delay: 0.1s; }
+.articles-grid .article-card:nth-child(2) { animation-delay: 0.2s; }
+.articles-grid .article-card:nth-child(3) { animation-delay: 0.3s; }
 </style>
 </head>
 <body>
 
-<div class="page">
-
-<header class="hdr">
-  <div class="hdr-title">The Switch<br><span>Stack</span></div>
-  <div class="hdr-sub">Where the numbers flip the narrative</div>
-  <div class="hdr-meta">Biweekly · Environmental Intelligence · Est. 2026</div>
+<!-- MASTHEAD -->
+<div class="masthead-bar"></div>
+<header class="masthead">
+  <div class="masthead-top">
+    <span>Issue 01 &middot; March 2026</span>
+    <span>Biweekly &middot; Environmental Intelligence</span>
+  </div>
+  <div class="masthead-title">The Switch <span>Stack</span></div>
+  <div class="masthead-subtitle">Where the numbers flip the narrative</div>
+  <hr class="masthead-rule">
 </header>
 
-<div class="issue-label">Issue 01 · March 2026 — Carbon, Methane &amp; Nanoplastics</div>
-
-<div class="card-grid">
-
-  <!-- V1 -->
-  <a class="card" href="v1-magazine-compact.html">
-    <div class="card-preview">
-      <iframe src="v1-magazine-compact.html" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
-      <div class="card-overlay"></div>
-    </div>
-    <div class="card-body">
-      <div class="card-version">Version 01</div>
-      <div class="card-title">Magazine Compact</div>
-      <div class="card-desc">The condensed editorial with corrected data, sidebar comparison tables, and attribution charts. Classic newspaper aesthetics on warm cream.</div>
-      <div class="card-tags">
-        <span class="tag">Editorial</span>
-        <span class="tag">Compact</span>
-        <span class="tag">Warm Palette</span>
-      </div>
-    </div>
-  </a>
-
-  <!-- V2 -->
-  <a class="card" href="v2-full-narrative.html">
-    <div class="card-preview">
-      <iframe src="v2-full-narrative.html" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
-      <div class="card-overlay"></div>
-    </div>
-    <div class="card-body">
-      <div class="card-version">Version 02</div>
-      <div class="card-title">Full Narrative</div>
-      <div class="card-desc">The complete story arc — Gulf War context, Vonnegut fantasy, Putin & MBDA quotes, Kakhovka, toxic dust, the quiet rebellion. All corrected figures.</div>
-      <div class="card-tags">
-        <span class="tag">Full Story</span>
-        <span class="tag">Long-form</span>
-        <span class="tag">Warm Palette</span>
-      </div>
-    </div>
-  </a>
-
-  <!-- V3 -->
-  <a class="card" href="v3-infographic-light.html">
-    <div class="card-preview">
-      <iframe src="v3-infographic-light.html" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
-      <div class="card-overlay"></div>
-    </div>
-    <div class="card-body">
-      <div class="card-version">Version 03</div>
-      <div class="card-title">Infographic Light</div>
-      <div class="card-desc">Core messages only. Big numbers, scale bars, versus comparisons, legacy cards. Minimal prose, maximum visual impact. Dark data-viz aesthetic.</div>
-      <div class="card-tags">
-        <span class="tag">Infographic</span>
-        <span class="tag">Minimal Text</span>
-        <span class="tag">Dark Theme</span>
-      </div>
-    </div>
-  </a>
-
-  <!-- V4 -->
-  <a class="card" href="v4-dark-editorial.html">
-    <div class="card-preview">
-      <iframe src="v4-dark-editorial.html" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
-      <div class="card-overlay"></div>
-    </div>
-    <div class="card-body">
-      <div class="card-version">Version 04</div>
-      <div class="card-title">Noir Edition</div>
-      <div class="card-desc">Full narrative in a completely different design language. Full-viewport cover, dark-to-light transition, margin notes as sidebar, brutalist typographic system.</div>
-      <div class="card-tags">
-        <span class="tag">Full Story</span>
-        <span class="tag">Brutalist</span>
-        <span class="tag">Cover Page</span>
-      </div>
-    </div>
-  </a>
-
+<div class="issue-strip">
+  <span>Conflict &amp; Climate Special</span>
+  <span>4 Articles &middot; Carbon, Methane &amp; Nanoplastics</span>
 </div>
 
-<section class="about">
-  <div>
-    <h3>About This Issue</h3>
-    <p>All four versions share the same fact-checked dataset. Key corrections from the original draft: Gaza daily rate replaced with verified totals (281k tCO₂e / 60 days, 31 Mt long-term); Prague offset recalculated (19 years for full war, not 15 years for one day); per-capita vs. household CO₂ clarified (~26 kg/day per person, ~60 kg/day per household).</p>
+<!-- HERO — Featured Article (Full Narrative) -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-kicker">The Investigation</div>
+    <h2><a href="v2-full-narrative.html">Carbon, Methane, and Nanoplastics: Why Your Household Footprint Doesn't Stand a Chance</a></h2>
+    <p class="hero-deck">We sort plastics, buy efficient appliances, and feel guilty about the heating. An average Czech person emits roughly 26&nbsp;kg of CO&#8322; per day. Then the world goes to war&mdash;and the math stops making sense.</p>
+    <a class="hero-link" href="v2-full-narrative.html">Read the full story &rarr;</a>
   </div>
-  <div>
-    <h3>Data Sources</h3>
-    <p>IGAW — Initiative on GHG Accounting of War (Feb 2025). CEOBS &amp; SGR — Global military emissions (Nov 2022). UNEP — Conflict zone environmental assessments. SSRN / Queen Mary / Lancaster — Gaza carbon tracking (2024–2025). Hobbs &amp; Radke — Kuwait oil fires, Science (1992).</p>
+  <div class="hero-preview">
+    <a href="v2-full-narrative.html" aria-label="Read the full investigation"></a>
+    <iframe src="v2-full-narrative.html" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+    <div class="hero-preview-overlay"></div>
   </div>
 </section>
 
-<footer class="foot">
-  <span>The Switch Stack © 2026</span>
-  <a href="https://github.com/chocholous/switch-stack">GitHub → chocholous/switch-stack</a>
+<div class="section-rule"><hr></div>
+
+<!-- 3 MORE ARTICLES -->
+<section class="articles">
+  <div class="articles-label">Also in this issue</div>
+  <div class="articles-grid">
+
+    <!-- V1 — Compact / Briefing -->
+    <a class="article-card" href="v1-magazine-compact.html">
+      <div class="article-card-preview">
+        <iframe src="v1-magazine-compact.html" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+        <div class="card-overlay"></div>
+      </div>
+      <div class="article-card-kicker">The Briefing</div>
+      <h3>The Reckoning: War's Carbon Toll in&nbsp;Numbers</h3>
+      <p>The condensed editorial with corrected data, sidebar comparison tables, and attribution charts. Key findings at a glance.</p>
+    </a>
+
+    <!-- V3 — Infographic -->
+    <a class="article-card" href="v3-infographic-light.html">
+      <div class="article-card-preview">
+        <iframe src="v3-infographic-light.html" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+        <div class="card-overlay"></div>
+      </div>
+      <div class="article-card-kicker">The Data</div>
+      <h3>Your Footprint vs. The War Machine</h3>
+      <p>Big numbers, scale bars, versus comparisons. The same data, stripped down to pure visual impact.</p>
+    </a>
+
+    <!-- V4 — Noir / Editorial -->
+    <a class="article-card" href="v4-dark-editorial.html">
+      <div class="article-card-preview">
+        <iframe src="v4-dark-editorial.html" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+        <div class="card-overlay"></div>
+      </div>
+      <div class="article-card-kicker">The Editorial</div>
+      <h3>300 Years in the Dirt</h3>
+      <p>Full-viewport cover, dark-to-light transition, margin notes. The story told through a brutalist typographic lens.</p>
+    </a>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about">
+  <div>
+    <h3>About This Issue</h3>
+    <p>All articles share the same fact-checked dataset. Key corrections from the original draft: Gaza daily rate replaced with verified totals (281k tCO&#8322;e / 60 days, 31 Mt long-term); Prague offset recalculated (19 years for full war, not 15 years for one day); per-capita vs. household CO&#8322; clarified (~26 kg/day per person, ~60 kg/day per household).</p>
+  </div>
+  <div>
+    <h3>Data Sources</h3>
+    <p>IGAW &mdash; Initiative on GHG Accounting of War (Feb 2025). CEOBS &amp; SGR &mdash; Global military emissions (Nov 2022). UNEP &mdash; Conflict zone environmental assessments. SSRN / Queen Mary / Lancaster &mdash; Gaza carbon tracking (2024&ndash;2025). Hobbs &amp; Radke &mdash; Kuwait oil fires, Science (1992).</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-brand">The Switch <span>Stack</span></div>
+  <div class="footer-links">
+    &copy; 2026 &middot; <a href="https://github.com/chocholous/switchstack">GitHub</a>
+  </div>
 </footer>
 
-</div>
 </body>
 </html>
