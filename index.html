@@ -413,158 +413,40 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
   100% { transform: translateX(-50%); }
 }
 
-/* ISSUE NAVIGATION SIDEBAR */
-.issue-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 260px;
-  height: 100vh;
-  z-index: 1000;
-  transition: transform 0.3s ease;
-}
-.issue-nav-toggle {
-  display: none;
-  position: fixed;
-  top: 0.8rem;
-  left: 0.8rem;
-  z-index: 1001;
-  background: var(--paper, #f5f0e8);
-  border: 1px solid var(--rule, #c8bfb0);
-  width: 2.2rem;
-  height: 2.2rem;
-  font-size: 1.2rem;
-  cursor: pointer;
-  align-items: center;
+/* ISSUE NAVIGATION — inline strip */
+.issue-nav-strip {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0.6rem 2rem;
+  display: flex;
   justify-content: center;
-  color: var(--ink, #1a1714);
+  gap: 0.3rem;
+  border-bottom: 1px solid var(--rule, #c8bfb0);
 }
-.issue-nav .nav-close { display: none; }
-.issue-nav.open .nav-close { display: inline; }
-.issue-nav.open .nav-hamburger { display: none; }
-.issue-nav-inner {
-  height: 100%;
-  background: var(--paper, #f5f0e8);
-  border-right: 1px solid var(--rule, #c8bfb0);
-  display: flex;
-  flex-direction: column;
-  padding: 1.5rem 1rem;
-  overflow-y: auto;
-}
-.issue-nav-brand {
-  font-family: 'Playfair Display', serif;
-  font-weight: 900;
-  font-size: 1.1rem;
-  color: var(--ink, #1a1714);
-  text-decoration: none;
-  padding-bottom: 1rem;
-  margin-bottom: 1rem;
-  border-bottom: 2px solid var(--ink, #1a1714);
-}
-.issue-nav-brand span { color: var(--accent, #c43e2a); }
-.issue-nav-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-  flex: 1;
-}
-.issue-nav-item {
-  display: flex;
-  align-items: baseline;
-  gap: 0.6rem;
-  padding: 0.5rem 0.6rem;
-  text-decoration: none;
-  color: var(--ink, #1a1714);
-  border-radius: 4px;
-  transition: background 0.15s;
-}
-.issue-nav-item:hover { background: var(--paper-dark, #ebe4d8); }
-.issue-nav-item.active {
-  background: var(--ink, #1a1714);
-  color: var(--paper, #f5f0e8);
-}
-.issue-nav-item.active .issue-nav-num { color: var(--accent, #c43e2a); }
-.issue-nav-num {
+.issue-nav-link {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.65rem;
   font-weight: 600;
-  letter-spacing: 0.05em;
-  color: var(--accent, #c43e2a);
-  white-space: nowrap;
-}
-.issue-nav-topic {
-  font-size: 0.78rem;
-  line-height: 1.3;
-}
-.issue-nav-footer {
-  padding-top: 1rem;
-  border-top: 1px solid var(--rule, #c8bfb0);
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.65rem;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-}
-.issue-nav-footer a {
-  color: var(--accent, #c43e2a);
+  color: var(--muted, #7a7168);
   text-decoration: none;
+  padding: 0.3rem 0.6rem;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
 }
-
-/* Push content right to make room for sidebar */
-body { margin-left: 260px; }
-
-@media (max-width: 900px) {
-  .issue-nav { transform: translateX(-100%); }
-  .issue-nav.open { transform: translateX(0); }
-  .issue-nav-toggle { display: flex; }
-  body { margin-left: 0; }
+.issue-nav-link:hover {
+  color: var(--ink, #1a1714);
+  border-bottom-color: var(--rule, #c8bfb0);
+}
+.issue-nav-link.issue-nav-active {
+  color: var(--accent, #c43e2a);
+  border-bottom-color: var(--accent, #c43e2a);
 }
 
 </style>
 </head>
 <body>
-<nav class="issue-nav" id="issueNav">
-  <button class="issue-nav-toggle" onclick="document.getElementById('issueNav').classList.toggle('open')" aria-label="Toggle navigation">
-    <span class="nav-hamburger">&#9776;</span>
-    <span class="nav-close">&times;</span>
-  </button>
-  <div class="issue-nav-inner">
-    <a href="/" class="issue-nav-brand">The Switch <span>Stack</span></a>
-    <div class="issue-nav-list">
-      <a class="issue-nav-item active" href="/issue-07/">
-        <span class="issue-nav-num">#07</span>
-        <span class="issue-nav-topic">Carbon, Methane & Nanoplastics</span>
-      </a>
-      <a class="issue-nav-item" href="/issue-06/">
-        <span class="issue-nav-num">#06</span>
-        <span class="issue-nav-topic">The Drug War Backwards</span>
-      </a>
-      <a class="issue-nav-item" href="/issue-05/">
-        <span class="issue-nav-num">#05</span>
-        <span class="issue-nav-topic">The Inconvenient Correlation</span>
-      </a>
-      <a class="issue-nav-item" href="/issue-04/">
-        <span class="issue-nav-num">#04</span>
-        <span class="issue-nav-topic">The Safest Energy</span>
-      </a>
-      <a class="issue-nav-item" href="/issue-03/">
-        <span class="issue-nav-num">#03</span>
-        <span class="issue-nav-topic">The Safety Cage</span>
-      </a>
-      <a class="issue-nav-item" href="/issue-02/">
-        <span class="issue-nav-num">#02</span>
-        <span class="issue-nav-topic">Green Transition's Workforce</span>
-      </a>
-      <a class="issue-nav-item" href="/issue-01/">
-        <span class="issue-nav-num">#01</span>
-        <span class="issue-nav-topic">The Recycling Lie</span>
-      </a>
-    </div>
-    <div class="issue-nav-footer">
-      <a href="/feed.xml">RSS</a>
-    </div>
-  </div>
-</nav>
-
 <!-- VONNEGUT QUOTE TICKER -->
 <div class="vonnegut-ticker">
   <div class="vonnegut-ticker__track">
