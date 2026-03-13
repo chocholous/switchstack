@@ -311,9 +311,69 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
 .articles-grid .article-card:nth-child(1) { animation-delay: 0.1s; }
 .articles-grid .article-card:nth-child(2) { animation-delay: 0.2s; }
 .articles-grid .article-card:nth-child(3) { animation-delay: 0.3s; }
+
+/* VONNEGUT TICKER — steampunk style */
+.vonnegut-ticker {
+  background: #2a2118;
+  border-bottom: 2px solid #8b6914;
+  overflow: hidden;
+  position: relative;
+  height: 2rem;
+  line-height: 2rem;
+}
+.vonnegut-ticker::before,
+.vonnegut-ticker::after {
+  content: '⚙';
+  position: absolute;
+  top: 0;
+  height: 2rem;
+  line-height: 2rem;
+  width: 2rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #8b6914;
+  background: #2a2118;
+  z-index: 2;
+}
+.vonnegut-ticker::before { left: 0; border-right: 1px solid #5a4420; }
+.vonnegut-ticker::after { right: 0; border-left: 1px solid #5a4420; }
+
+.vonnegut-ticker__track {
+  display: flex;
+  white-space: nowrap;
+  animation: tickerScroll 38s linear infinite;
+  width: max-content;
+}
+.vonnegut-ticker:hover .vonnegut-ticker__track {
+  animation-play-state: paused;
+}
+.vonnegut-ticker__track span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+  color: #c4a35a;
+  padding: 0 0.6rem;
+}
+.vonnegut-ticker__track .ticker-sep {
+  color: #8b6914;
+  padding: 0 0.5rem;
+  font-size: 0.75rem;
+}
+@keyframes tickerScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
 </style>
 </head>
 <body>
+
+<!-- VONNEGUT QUOTE TICKER -->
+<div class="vonnegut-ticker">
+  <div class="vonnegut-ticker__track">
+    <span>"So it goes." — Slaughterhouse-Five</span><span class="ticker-sep">⚙</span><span>"Everything was beautiful and nothing hurt." — Slaughterhouse-Five</span><span class="ticker-sep">⚙</span><span>"We are what we pretend to be, so we must be careful about what we pretend to be." — Mother Night</span><span class="ticker-sep">⚙</span><span>"I was a victim of a series of accidents, as are we all." — The Sirens of Titan</span><span class="ticker-sep">⚙</span><span>"One of the few good things about modern times: If you die horribly on television, you will not have died in vain." — Cold Turkey</span><span class="ticker-sep">⚙</span><span>"Another flaw in the human character is that everybody wants to build and nobody wants to do maintenance." — Hocus Pocus</span><span class="ticker-sep">⚙</span><span>"Dear future generations: Please accept our apologies. We were rolling drunk on petroleum." — attributed</span><span class="ticker-sep">⚙</span>
+    <span>"So it goes." — Slaughterhouse-Five</span><span class="ticker-sep">⚙</span><span>"Everything was beautiful and nothing hurt." — Slaughterhouse-Five</span><span class="ticker-sep">⚙</span><span>"We are what we pretend to be, so we must be careful about what we pretend to be." — Mother Night</span><span class="ticker-sep">⚙</span><span>"I was a victim of a series of accidents, as are we all." — The Sirens of Titan</span><span class="ticker-sep">⚙</span><span>"One of the few good things about modern times: If you die horribly on television, you will not have died in vain." — Cold Turkey</span><span class="ticker-sep">⚙</span><span>"Another flaw in the human character is that everybody wants to build and nobody wants to do maintenance." — Hocus Pocus</span><span class="ticker-sep">⚙</span><span>"Dear future generations: Please accept our apologies. We were rolling drunk on petroleum." — attributed</span><span class="ticker-sep">⚙</span>
+  </div>
+</div>
 
 <!-- MASTHEAD -->
 <div class="masthead-bar"></div>
@@ -361,8 +421,8 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
         <div class="card-overlay"></div>
       </div>
       <div class="article-card-kicker">The Briefing</div>
-      <h3>The Reckoning: War's Carbon Toll in&nbsp;Numbers</h3>
-      <p>A single cruise missile lifecycle emits 30,000+ kg of CO&#8322;&mdash;erasing 3.2 years of your personal emissions. One F-35 flight hour burns through more than a Czech person produces in an entire year. The corrected numbers, side by side.</p>
+      <h3>How to Conduct a Genocide, Sustainably</h3>
+      <p>Oct 7 killed 1,200 people at 0.03 tonnes of CO&#8322; per death. Israel&rsquo;s operation in Gaza: 4 tonnes per kill, 81% of structures destroyed, up to 61 Mt long-term CO&#8322;&mdash;and an arms industry that files ESG reports about it. Russia burns 460 tonnes per kill in Ukraine. The most carbon-efficient atrocity leaves no trace in any climate framework.</p>
     </a>
 
     <!-- V3 — Infographic -->
@@ -372,8 +432,8 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
         <div class="card-overlay"></div>
       </div>
       <div class="article-card-kicker">The Data</div>
-      <h3>Your Footprint vs. The War Machine</h3>
-      <p>Over 99% of Gaza&rsquo;s first 60 days of emissions came from Israel and its US supply chain. Hamas rockets: 713 tonnes&mdash;less than 0.3%. The asymmetry, visualized.</p>
+      <h3>Precision Warfare, ESG Compliant: The Numbers Behind the&nbsp;Narrative</h3>
+      <p>In Gaza&rsquo;s first 60 days, Israel and its US supply chain produced over 99% of all war emissions. 81% of structures destroyed. Up to 61 Mt CO&#8322;. Hamas rockets have killed roughly 60 people in 22 years&mdash;and zero since mid-2024. 713 tonnes of CO&#8322; for nothing. The most carbon-inefficient weapon in modern warfare, aimed at the most carbon-efficient genocide.</p>
     </a>
 
     <!-- V4 — Noir / Editorial -->
@@ -383,8 +443,8 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
         <div class="card-overlay"></div>
       </div>
       <div class="article-card-kicker">The Editorial</div>
-      <h3>300 Years in the Dirt</h3>
-      <p>Every detonated shell impregnates Ukraine&rsquo;s chernozem with lead, cadmium, and mercury. 100 to 300 years to clean naturally. The breadbasket of Europe faces a grim choice: spend billions on remediation, or let the crops absorb the metals and eat it all.</p>
+      <h3>Future&rsquo;s Breadbasket, Rich on Heavy&nbsp;Metals</h3>
+      <p>Nanoplastics from pulverized drone casings. Lead, cadmium, and mercury from 26,000 detonated shells. All of it saturating Ukraine&rsquo;s soil&mdash;Europe&rsquo;s most fertile farmland. 100 to 300 years to clean naturally. The choice: spend billions on remediation, or harvest the metals and serve them for dinner.</p>
     </a>
 
   </div>

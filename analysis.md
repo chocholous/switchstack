@@ -165,6 +165,66 @@ The CO₂/atrocity ratio reveals that carbon footprint and human suffering are *
 
 ---
 
+### Hamas Rocket Historical Casualties (Wikipedia, B'Tselem)
+
+| Period / Conflict | Rockets fired | Israelis killed | Notes |
+|-------------------|--------------|-----------------|-------|
+| 2001–2004 | ~2,500+ | ~8 | Early Qassam era |
+| 2004–2008 | thousands | ~15 | B'Tselem tracking period |
+| 2008–2009 (Cast Lead) | 750+ | 3 | + 182 civilians wounded |
+| 2012 (Pillar of Defense) | ~1,500 | 5 | 4 civilians + 1 soldier |
+| 2014 (Protective Edge) | ~3,000 | 8 | + 60 injured |
+| 2019 | hundreds | 3 | + 100+ injured |
+| 2021 (11 days) | hundreds | ~5 | 260 killed in Gaza |
+| 2023 (May) | ~1,500 | 2 | |
+| Oct 7 2023 rockets | ~3,000 (first 4h) | ~15 | Separate from ground assault |
+| 2024 | sporadic | **0** | 1 lightly injured (shrapnel) |
+| 2025 | sporadic | **0** | 1 lightly injured (Apr) |
+| 2026 (to March) | minimal | **0** | Hamas rocket supply depleted |
+| **Total 2001–2023** | **~30,000+** | **~60** | **22 years** |
+
+**Key insight**: Hamas rockets have killed roughly 60 people in 22 years. Since mid-2024: zero killed. Iron Dome intercept rate ~90%. Each unfired rocket is pure carbon waste — 713 t CO₂ for near-zero military effect in the current conflict.
+
+B'Tselem verified (Jun 2004 – Jul 2014): 26 Israeli civilians, 2 foreign nationals, 5 soldiers killed by rockets/mortars.
+
+---
+
+### Hezbollah → Israel (Oct 2023 – Nov 2024)
+
+| Metric | Value | Source |
+|--------|-------|--------|
+| Rockets/projectiles fired | ~12,400 | Wikipedia, AJC |
+| Israeli civilians killed | ~45 | Amnesty International |
+| IDF soldiers killed | 76 | Wikipedia |
+| Hezbollah fighters killed | ~3,800 | IDF estimate |
+| Deadliest single attack | Majdal Shams, 12 children (Jul 2024) | ToI |
+| CO₂ data | **none published** | — |
+
+### Iran → Israel (2024)
+
+| Attack | Projectiles | Israelis killed | Source |
+|--------|------------|-----------------|--------|
+| April 2024 | 170 drones + 30 cruise + 120 ballistic | **0** (1 child injured) | Wikipedia |
+| October 2024 | ~200 ballistic missiles | **0** (1 Palestinian killed by debris) | NPR, CBS |
+| CO₂ data | **none published** | — | — |
+
+### Operation Epic Fury — US+Israel → Iran (Feb–Mar 2026)
+
+| Metric | Value | Source |
+|--------|-------|--------|
+| Iranians killed | ~1,200+ (incl. 200 children) | Iranian MoH |
+| US service members killed | 8 | Military Times |
+| Israelis killed by Iranian strikes | 11 | various |
+| Oil facilities struck | ~30 | CEOBS |
+| "Black rain" Tehran | 9M residents exposed | CEOBS |
+| 170k emergency admissions | in 1 week (resp/cardiac) | Iranian Deputy Health Min |
+| Vessels damaged/sunk | 43+ | CEOBS |
+| CO₂ data | **none published** | — |
+
+**Key insight**: Quantified CO₂ data exists only for Gaza (Queen Mary/SSRN) and Ukraine (IGAW). For Hezbollah, Iran, and Operation Epic Fury, CEOBS tracks incidents qualitatively but no carbon accounting has been published. The wars that aren't measured don't count in any climate framework.
+
+---
+
 ## Sources
 
 - [UNOSAT Gaza Damage Assessment Oct 2025](https://www.un.org/unispal/document/unosat-gaza-strip-damage-assessment-31oct25/)
@@ -181,3 +241,14 @@ The CO₂/atrocity ratio reveals that carbon footprint and human suffering are *
 - [Army Technology — Drones 80% casualties](https://www.army-technology.com/news/drones-now-account-for-80-of-casualties-in-ukraine-russia-war/)
 - [AOAV — Explosive Violence Monitor 2024](https://aoav.org.uk/2025/explosive-violence-monitor-2024-initial-data/)
 - [Earth.org — IGAW 3 years](https://earth.org/warfare-now-largest-source-of-ukraines-annual-carbon-emissions-report-warns-on-third-anniversary-of-russias-invasion/)
+- [Palestinian rocket attacks on Israel - Wikipedia](https://en.wikipedia.org/wiki/Palestinian_rocket_attacks_on_Israel)
+- [List of Palestinian rocket attacks on Israel in 2024 - Wikipedia](https://en.wikipedia.org/wiki/List_of_Palestinian_rocket_attacks_on_Israel_in_2024)
+- [Hezbollah–Israel conflict (2023–present) - Wikipedia](https://en.wikipedia.org/wiki/Israel%E2%80%93Hezbollah_conflict_(2023%E2%80%93present))
+- [April 2024 Iranian strikes on Israel - Wikipedia](https://en.wikipedia.org/wiki/April_2024_Iranian_strikes_on_Israel)
+- [October 2024 Iranian strikes on Israel - Wikipedia](https://en.wikipedia.org/wiki/October_2024_Iranian_strikes_on_Israel)
+- [Amnesty International — Hezbollah attacks (Dec 2024)](https://www.amnesty.org/en/latest/news/2024/12/israel-hezbollahs-use-of-inherently-inaccurate-weapons-to-launch-unlawful-attacks-violates-international-law/)
+- [CEOBS — Operation Epic Fury environmental harm](https://ceobs.org/operation-epic-fury-emerging-environmental-harm-and-risks-in-iran-and-the-region/)
+- [CEOBS — Three days of Epic Fury](https://ceobs.org/three-days-of-operation-epic-fury-rapid-overview-of-environmental-harm-in-iran-and-the-region/)
+- [CEOBS — Black rain Tehran oil fires](https://ceobs.org/black-rain-the-health-and-environmental-risks-from-tehrans-oil-fires/)
+- [CEOBS — Environmental costs of escalating Middle East crisis](https://ceobs.org/the-environmental-costs-of-the-escalating-middle-east-crisis/)
+- [Military Times — Operation Epic Fury casualties](https://www.militarytimes.com/news/your-military/2026/03/02/six-dead-18-service-members-injured-in-iran-operation/)
