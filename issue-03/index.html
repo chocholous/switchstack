@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Switch Stack -- Issue 03</title>
+<meta name="description" content="Where the numbers flip the narrative. Motorcycle Death Myth x Urban Transport.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1714;
+  --paper: #f5f0e8;
+  --paper-dark: #ebe4d8;
+  --accent: #c43e2a;
+  --muted: #7a7168;
+  --rule: #c8bfb0;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 17px; }
+body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', system-ui, sans-serif; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+.masthead { max-width: 1100px; margin: 0 auto; padding: 1.2rem 2rem 0; }
+.masthead-top { display: flex; justify-content: space-between; align-items: center; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); padding-bottom: 0.8rem; }
+.masthead-bar { height: 5px; background: var(--accent); }
+.masthead-title { font-family: 'Playfair Display', serif; font-weight: 900; font-size: clamp(2.8rem, 6vw, 4.5rem); text-align: center; letter-spacing: -0.03em; line-height: 1; padding: 1.2rem 0 0.4rem; }
+.masthead-title span { color: var(--accent); }
+.masthead-subtitle { text-align: center; font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); padding-bottom: 1rem; }
+.masthead-rule { border: none; border-top: 3px double var(--ink); }
+
+.issue-strip { max-width: 1100px; margin: 0 auto; padding: 0.8rem 2rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--rule); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+
+.hero { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem 2.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: center; }
+@media (max-width: 780px) { .hero { grid-template-columns: 1fr; } }
+.hero-kicker { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8rem; }
+.hero h2 { font-family: 'Playfair Display', serif; font-weight: 900; font-size: clamp(1.6rem, 3vw, 2.4rem); line-height: 1.12; letter-spacing: -0.015em; margin-bottom: 1rem; }
+.hero h2 a { color: inherit; text-decoration: none; transition: color 0.2s; }
+.hero h2 a:hover { color: var(--accent); }
+.hero-deck { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.95rem; color: #4a4640; line-height: 1.65; margin-bottom: 1.2rem; }
+.hero-link { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent); padding-bottom: 2px; transition: opacity 0.2s; }
+.hero-link:hover { opacity: 0.7; }
+.hero-readtime { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; padding: 0.2rem 0.5rem; border: 1px solid var(--rule); display: inline-block; border-radius: 2px; }
+
+.hero-preview { position: relative; aspect-ratio: 4/3; overflow: hidden; border: 1px solid var(--rule); background: #fff; }
+.hero-preview iframe { width: 400%; height: 400%; transform: scale(0.25); transform-origin: top left; border: none; pointer-events: none; }
+.hero-preview-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 50%, var(--paper) 100%); pointer-events: none; }
+.hero-preview a { position: absolute; inset: 0; z-index: 2; }
+
+.section-rule { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+.section-rule hr { border: none; border-top: 1px solid var(--rule); }
+
+.articles { max-width: 1100px; margin: 0 auto; padding: 2rem 2rem 1rem; }
+.articles-label { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--rule); }
+.articles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+@media (max-width: 780px) { .articles-grid { grid-template-columns: 1fr; } }
+
+.article-card { text-decoration: none; color: inherit; display: flex; flex-direction: column; transition: transform 0.2s; }
+.article-card:hover { transform: translateY(-3px); }
+.article-card-preview { aspect-ratio: 16/10; overflow: hidden; position: relative; border: 1px solid var(--rule); background: #fff; margin-bottom: 1rem; }
+.article-card-preview iframe { width: 400%; height: 400%; transform: scale(0.25); transform-origin: top left; border: none; pointer-events: none; }
+.article-card-preview .card-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 60%, var(--paper) 100%); pointer-events: none; }
+.article-card-kicker { font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; }
+.article-card h3 { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 1.15rem; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 0.5rem; }
+.article-card-readtime { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; padding: 0.2rem 0.5rem; border: 1px solid var(--rule); display: inline-block; border-radius: 2px; }
+.article-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.55; flex: 1; }
+
+.about { max-width: 1100px; margin: 0 auto; padding: 2rem; border-top: 1px solid var(--rule); display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+@media (max-width: 700px) { .about { grid-template-columns: 1fr; } }
+.about h3 { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem; }
+.about p { font-size: 0.82rem; color: var(--muted); line-height: 1.65; }
+
+.footer { max-width: 1100px; margin: 0 auto; padding: 1.5rem 2rem; border-top: 3px double var(--ink); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+.footer-brand { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 1.1rem; }
+.footer-brand span { color: var(--accent); }
+.footer-links { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.08em; }
+.footer-links a { color: var(--accent); text-decoration: none; }
+.footer-links a:hover { text-decoration: underline; }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+.hero { animation: fadeUp 0.6s ease-out; }
+.articles-grid .article-card { animation: fadeUp 0.5s ease-out both; }
+.articles-grid .article-card:nth-child(1) { animation-delay: 0.1s; }
+.articles-grid .article-card:nth-child(2) { animation-delay: 0.2s; }
+.articles-grid .article-card:nth-child(3) { animation-delay: 0.3s; }
+
+/* QUOTE TICKER */
+.quote-ticker { background: #2a2118; border-bottom: 2px solid #8b6914; overflow: hidden; position: relative; height: 2rem; line-height: 2rem; }
+.quote-ticker::before, .quote-ticker::after { content: '\2699'; position: absolute; top: 0; height: 2rem; line-height: 2rem; width: 2rem; text-align: center; font-size: 0.9rem; color: #8b6914; background: #2a2118; z-index: 2; }
+.quote-ticker::before { left: 0; border-right: 1px solid #5a4420; }
+.quote-ticker::after { right: 0; border-left: 1px solid #5a4420; }
+.quote-ticker__track { display: flex; white-space: nowrap; animation: tickerScroll 50s linear infinite; width: max-content; }
+.quote-ticker:hover .quote-ticker__track { animation-play-state: paused; }
+.quote-ticker__track span { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.03em; color: #c4a35a; padding: 0 0.6rem; }
+.quote-ticker__track .ticker-sep { color: #8b6914; padding: 0 0.5rem; font-size: 0.75rem; }
+@keyframes tickerScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+/* ISSUE NAVIGATION SIDEBAR */
+.issue-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+}
+.issue-nav-toggle {
+  display: none;
+  position: fixed;
+  top: 0.8rem;
+  left: 0.8rem;
+  z-index: 1001;
+  background: var(--paper, #f5f0e8);
+  border: 1px solid var(--rule, #c8bfb0);
+  width: 2.2rem;
+  height: 2.2rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink, #1a1714);
+}
+.issue-nav .nav-close { display: none; }
+.issue-nav.open .nav-close { display: inline; }
+.issue-nav.open .nav-hamburger { display: none; }
+.issue-nav-inner {
+  height: 100%;
+  background: var(--paper, #f5f0e8);
+  border-right: 1px solid var(--rule, #c8bfb0);
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 1rem;
+  overflow-y: auto;
+}
+.issue-nav-brand {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 1.1rem;
+  color: var(--ink, #1a1714);
+  text-decoration: none;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--ink, #1a1714);
+}
+.issue-nav-brand span { color: var(--accent, #c43e2a); }
+.issue-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  flex: 1;
+}
+.issue-nav-item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  padding: 0.5rem 0.6rem;
+  text-decoration: none;
+  color: var(--ink, #1a1714);
+  border-radius: 4px;
+  transition: background 0.15s;
+}
+.issue-nav-item:hover { background: var(--paper-dark, #ebe4d8); }
+.issue-nav-item.active {
+  background: var(--ink, #1a1714);
+  color: var(--paper, #f5f0e8);
+}
+.issue-nav-item.active .issue-nav-num { color: var(--accent, #c43e2a); }
+.issue-nav-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--accent, #c43e2a);
+  white-space: nowrap;
+}
+.issue-nav-topic {
+  font-size: 0.78rem;
+  line-height: 1.3;
+}
+.issue-nav-footer {
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule, #c8bfb0);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.issue-nav-footer a {
+  color: var(--accent, #c43e2a);
+  text-decoration: none;
+}
+
+/* Push content right to make room for sidebar */
+body { margin-left: 260px; }
+
+@media (max-width: 900px) {
+  .issue-nav { transform: translateX(-100%); }
+  .issue-nav.open { transform: translateX(0); }
+  .issue-nav-toggle { display: flex; }
+  body { margin-left: 0; }
+}
+
+</style>
+</head>
+<body>
+<nav class="issue-nav" id="issueNav">
+  <button class="issue-nav-toggle" onclick="document.getElementById('issueNav').classList.toggle('open')" aria-label="Toggle navigation">
+    <span class="nav-hamburger">&#9776;</span>
+    <span class="nav-close">&times;</span>
+  </button>
+  <div class="issue-nav-inner">
+    <a href="/" class="issue-nav-brand">The Switch <span>Stack</span></a>
+    <div class="issue-nav-list">
+      <a class="issue-nav-item" href="/issue-07/">
+        <span class="issue-nav-num">#07</span>
+        <span class="issue-nav-topic">Carbon, Methane & Nanoplastics</span>
+      </a>
+      <a class="issue-nav-item" href="/issue-06/">
+        <span class="issue-nav-num">#06</span>
+        <span class="issue-nav-topic">The Drug War Backwards</span>
+      </a>
+      <a class="issue-nav-item" href="/issue-05/">
+        <span class="issue-nav-num">#05</span>
+        <span class="issue-nav-topic">The Inconvenient Correlation</span>
+      </a>
+      <a class="issue-nav-item" href="/issue-04/">
+        <span class="issue-nav-num">#04</span>
+        <span class="issue-nav-topic">The Safest Energy</span>
+      </a>
+      <a class="issue-nav-item active" href="/issue-03/">
+        <span class="issue-nav-num">#03</span>
+        <span class="issue-nav-topic">The Safety Cage</span>
+      </a>
+      <a class="issue-nav-item" href="/issue-02/">
+        <span class="issue-nav-num">#02</span>
+        <span class="issue-nav-topic">Green Transition's Workforce</span>
+      </a>
+      <a class="issue-nav-item" href="/issue-01/">
+        <span class="issue-nav-num">#01</span>
+        <span class="issue-nav-topic">The Recycling Lie</span>
+      </a>
+    </div>
+    <div class="issue-nav-footer">
+      <a href="/feed.xml">RSS</a>
+    </div>
+  </div>
+</nav>
+
+<!-- QUOTE TICKER: Gehl, Jacobs, Illich, Penalosa -->
+<div class="quote-ticker">
+  <div class="quote-ticker__track">
+    <span>"First life, then spaces, then buildings &mdash; the other way around never works." &mdash; Jan Gehl</span><span class="ticker-sep">&bull;</span><span>"Not TV or illegal drugs but the automobile has been the chief destroyer of American communities." &mdash; Jane Jacobs</span><span class="ticker-sep">&bull;</span><span>"Beyond a critical speed, no one can save time without forcing another to lose it." &mdash; Ivan Illich</span><span class="ticker-sep">&bull;</span><span>"An advanced city is not one where the poor own a car, but one where the rich use public transport." &mdash; Enrique Pe&ntilde;alosa</span><span class="ticker-sep">&bull;</span><span>"Streets and their sidewalks &mdash; the main public places of a city &mdash; are its most vital organs." &mdash; Jane Jacobs</span><span class="ticker-sep">&bull;</span><span>"A protected bikeway is a symbol of democracy." &mdash; Enrique Pe&ntilde;alosa</span><span class="ticker-sep">&bull;</span><span>"Participatory democracy demands low-energy technology, and free people must travel the road to productive social relations at the speed of a bicycle." &mdash; Ivan Illich</span><span class="ticker-sep">&bull;</span><span>"A good city is like a good party &mdash; people stay longer than really necessary because they are enjoying themselves." &mdash; Jan Gehl</span><span class="ticker-sep">&bull;</span>
+    <span>"First life, then spaces, then buildings &mdash; the other way around never works." &mdash; Jan Gehl</span><span class="ticker-sep">&bull;</span><span>"Not TV or illegal drugs but the automobile has been the chief destroyer of American communities." &mdash; Jane Jacobs</span><span class="ticker-sep">&bull;</span><span>"Beyond a critical speed, no one can save time without forcing another to lose it." &mdash; Ivan Illich</span><span class="ticker-sep">&bull;</span><span>"An advanced city is not one where the poor own a car, but one where the rich use public transport." &mdash; Enrique Pe&ntilde;alosa</span><span class="ticker-sep">&bull;</span><span>"Streets and their sidewalks &mdash; the main public places of a city &mdash; are its most vital organs." &mdash; Jane Jacobs</span><span class="ticker-sep">&bull;</span><span>"A protected bikeway is a symbol of democracy." &mdash; Enrique Pe&ntilde;alosa</span><span class="ticker-sep">&bull;</span><span>"Participatory democracy demands low-energy technology, and free people must travel the road to productive social relations at the speed of a bicycle." &mdash; Ivan Illich</span><span class="ticker-sep">&bull;</span><span>"A good city is like a good party &mdash; people stay longer than really necessary because they are enjoying themselves." &mdash; Jan Gehl</span><span class="ticker-sep">&bull;</span>
+  </div>
+</div>
+
+<div class="masthead-bar"></div>
+<header class="masthead">
+  <div class="masthead-top">
+    <span>Issue 03 &middot; January 2026</span>
+    <span>Biweekly &middot; Urban Transport Intelligence</span>
+  </div>
+  <div class="masthead-title">The Switch <span>Stack</span></div>
+  <div class="masthead-subtitle">Where the numbers flip the narrative</div>
+  <hr class="masthead-rule">
+</header>
+
+<div class="issue-strip">
+  <span>Motorcycle Death Myth &amp; Urban Transport</span>
+  <span>4 Articles &middot; Safety, Speed &amp; The Cage</span>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-kicker">The Investigation</div>
+    <h2><a href="/issue-03/the-safety-cage/">The Safety Cage: Who Your Car Protects and Who It&nbsp;Doesn&rsquo;t</a></h2>
+    <div class="hero-readtime">12 min read</div>
+    <p class="hero-deck">You chose your car because it was safe. Five stars. But the rating measures how well it protects you from a crash&mdash;not how well it protects the pedestrian you hit. In European cities, 70% of road deaths are people outside the cage. The data on who dies&mdash;and what&rsquo;s driving over them.</p>
+    <a class="hero-link" href="/issue-03/the-safety-cage/">Read the full story &rarr;</a>
+  </div>
+  <div class="hero-preview">
+    <a href="/issue-03/the-safety-cage/" aria-label="Read the full investigation"></a>
+    <iframe src="v2-full-narrative.html" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+    <div class="hero-preview-overlay"></div>
+  </div>
+</section>
+
+<div class="section-rule"><hr></div>
+
+<!-- 3 MORE ARTICLES -->
+<section class="articles">
+  <div class="articles-label">Also in this issue</div>
+  <div class="articles-grid">
+
+    <a class="article-card" href="/issue-03/your-car-is-a-weapon-with-a-seatbelt/">
+      <div class="article-card-preview">
+        <iframe src="v1-magazine-compact.html" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+        <div class="card-overlay"></div>
+      </div>
+      <div class="article-card-kicker">The Briefing</div>
+      <h3>Your Car Is a Weapon With a Seatbelt</h3>
+      <div class="article-card-readtime">8 min read</div>
+      <p>1.19M killed/year globally. 53% are pedestrians, cyclists, and motorcyclists. SUVs: +23% pedestrian death risk per 300&nbsp;kg. 30&nbsp;km/h survival: 90%. 50&nbsp;km/h survival: 50%. The data on who your car protects&mdash;and who it doesn&rsquo;t.</p>
+    </a>
+
+    <a class="article-card" href="/issue-03/urban-kill-rate/">
+      <div class="article-card-preview">
+        <iframe src="v3-infographic-light.html" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+        <div class="card-overlay"></div>
+      </div>
+      <div class="article-card-kicker">The Data</div>
+      <h3>Urban Kill Rate: Per Vehicle, Per&nbsp;Km, Per&nbsp;Victim</h3>
+      <div class="article-card-readtime">4 min read</div>
+      <p>Motorcyclists die 20&ndash;28x more per km. But cars kill 3.25 others per billion vkm. SUV market share: 10% (2010) to 48% (2023). Helsinki: zero deaths in 12 months. The numbers that flip the safety narrative.</p>
+    </a>
+
+    <a class="article-card" href="/issue-03/the-cage-and-the-exposed/">
+      <div class="article-card-preview">
+        <iframe src="v4-dark-editorial.html" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+        <div class="card-overlay"></div>
+      </div>
+      <div class="article-card-kicker">The Editorial</div>
+      <h3>The Cage and the&nbsp;Exposed</h3>
+      <div class="article-card-readtime">9 min read</div>
+      <p>Every safety feature in your car was designed to protect you from the consequences of your own speed. None were designed to protect the person you hit. An essay on the moral architecture of urban transport.</p>
+    </a>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about">
+  <div>
+    <h3>About This Issue</h3>
+    <p>All articles share the same verified dataset. Key figures: 1.19M global road deaths/year (WHO 2023). 53% are vulnerable road users. In EU urban areas, 70% of deaths are pedestrians, cyclists, and PTW users. Motorcyclists die 20&ndash;28x more per km than car occupants, but the car fleet dominates in absolute third-party deaths. SUVs increase pedestrian death risk by 23% per 300&nbsp;kg added. Helsinki achieved zero road deaths for 12 months with 30&nbsp;km/h limits.</p>
+  </div>
+  <div>
+    <h3>Data Sources</h3>
+    <p>WHO Global Status Report on Road Safety 2023. European Commission Road Safety 2024. PMC7848050 &mdash; Externalized risk study, Journal of Transport &amp; Health (2021). IIHS &mdash; SUV pedestrian lethality. FIA Foundation &mdash; Vehicle size report. ETSC &mdash; Urban road safety. ICCT &mdash; European Vehicle Market Statistics 2024/25. AAA Foundation &mdash; Speed impact study.</p>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-brand">The Switch <span>Stack</span></div>
+  <div class="footer-links">&copy; 2026 &middot; <a href="https://github.com/chocholous/switchstack">GitHub</a></div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Switch Stack — Issue 02 · Zero Emissions, Full Morgue</title>
+<meta name="description" content="40,000 children dig cobalt in DRC mines for your EV battery. Your car's 'zero emissions' badge doesn't count the six-year-old who mined the cathode.">
+<meta property="og:title" content="The Switch Stack — Issue 02 · Zero Emissions, Full Morgue">
+<meta property="og:description" content="40,000 children dig cobalt in DRC mines. 78% of global cobalt comes from one country. The zero emissions badge has a supply chain it doesn't talk about.">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;600&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1714;
+  --paper: #f5f0e8;
+  --paper-dark: #ebe4d8;
+  --accent: #c43e2a;
+  --accent-dark: #9a2f1f;
+  --muted: #7a7168;
+  --rule: #c8bfb0;
+  --highlight: #ffeaa7;
+  --cobalt: #3d4f5f;
+  --mine: #5a4a3a;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 17px; scroll-behavior: smooth; }
+body { background: var(--paper); color: var(--ink); font-family: 'Source Serif 4', Georgia, serif; line-height: 1.72; -webkit-font-smoothing: antialiased; }
+
+/* MASTHEAD */
+.masthead { border-bottom: 4px double var(--ink); padding: 1.2rem 0 0.8rem; text-align: center; position: relative; background: var(--paper); }
+.masthead::before { content: ''; display: block; height: 6px; background: var(--accent); margin-bottom: 1rem; }
+.masthead-meta { font-family: 'DM Sans', sans-serif; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+.masthead-title { font-family: 'Playfair Display', serif; font-weight: 900; font-size: clamp(2.4rem, 5vw, 4rem); letter-spacing: -0.02em; line-height: 1; margin: 0.4rem 0; }
+.masthead-title span { color: var(--accent); }
+.masthead-subtitle { font-family: 'DM Sans', sans-serif; font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.6rem; }
+
+/* SHARE */
+.share-strip { background: var(--ink); padding: 0.8rem 2rem; text-align: center; }
+.share-strip a { font-family: 'DM Sans', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--paper); text-decoration: none; margin: 0 1rem; transition: color 0.2s; cursor: pointer; }
+.share-strip a:hover { color: var(--accent); }
+
+/* HERO */
+.hero { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem 2rem; }
+.hero-kicker { font-family: 'DM Sans', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8rem; }
+.hero h1 { font-family: 'Playfair Display', serif; font-weight: 900; font-size: clamp(2rem, 4.5vw, 3.4rem); line-height: 1.12; letter-spacing: -0.015em; max-width: 820px; margin-bottom: 1.4rem; }
+.hero-deck { font-size: 1.18rem; line-height: 1.65; color: #3a3630; max-width: 680px; border-left: 3px solid var(--accent); padding-left: 1.2rem; }
+
+/* STATS BAR */
+.stats-bar { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+.stats-bar-inner { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0; border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); }
+.stat-cell { padding: 1.2rem 1.4rem; border-right: 1px solid var(--rule); }
+.stat-cell:last-child { border-right: none; }
+.stat-number { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 2.4rem; line-height: 1; color: var(--accent); }
+.stat-unit { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--muted); letter-spacing: 0.05em; display: block; margin-top: 0.15rem; }
+.stat-label { font-family: 'DM Sans', sans-serif; font-size: 0.76rem; color: var(--muted); margin-top: 0.5rem; line-height: 1.4; }
+
+/* ARTICLE LAYOUT */
+.article-wrap { max-width: 1100px; margin: 0 auto; padding: 2.5rem 2rem; display: grid; grid-template-columns: 1fr 320px; gap: 3rem; }
+@media (max-width: 840px) { .article-wrap { grid-template-columns: 1fr; } }
+
+/* ARTICLE */
+.article h2 { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 1.55rem; margin: 2.6rem 0 0.8rem; line-height: 1.2; padding-left: 1rem; border-left: 4px solid var(--accent); }
+.article h2:first-child { margin-top: 0; }
+.article p { margin-bottom: 1.1rem; }
+.article p.lede { font-size: 1.08rem; }
+
+/* BLOCKQUOTE */
+.article blockquote { margin: 1.8rem 0; padding: 1.4rem 1.6rem; background: var(--ink); color: var(--paper); position: relative; font-style: italic; font-size: 0.95rem; line-height: 1.7; }
+.article blockquote::before { content: '\201C'; position: absolute; top: -0.2rem; left: 0.6rem; font-family: 'Playfair Display', serif; font-size: 4rem; color: var(--accent); line-height: 1; }
+.article blockquote cite { display: block; font-style: normal; font-family: 'DM Sans', sans-serif; font-size: 0.72rem; letter-spacing: 0.05em; color: var(--rule); margin-top: 0.8rem; }
+
+/* IMPACT BOX */
+.impact-box { margin: 2rem 0; border: 2px solid var(--ink); padding: 1.4rem 1.6rem; background: var(--paper-dark); }
+.impact-box h3 { font-family: 'DM Sans', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8rem; }
+.impact-item { display: flex; align-items: baseline; gap: 0.8rem; margin-bottom: 0.7rem; font-size: 0.92rem; }
+.impact-item strong { font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 0.82rem; color: var(--accent); white-space: nowrap; }
+
+/* SIDEBAR */
+.sidebar { border-left: 1px solid var(--rule); padding-left: 2rem; }
+@media (max-width: 840px) { .sidebar { border-left: none; padding-left: 0; border-top: 2px solid var(--ink); padding-top: 2rem; } }
+.sidebar-section { margin-bottom: 2.2rem; }
+.sidebar-section h3 { font-family: 'DM Sans', sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); border-bottom: 1px solid var(--rule); padding-bottom: 0.5rem; margin-bottom: 1rem; }
+
+/* TABLE */
+.compare-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+.compare-table th { font-family: 'DM Sans', sans-serif; font-weight: 700; text-align: left; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); padding: 0.4rem 0; border-bottom: 1px solid var(--rule); }
+.compare-table td { padding: 0.55rem 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+.compare-table td:last-child { font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 0.78rem; color: var(--accent); text-align: right; white-space: nowrap; }
+
+/* ESG CALLOUT */
+.esg-callout { background: linear-gradient(135deg, var(--cobalt) 0%, var(--mine) 100%); color: var(--paper); padding: 1.4rem; font-size: 0.88rem; line-height: 1.6; }
+.esg-callout strong { color: var(--highlight); font-family: 'DM Sans', sans-serif; font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; display: block; margin-bottom: 0.5rem; }
+
+/* SOURCES */
+.sources-list { list-style: none; font-size: 0.78rem; line-height: 1.55; color: var(--muted); }
+.sources-list li { margin-bottom: 0.6rem; padding-left: 1rem; position: relative; }
+.sources-list li::before { content: '\2192'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+.sources-list li strong { color: var(--ink); font-weight: 600; }
+
+/* CORRECTION NOTE */
+.note-sm { font-family: 'DM Sans', sans-serif; font-size: 0.68rem; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 0.6rem; margin-top: 0.4rem; line-height: 1.45; }
+
+/* CLOSING QUOTE */
+.closing-quote { border-top: 2px solid var(--ink); margin-top: 2rem; padding-top: 1.6rem; text-align: center; }
+.closing-quote p { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.15rem; line-height: 1.6; max-width: 500px; margin: 0 auto 0.6rem; }
+.closing-quote cite { font-family: 'DM Sans', sans-serif; font-style: normal; font-size: 0.72rem; letter-spacing: 0.1em; color: var(--muted); }
+
+/* EDITORIAL */
+.dropcap::first-letter { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 3.8rem; float: left; line-height: 0.78; margin: 0.08em 0.12em 0 0; color: var(--accent); }
+.sep { text-align: center; margin: 2rem 0; color: var(--rule); font-size: 1.2rem; letter-spacing: 0.6em; }
+
+/* FOOTER */
+.footer { max-width: 1100px; margin: 0 auto; padding: 2rem; border-top: 4px double var(--ink); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+.footer-brand { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 1.1rem; }
+.footer-brand span { color: var(--accent); }
+.footer-links { font-family: 'DM Sans', sans-serif; font-size: 0.72rem; color: var(--muted); letter-spacing: 0.1em; }
+.footer-links a { color: var(--accent); text-decoration: none; }
+.footer-links a:hover { text-decoration: underline; }
+
+@media print { body { font-size: 10pt; } .share-strip { display: none; } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.hero, .stats-bar-inner, .article-wrap, .footer { animation: fadeUp 0.6s ease-out both; }
+.stats-bar-inner { animation-delay: 0.15s; }
+.article-wrap { animation-delay: 0.3s; }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-meta"><span>Issue 02 &middot; January 2026</span><span>Biweekly</span></div>
+  <div class="masthead-title">The Switch <span>Stack</span></div>
+  <div class="masthead-subtitle">Where the numbers flip the narrative</div>
+</header>
+
+<div class="share-strip">
+  <a href="https://twitter.com/intent/tweet?text=Zero%20Emissions%2C%20Full%20Morgue%20%E2%80%94%20The%20Switch%20Stack&url=" target="_blank" rel="noopener">Share on X</a>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url=" target="_blank" rel="noopener">Share on LinkedIn</a>
+  <a onclick="navigator.clipboard.writeText(window.location.href);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy Link',2000)">Copy Link</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-kicker">Environmental Intelligence &middot; Supply Chain &amp; Human Rights</div>
+  <h1>Zero Emissions, Full Morgue</h1>
+  <p class="hero-deck">An estimated 40,000 children dig cobalt in DRC mines for your EV battery. 78% of global cobalt comes from one country with no enforceable labor protections. Your car&rsquo;s &ldquo;zero emissions&rdquo; badge doesn&rsquo;t count the six-year-old who mined the cathode.</p>
+</section>
+
+<!-- STATS BAR -->
+<section class="stats-bar">
+  <div class="stats-bar-inner">
+    <div class="stat-cell">
+      <div class="stat-number">78%</div>
+      <span class="stat-unit">of global cobalt</span>
+      <div class="stat-label">Mined in the DRC (Cobalt Institute, 2024)</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-number">~40k</div>
+      <span class="stat-unit">children estimated</span>
+      <div class="stat-label">In artisanal cobalt mining (UNICEF est.)</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-number">82%</div>
+      <span class="stat-unit">of miners surveyed</span>
+      <div class="stat-label">Report skin problems (RAID, 2024)</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-number">49%</div>
+      <span class="stat-unit">top score</span>
+      <div class="stat-label">Best automaker on supply chain (Lead the Charge, 2026)</div>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN ARTICLE + SIDEBAR -->
+<div class="article-wrap">
+<article class="article">
+
+  <h2>The Supply Chain Your Dashboard Doesn&rsquo;t Show</h2>
+
+  <p class="lede dropcap">Your electric vehicle produces zero tailpipe emissions. That is a fact. It is also the beginning and end of what the &ldquo;zero emissions&rdquo; badge tells you. It does not tell you about the estimated 40,000 children working in artisanal cobalt mines in the Democratic Republic of the Congo&mdash;some as young as six&mdash;earning $1&ndash;2 per day, digging with bare hands in tunnels that descend 100 metres without safety equipment.</p>
+
+  <p>That number&mdash;40,000&mdash;comes from UNICEF estimates circa 2012, repeated in Amnesty International&rsquo;s landmark 2016 report. No independent updated census has been conducted since. The real number could be higher. [PARTIALLY VERIFIED]</p>
+
+  <blockquote>
+    We would not send the children of Cupertino to scrounge for cobalt in toxic pits, so why is it permissible to send the children of the Congo?
+    <cite>&mdash; Siddharth Kara, Cobalt Red (2023)</cite>
+  </blockquote>
+
+  <div class="sep">&middot; &middot; &middot;</div>
+
+  <h2>The Numbers at the Mine Face</h2>
+
+  <p>In February 2024, researchers from the University of Bath published fieldwork from Kolwezi and Likasi&mdash;the epicentre of DRC&rsquo;s cobalt belt. The findings are systematic, not anecdotal.</p>
+
+  <div class="impact-box">
+    <h3>Miner Health Survey (RAID / University of Bath, 2024)</h3>
+    <div class="impact-item"><strong>82%</strong> reported skin problems</div>
+    <div class="impact-item"><strong>85.4%</strong> reported breathing issues</div>
+    <div class="impact-item"><strong>52.7%</strong> reported major injuries in the past year</div>
+    <div class="impact-item"><strong>937</strong> miners said someone close to them died in the past 2 years from mining</div>
+    <div class="impact-item"><strong>$1&ndash;2/day</strong> earnings for child miners (Amnesty, 2016)</div>
+    <div class="impact-item"><strong>$3,000/yr</strong> top earner in Kasulo tunnels (Kara, 2023)</div>
+  </div>
+
+  <p>In November 2025, a makeshift bridge at the Kalando mine in Lualaba province collapsed, killing at least 32 people. Despite a formal ban on access due to landslide risk, wildcat miners had forced their way in. Soldiers at the site fired gunshots, causing panic. This is one incident that happened to be reported.</p>
+
+  <div class="sep">&middot; &middot; &middot;</div>
+
+  <h2>The ESG Report vs. the River</h2>
+
+  <p>Tesla leads the 2026 Lead the Charge Leaderboard with a score of 49%&mdash;the best in the industry, for the second consecutive year. Tesla discloses that more than 55% of its cobalt is sourced directly from mines or smelters with binding social and environmental requirements.</p>
+
+  <p>The other 45% goes through intermediaries with limited visibility. And 49% as a top score means even the industry leader fails more than half the assessed criteria.</p>
+
+  <p>Meanwhile, RAID UK tested the rivers near Kolwezi&rsquo;s mines in March 2024. Of five water bodies assessed, all were polluted by acidified industrial waste. The Katapula and Kalenge rivers were classified as &ldquo;hyper-acidic.&rdquo; The Dipeta and Dilala rivers were &ldquo;very acidic.&rdquo; None of the four can host fish. Their water is toxic for human and animal consumption.</p>
+
+  <p>The ESG report says &ldquo;sustainable.&rdquo; The river says &ldquo;hyper-acidic.&rdquo;</p>
+
+  <div class="sep">&middot; &middot; &middot;</div>
+
+  <h2>The Lawsuit That Failed</h2>
+
+  <p>In December 2019, International Rights Advocates filed a lawsuit against Apple, Alphabet, Dell, Microsoft, and Tesla on behalf of fourteen DRC families. The companies were accused of knowingly benefiting from child labour in cobalt mines. The named plaintiffs included children who had been paralysed or lost limbs in mine collapses.</p>
+
+  <p>In March 2024, the US Court of Appeals ruled 3-0 in favour of the companies, holding that they could not be held liable for more than an &ldquo;ordinary buyer-seller transaction&rdquo; with suppliers. The lawsuit was dismissed. The children are still digging.</p>
+
+  <div class="sep">&middot; &middot; &middot;</div>
+
+  <h2>What the Industry Gets Right</h2>
+
+  <p>Intellectual honesty requires acknowledging real progress. The industry IS reducing cobalt dependency. LFP batteries&mdash;which contain zero cobalt&mdash;now represent roughly 40% of global EV batteries. The average cobalt per battery has dropped from ~12 kg in 2018 to ~4.8 kg in 2023. Sodium-ion batteries (cobalt-free, lithium-free) are entering production.</p>
+
+  <p>The EU Battery Regulation, effective February 2027, will mandate mine-of-origin traceability for cobalt, lithium, nickel, and graphite. This is the most significant regulatory development in supply chain governance.</p>
+
+  <p>But a declining trend line does not retroactively address the conditions under which cobalt is mined today. And &ldquo;today&rdquo; is a six-year-old in a tunnel in Kolwezi.</p>
+
+  <div class="closing-quote">
+    <p>&ldquo;Spend a short time watching the filth-caked children of the Katanga region scrounge at the earth for cobalt, and you would be unable to determine whether they were working for the benefit of Leopold or a tech company.&rdquo;</p>
+    <cite>&mdash; Siddharth Kara, Cobalt Red (2023)</cite>
+  </div>
+
+</article>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+
+  <div class="sidebar-section">
+    <h3>Cobalt Per Battery</h3>
+    <table class="compare-table">
+      <thead><tr><th>Chemistry</th><th>Cobalt</th></tr></thead>
+      <tbody>
+        <tr><td>NMC111 (older)</td><td>~25&ndash;30 kg</td></tr>
+        <tr><td>NMC622</td><td>~12&ndash;15 kg</td></tr>
+        <tr><td>NMC811 (current)</td><td>~6&ndash;8 kg</td></tr>
+        <tr><td>Global average (2023)</td><td>4.8 kg</td></tr>
+        <tr><td>LFP (growing share)</td><td>0 kg</td></tr>
+      </tbody>
+    </table>
+    <p class="note-sm">LFP batteries now ~40% of global EV market. Cobalt demand per vehicle is declining. Source: Adamas Intelligence, IEA.</p>
+  </div>
+
+  <div class="sidebar-section">
+    <h3>The Pay Gap</h3>
+    <table class="compare-table">
+      <thead><tr><th>Who</th><th>Annual</th></tr></thead>
+      <tbody>
+        <tr><td>Child miner (DRC)</td><td>$365&ndash;$730</td></tr>
+        <tr><td>Top artisanal miner</td><td>~$3,000</td></tr>
+        <tr><td>Avg US EV buyer household</td><td>~$150,000</td></tr>
+      </tbody>
+    </table>
+    <p class="note-sm">Child miner wages: Amnesty 2016. Top artisanal miner: Kara, Cobalt Red (2023). US EV buyer: JD Power 2024.</p>
+  </div>
+
+  <div class="sidebar-section esg-callout">
+    <strong>The Certification Gap</strong>
+    iTSCi, the primary traceability scheme for conflict minerals, lost its recognition from the Responsible Minerals Initiative in October 2022 after failing to submit an independent OECD-aligned assessment. The main certification system for minerals traceability was de-listed by its own industry body.
+  </div>
+
+  <div class="sidebar-section">
+    <h3>The Water Ledger</h3>
+    <table class="compare-table">
+      <thead><tr><th>Metric</th><th>Value</th></tr></thead>
+      <tbody>
+        <tr><td>Brine per tonne Li<sub>2</sub>CO<sub>3</sub></td><td>~500k&ndash;600k L</td></tr>
+        <tr><td>Mining share of Atacama water</td><td>65%</td></tr>
+        <tr><td>Land subsidence (Atacama)</td><td>Up to 2 cm/yr</td></tr>
+        <tr><td>Global Li-ion recycling rate</td><td>&lt;10%</td></tr>
+      </tbody>
+    </table>
+    <p class="note-sm">Water data: ScienceDirect 2024. Recycling rate estimated; exact figure varies by methodology. [PARTIALLY VERIFIED]</p>
+  </div>
+
+  <div class="sidebar-section">
+    <h3>Sources</h3>
+    <ul class="sources-list">
+      <li><strong>Amnesty International</strong> &mdash; &ldquo;This Is What We Die For&rdquo; (2016)</li>
+      <li><strong>Siddharth Kara</strong> &mdash; Cobalt Red (2023); Congressional testimony</li>
+      <li><strong>RAID UK</strong> &mdash; Environmental and human cost report (2024)</li>
+      <li><strong>African Arguments / Univ. of Bath</strong> &mdash; Miner health survey (Feb 2024)</li>
+      <li><strong>Cobalt Institute</strong> &mdash; Market Report 2024</li>
+      <li><strong>Lead the Charge</strong> &mdash; Automaker Scorecard 2026</li>
+      <li><strong>US DOL</strong> &mdash; Child Labor Report DRC (2024)</li>
+      <li><strong>CNN / JURIST</strong> &mdash; Lawsuit dismissal (Mar 2024)</li>
+    </ul>
+  </div>
+
+</aside>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-brand">The Switch <span>Stack</span></div>
+  <div class="footer-links">Issue 02 &middot; January 2026 &middot; <a href="index.html">Issue Home</a></div>
+</footer>
+
+</body>
+</html>

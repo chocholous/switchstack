@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://switchstack.cz/issue-02/per-battery-per-child-per-litre/">
+<meta property="og:title" content="Per Battery, Per Child, Per Litre — The Switch Stack">
+<meta property="og:description" content="Per Battery, Per Child, Per Litre">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://switchstack.cz/issue-02/per-battery-per-child-per-litre/">
+<meta property="og:site_name" content="The Switch Stack">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Per Battery, Per Child, Per Litre — The Switch Stack">
+<meta name="twitter:description" content="Per Battery, Per Child, Per Litre">
+<link rel="alternate" type="application/rss+xml" title="The Switch Stack" href="/feed.xml">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NewsArticle",
+  "headline": "Per Battery, Per Child, Per Litre",
+  "description": "Per Battery, Per Child, Per Litre",
+  "datePublished": "2026-03-12",
+  "author": { "@type": "Organization", "name": "The Switch Stack" },
+  "publisher": { "@type": "Organization", "name": "The Switch Stack", "url": "https://switchstack.cz" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://switchstack.cz/issue-02/per-battery-per-child-per-litre/" }
+}
+</script>
+<title>Switch Stack — Issue 02 · Per Battery, Per Child, Per Litre</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,800;0,9..144,900;1,9..144,400&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0c0c0e;
+  --surface: #161619;
+  --surface2: #1e1e22;
+  --border: #2a2a30;
+  --text: #e8e6e1;
+  --text2: #9a978f;
+  --red: #e8453c;
+  --red-dim: #e8453c44;
+  --amber: #f0a830;
+  --green: #4a9e6e;
+  --blue: #4a7ab5;
+  --slate: #5a6a7a;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: 'Instrument Sans', system-ui, sans-serif; line-height: 1.6; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+.header { padding: 2rem 0 1.5rem; border-bottom: 1px solid var(--border); }
+.header-inner { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-family: 'Fraunces', serif; font-weight: 900; font-size: 1.4rem; color: var(--text); }
+.logo span { color: var(--red); }
+.header-tag { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--text2); letter-spacing: 0.15em; text-transform: uppercase; }
+
+.hero { padding: 4rem 0 3rem; text-align: center; position: relative; }
+.hero::after { content: ''; position: absolute; bottom: 0; left: 10%; right: 10%; height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); }
+.hero-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--red); margin-bottom: 1.2rem; }
+.hero h1 { font-family: 'Fraunces', serif; font-weight: 900; font-size: clamp(2.2rem, 5vw, 3.8rem); line-height: 1.08; max-width: 800px; margin: 0 auto 1.5rem; }
+.hero p { font-size: 1.05rem; color: var(--text2); max-width: 580px; margin: 0 auto; line-height: 1.7; }
+
+/* BIG NUMBER CARDS */
+.big-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); margin: 3rem 0; }
+.big-card { background: var(--surface); padding: 2rem; }
+.big-card .num { font-family: 'Fraunces', serif; font-weight: 900; font-size: 3.4rem; line-height: 1; color: var(--red); }
+.big-card .unit { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--text2); letter-spacing: 0.1em; margin-top: 0.3rem; }
+.big-card .desc { font-size: 0.85rem; color: var(--text2); margin-top: 0.7rem; line-height: 1.5; }
+.big-card .src { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; color: var(--text2); opacity: 0.5; margin-top: 0.5rem; }
+
+/* SCALE COMPARISON */
+.scale-section { padding: 3rem 0; }
+.scale-title { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text2); margin-bottom: 1.5rem; }
+.scale-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.6rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--border); }
+.scale-row:last-child { border-bottom: none; }
+.scale-label { font-size: 0.82rem; color: var(--text2); width: 220px; flex-shrink: 0; }
+.scale-bar-wrap { flex: 1; position: relative; height: 28px; }
+.scale-bar { height: 100%; border-radius: 3px; display: flex; align-items: center; padding-left: 0.8rem; font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; font-weight: 600; color: var(--bg); min-width: 40px; }
+.scale-val { font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; font-weight: 600; color: var(--text); width: 140px; text-align: right; flex-shrink: 0; }
+@media (max-width: 600px) { .scale-label { width: 120px; font-size: 0.72rem; } .scale-val { width: 90px; font-size: 0.68rem; } }
+
+/* VERSUS */
+.versus { padding: 3rem 0; }
+.versus-title { font-family: 'Fraunces', serif; font-weight: 800; font-size: 1.8rem; margin-bottom: 0.4rem; }
+.versus-sub { font-size: 0.88rem; color: var(--text2); margin-bottom: 2rem; max-width: 600px; }
+.vs-row { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--border); }
+.vs-row:last-child { border-bottom: none; }
+.vs-left { text-align: right; }
+.vs-right { text-align: left; }
+.vs-num { font-family: 'Fraunces', serif; font-weight: 800; font-size: 1.8rem; line-height: 1; }
+.vs-num.red { color: var(--red); }
+.vs-num.dim { color: var(--text2); }
+.vs-label { font-size: 0.78rem; color: var(--text2); margin-top: 0.2rem; }
+.vs-badge { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; background: var(--surface2); color: var(--text2); padding: 0.25rem 0.6rem; border-radius: 2rem; white-space: nowrap; }
+@media (max-width: 600px) { .vs-num { font-size: 1.3rem; } }
+
+/* ATTRIBUTION BARS */
+.attrib-section { padding: 3rem 0; border-top: 1px solid var(--border); }
+.attrib-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 1.5rem; }
+@media (max-width: 700px) { .attrib-pair { grid-template-columns: 1fr; } }
+.attrib-box { background: var(--surface); border: 1px solid var(--border); padding: 1.5rem; }
+.attrib-box h3 { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--red); margin-bottom: 1.2rem; }
+.abar-label { font-size: 0.72rem; color: var(--text2); margin-bottom: 0.3rem; }
+.abar { display: flex; height: 20px; border-radius: 2px; overflow: hidden; margin-bottom: 0.8rem; }
+.abar-seg { display: flex; align-items: center; justify-content: center; font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; font-weight: 600; color: #fff; min-width: 18px; }
+.abar-legend { display: flex; flex-wrap: wrap; gap: 0.2rem 0.6rem; font-size: 0.64rem; color: var(--text2); margin-bottom: 0.6rem; }
+.adot { display: inline-block; width: 6px; height: 6px; border-radius: 1px; margin-right: 3px; vertical-align: middle; }
+.attrib-footnote { font-size: 0.62rem; color: var(--text2); font-style: italic; line-height: 1.4; margin-top: 0.8rem; opacity: 0.7; }
+
+/* CLOSING */
+.closing { padding: 4rem 0 3rem; text-align: center; border-top: 1px solid var(--border); }
+.closing blockquote { font-family: 'Fraunces', serif; font-style: italic; font-size: 1.3rem; line-height: 1.5; max-width: 520px; margin: 0 auto 0.6rem; color: var(--text); }
+.closing cite { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--text2); letter-spacing: 0.1em; }
+
+.sources { padding: 2rem 0; border-top: 1px solid var(--border); }
+.sources p { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; color: var(--text2); line-height: 1.8; opacity: 0.6; }
+
+.footer { padding: 1.5rem 0; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+.footer a { color: var(--red); text-decoration: none; font-size: 0.72rem; }
+
+@keyframes slideIn { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+.hero, .big-grid, .versus, .attrib-section, .closing { animation: slideIn 0.5s ease-out both; }
+.big-grid { animation-delay: 0.1s; }
+
+/* ISSUE NAVIGATION SIDEBAR */
+.issue-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+}
+.issue-nav-toggle {
+  display: none;
+  position: fixed;
+  top: 0.8rem;
+  left: 0.8rem;
+  z-index: 1001;
+  background: var(--bg, #0c0c0e);
+  border: 1px solid var(--border, #2a2a30);
+  width: 2.2rem;
+  height: 2.2rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  color: var(--text, #e8e6e1);
+}
+.issue-nav .nav-close { display: none; }
+.issue-nav.open .nav-close { display: inline; }
+.issue-nav.open .nav-hamburger { display: none; }
+.issue-nav-inner {
+  height: 100%;
+  background: var(--bg, #0c0c0e);
+  border-right: 1px solid var(--border, #2a2a30);
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 1rem;
+  overflow-y: auto;
+}
+.issue-nav-brand {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 1.1rem;
+  color: var(--text, #e8e6e1);
+  text-decoration: none;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--text, #e8e6e1);
+}
+.issue-nav-brand span { color: var(--red, #e8453c); }
+.issue-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  flex: 1;
+}
+.issue-nav-item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  padding: 0.5rem 0.6rem;
+  text-decoration: none;
+  color: var(--text, #e8e6e1);
+  border-radius: 4px;
+  transition: background 0.15s;
+}
+.issue-nav-item:hover { background: var(--surface, #1e1e22); }
+.issue-nav-item.active {
+  background: var(--text, #e8e6e1);
+  color: var(--bg, #0c0c0e);
+}
+.issue-nav-item.active .issue-nav-num { color: var(--red, #e8453c); }
+.issue-nav-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--red, #e8453c);
+  white-space: nowrap;
+}
+.issue-nav-topic {
+  font-size: 0.78rem;
+  line-height: 1.3;
+}
+.issue-nav-footer {
+  padding-top: 1rem;
+  border-top: 1px solid var(--border, #2a2a30);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.issue-nav-footer a {
+  color: var(--red, #e8453c);
+  text-decoration: none;
+}
+
+/* Push content right to make room for sidebar */
+body { margin-left: 260px; }
+
+@media (max-width: 900px) {
+  .issue-nav { transform: translateX(-100%); }
+  .issue-nav.open { transform: translateX(0); }
+  .issue-nav-toggle { display: flex; }
+  body { margin-left: 0; }
+}
+
+</style>
+</head>
+<body>
+<nav class="issue-nav" id="issueNav">
+  <button class="issue-nav-toggle" onclick="document.getElementById('issueNav').classList.toggle('open')" aria-label="Toggle navigation">
+    <span class="nav-hamburger">&#9776;</span>
+    <span class="nav-close">&times;</span>
+  </button>
+  <div class="issue-nav-inner">
+    <a href="/" class="issue-nav-brand">The Switch <span>Stack</span></a>
+    <div class="issue-nav-list">
+      <a class="issue-nav-item" href="/issue-07/">
+        <span class="issue-nav-num">#07</span>
+        <span class="issue-nav-topic">Carbon, Methane & Nanoplastics</span>
+      </a>
+      <a class="issue-nav-item" href="/issue-06/">
+        <span class="issue-nav-num">#06</span>
+        <span class="issue-nav-topic">The Drug War Backwards</span>
+      </a>
+      <a class="issue-nav-item" href="/issue-05/">
+        <span class="issue-nav-num">#05</span>
+        <span class="issue-nav-topic">The Inconvenient Correlation</span>
+      </a>
+      <a class="issue-nav-item" href="/issue-04/">
+        <span class="issue-nav-num">#04</span>
+        <span class="issue-nav-topic">The Safest Energy</span>
+      </a>
+      <a class="issue-nav-item" href="/issue-03/">
+        <span class="issue-nav-num">#03</span>
+        <span class="issue-nav-topic">The Safety Cage</span>
+      </a>
+      <a class="issue-nav-item active" href="/issue-02/">
+        <span class="issue-nav-num">#02</span>
+        <span class="issue-nav-topic">Green Transition's Workforce</span>
+      </a>
+      <a class="issue-nav-item" href="/issue-01/">
+        <span class="issue-nav-num">#01</span>
+        <span class="issue-nav-topic">The Recycling Lie</span>
+      </a>
+    </div>
+    <div class="issue-nav-footer">
+      <a href="/feed.xml">RSS</a>
+    </div>
+  </div>
+</nav>
+<div class="container">
+
+<header class="header">
+  <div class="header-inner">
+    <div class="logo">Switch <span>Stack</span></div>
+    <div class="header-tag">Issue 02 &middot; Jan 2026</div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-label">Supply Chain Intelligence &middot; 4 min read</div>
+  <h1>Per Battery, Per Child, Per Litre</h1>
+  <p>4.8 kg cobalt per battery. An estimated 40,000 children mining. 78% from one country. 500,000 litres water per tonne lithium. &lt;10% of batteries recycled. The clean energy ledger, with the entries nobody audits.</p>
+</section>
+
+<!-- BIG NUMBERS -->
+<div class="big-grid">
+  <div class="big-card">
+    <div class="num">78%</div>
+    <div class="unit">of global cobalt</div>
+    <div class="desc">Mined in the Democratic Republic of the Congo. One country. One supply chain chokepoint.</div>
+    <div class="src">Cobalt Institute, 2024</div>
+  </div>
+  <div class="big-card">
+    <div class="num">~40k</div>
+    <div class="unit">children estimated</div>
+    <div class="desc">In artisanal cobalt mining in the DRC. Some as young as 6. Earning $1&ndash;2/day.</div>
+    <div class="src">UNICEF est. ~2012 via Amnesty 2016 [PARTIALLY VERIFIED]</div>
+  </div>
+  <div class="big-card">
+    <div class="num">4.8</div>
+    <div class="unit">kg cobalt per EV (avg 2023)</div>
+    <div class="desc">Down from ~12 kg in 2018. LFP batteries (40% market share) use zero cobalt.</div>
+    <div class="src">Adamas Intelligence, 2023</div>
+  </div>
+  <div class="big-card">
+    <div class="num">49%</div>
+    <div class="unit">top supply chain score</div>
+    <div class="desc">Tesla leads the industry. The best performer fails more than half the assessed criteria.</div>
+    <div class="src">Lead the Charge, 2026</div>
+  </div>
+</div>
+
+<!-- HEALTH SCALE -->
+<section class="scale-section">
+  <div class="scale-title">Miner Health Survey (RAID / University of Bath, 2024)</div>
+
+  <div class="scale-row">
+    <div class="scale-label">Skin problems</div>
+    <div class="scale-bar-wrap"><div class="scale-bar" style="width: 82%; background: var(--red);">82%</div></div>
+    <div class="scale-val">82%</div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">Breathing issues</div>
+    <div class="scale-bar-wrap"><div class="scale-bar" style="width: 85.4%; background: var(--red);">85.4%</div></div>
+    <div class="scale-val">85.4%</div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">Major injury (past year)</div>
+    <div class="scale-bar-wrap"><div class="scale-bar" style="width: 52.7%; background: var(--amber);">52.7%</div></div>
+    <div class="scale-val">52.7%</div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">Lost someone to mining (2 yrs)</div>
+    <div class="scale-bar-wrap"><div class="scale-bar" style="width: 100%; background: var(--red);">937 miners</div></div>
+    <div class="scale-val">937 of surveyed</div>
+  </div>
+</section>
+
+<!-- COBALT PER BATTERY -->
+<section class="scale-section" style="border-top: 1px solid var(--border); padding-top: 3rem;">
+  <div class="scale-title">Cobalt Content by Battery Chemistry</div>
+
+  <div class="scale-row">
+    <div class="scale-label">NMC111 (legacy)</div>
+    <div class="scale-bar-wrap"><div class="scale-bar" style="width: 100%; background: var(--red);">25&ndash;30 kg</div></div>
+    <div class="scale-val">25&ndash;30 kg</div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">NMC622</div>
+    <div class="scale-bar-wrap"><div class="scale-bar" style="width: 48%; background: var(--amber);">12&ndash;15 kg</div></div>
+    <div class="scale-val">12&ndash;15 kg</div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">NMC811 (current)</div>
+    <div class="scale-bar-wrap"><div class="scale-bar" style="width: 26%; background: var(--amber);">6&ndash;8 kg</div></div>
+    <div class="scale-val">6&ndash;8 kg</div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">Global average (2023)</div>
+    <div class="scale-bar-wrap"><div class="scale-bar" style="width: 16%; background: var(--green);">4.8 kg</div></div>
+    <div class="scale-val">4.8 kg</div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">LFP (~40% of market)</div>
+    <div class="scale-bar-wrap"><div class="scale-bar" style="width: 2%; background: var(--green);">&nbsp;</div></div>
+    <div class="scale-val">0 kg</div>
+  </div>
+</section>
+
+<!-- VERSUS: ESG vs Reality -->
+<section class="versus" style="border-top: 1px solid var(--border);">
+  <div class="versus-title">What the Report Says vs. What the Data Says</div>
+  <div class="versus-sub">The ESG framework measures what companies report. The field research measures what miners experience.</div>
+
+  <div class="vs-row">
+    <div class="vs-left"><div class="vs-num dim">49%</div><div class="vs-label">Tesla supply chain score (top in industry)</div></div>
+    <div class="vs-badge">vs</div>
+    <div class="vs-right"><div class="vs-num red">82%</div><div class="vs-label">of miners with skin problems</div></div>
+  </div>
+  <div class="vs-row">
+    <div class="vs-left"><div class="vs-num dim">55%</div><div class="vs-label">of Tesla cobalt directly sourced</div></div>
+    <div class="vs-badge">means</div>
+    <div class="vs-right"><div class="vs-num red">45%</div><div class="vs-label">goes through intermediaries with limited visibility</div></div>
+  </div>
+  <div class="vs-row">
+    <div class="vs-left"><div class="vs-num dim">BBB</div><div class="vs-label">Tesla MSCI ESG rating (average)</div></div>
+    <div class="vs-badge">while</div>
+    <div class="vs-right"><div class="vs-num red">4 of 5</div><div class="vs-label">rivers near mines are toxic (RAID 2024)</div></div>
+  </div>
+  <div class="vs-row">
+    <div class="vs-left"><div class="vs-num dim">2025</div><div class="vs-label">DRC pledge to end child mining labor</div></div>
+    <div class="vs-badge">reality</div>
+    <div class="vs-right"><div class="vs-num red">Sept 2024</div><div class="vs-label">US DOL expands forced labor list to industrial mines</div></div>
+  </div>
+  <div class="vs-row">
+    <div class="vs-left"><div class="vs-num dim">Dismissed</div><div class="vs-label">Child labor lawsuit (Mar 2024)</div></div>
+    <div class="vs-badge">ruling</div>
+    <div class="vs-right"><div class="vs-num red">"ordinary"</div><div class="vs-label">buyer-seller transaction (court finding)</div></div>
+  </div>
+</section>
+
+<!-- WATER & RECYCLING -->
+<section class="attrib-section">
+  <div class="scale-title">The Water and Waste Ledger</div>
+  <div class="attrib-pair">
+    <div class="attrib-box">
+      <h3>Lithium &middot; Water Cost</h3>
+      <div class="abar-label">Brine per tonne Li&#8322;CO&#8323;</div>
+      <div style="font-family:'Fraunces',serif;font-weight:900;font-size:2.8rem;color:var(--red);margin:0.5rem 0;">500k&ndash;600k</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;color:var(--text2);">litres of brine water evaporated</div>
+      <div style="margin-top:1rem;padding:1rem;background:var(--surface2);border-left:3px solid var(--amber);">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;color:var(--amber);margin-bottom:0.3rem;">SALAR DE ATACAMA</div>
+        <div style="font-size:0.82rem;color:var(--text2);">Mining consumes 65% of regional water. Land subsiding up to 2 cm/yr. Indigenous Atacame&ntilde;o Peoples filed complaint Oct 2024.</div>
+      </div>
+      <p class="attrib-footnote">Source: ScienceDirect 2024; Mongabay Dec 2024. Water figure is direct brine; total lifecycle water footprint is debated.</p>
+    </div>
+    <div class="attrib-box">
+      <h3>Recycling &middot; The Missing Loop</h3>
+      <div style="font-family:'Fraunces',serif;font-weight:900;font-size:2.8rem;color:var(--red);margin:0.5rem 0;">&lt;10%</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;color:var(--text2);">of Li-ion batteries recycled globally [PARTIALLY VERIFIED]</div>
+      <div style="margin-top:1rem;padding:1rem;background:var(--surface2);border-left:3px solid var(--green);">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;color:var(--green);margin-bottom:0.3rem;">EU REGULATION (2025&ndash;2031)</div>
+        <div style="font-size:0.82rem;color:var(--text2);">90% recovery for Co/Cu/Ni by late 2025. 95% by 2031. 80% lithium recovery by 2031. Most significant regulatory development.</div>
+      </div>
+      <p class="attrib-footnote">Global recycling rate estimated. &gt;90% of batteries are still landfilled. EU targets will increase rates significantly.</p>
+    </div>
+  </div>
+</section>
+
+<!-- THE PAY GAP -->
+<section class="versus" style="border-top: 1px solid var(--border);">
+  <div class="scale-title">The Pay Gap</div>
+
+  <div class="vs-row">
+    <div class="vs-left"><div class="vs-num red">$1&ndash;2</div><div class="vs-label">child miner daily wage (DRC)</div></div>
+    <div class="vs-badge">per day</div>
+    <div class="vs-right"><div class="vs-num dim">$365&ndash;730</div><div class="vs-label">per year</div></div>
+  </div>
+  <div class="vs-row">
+    <div class="vs-left"><div class="vs-num red">$3,000</div><div class="vs-label">top artisanal miner (Kasulo, annual)</div></div>
+    <div class="vs-badge">= same as</div>
+    <div class="vs-right"><div class="vs-num dim">1 hour</div><div class="vs-label">of CEO compensation at top EV/tech companies</div></div>
+  </div>
+  <div class="vs-row">
+    <div class="vs-left"><div class="vs-num red">~$150k</div><div class="vs-label">average US EV buyer household income</div></div>
+    <div class="vs-badge">= equivalent to</div>
+    <div class="vs-right"><div class="vs-num dim">200&ndash;410</div><div class="vs-label">years of child miner wages</div></div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="closing">
+  <blockquote>&ldquo;The division of labor among nations is that some specialize in winning and others in losing.&rdquo;</blockquote>
+  <cite>&mdash; Eduardo Galeano, Open Veins of Latin America (1971)</cite>
+  <p style="margin-top:2rem;font-size:0.9rem;color:var(--text2);max-width:540px;margin-left:auto;margin-right:auto;line-height:1.7;">EVs produce 40&ndash;52% fewer lifecycle emissions than gasoline vehicles. The green transition is real and necessary. But &ldquo;zero emissions&rdquo; is a ledger entry that only counts the tailpipe. The full supply chain &mdash; from Kolwezi to Palo Alto &mdash; tells a different story.</p>
+</section>
+
+<section class="sources">
+  <p>Amnesty International (2016) &middot; Siddharth Kara, Cobalt Red (2023) &middot; RAID UK (2024) &middot; African Arguments / Univ. of Bath (Feb 2024) &middot; Mongabay (Mar, Nov, Dec 2024) &middot; Cobalt Institute Market Report 2024 &middot; Adamas Intelligence (2023) &middot; Lead the Charge 2026 &middot; IEA Global EV Outlook 2024 &middot; US DOE FOTW #1357 (Aug 2024) &middot; US DOL (Sept 2024) &middot; ScienceDirect (2024) &middot; CNN / JURIST (Mar 2024)</p>
+</section>
+
+<footer class="footer">
+  <div class="logo" style="font-size:1rem;">Switch <span>Stack</span></div>
+  <a href="index.html">Issue Home</a>
+</footer>
+
+</div>
+</body>
+</html>

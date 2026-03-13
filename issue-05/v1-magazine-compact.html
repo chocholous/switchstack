@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Switch Stack — Issue 05 · The Pill vs The Superbug</title>
+<meta name="description" content="AMR kills 1.27 million per year. The same governance failures that restrict contraception drive antibiotic misuse.">
+<meta property="og:title" content="The Switch Stack — The Pill vs The Superbug">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;600&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1714;
+  --paper: #f5f0e8;
+  --paper-dark: #ebe4d8;
+  --accent: #8b2252;
+  --accent-dark: #6b1a40;
+  --muted: #7a7168;
+  --rule: #c8bfb0;
+  --highlight: #f0d080;
+  --teal: #2a6b5a;
+  --steel: #3d4f5f;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 17px; scroll-behavior: smooth; }
+body { background: var(--paper); color: var(--ink); font-family: 'Source Serif 4', Georgia, serif; line-height: 1.72; -webkit-font-smoothing: antialiased; }
+
+.masthead { border-bottom: 4px double var(--ink); padding: 1.2rem 0 0.8rem; text-align: center; position: relative; }
+.masthead::before { content: ''; display: block; height: 6px; background: var(--accent); margin-bottom: 1rem; }
+.masthead-meta { font-family: 'DM Sans', sans-serif; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); display: flex; justify-content: space-between; max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+.masthead-title { font-family: 'Playfair Display', serif; font-weight: 900; font-size: clamp(2.4rem, 5vw, 4rem); letter-spacing: -0.02em; line-height: 1; margin: 0.4rem 0; }
+.masthead-title span { color: var(--accent); }
+.masthead-subtitle { font-family: 'DM Sans', sans-serif; font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.6rem; }
+
+.share-strip { background: var(--ink); padding: 0.8rem 2rem; text-align: center; }
+.share-strip a { font-family: 'DM Sans', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--paper); text-decoration: none; margin: 0 1rem; cursor: pointer; transition: color 0.2s; }
+.share-strip a:hover { color: var(--accent); }
+
+.hero { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem 2rem; }
+.hero-kicker { font-family: 'DM Sans', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8rem; }
+.hero h1 { font-family: 'Playfair Display', serif; font-weight: 900; font-size: clamp(2rem, 4.5vw, 3.4rem); line-height: 1.12; letter-spacing: -0.015em; max-width: 820px; margin-bottom: 1.4rem; }
+.hero-deck { font-size: 1.18rem; line-height: 1.65; color: #3a3630; max-width: 680px; border-left: 3px solid var(--accent); padding-left: 1.2rem; }
+
+.stats-bar { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+.stats-bar-inner { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0; border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); }
+.stat-cell { padding: 1.2rem 1.4rem; border-right: 1px solid var(--rule); }
+.stat-cell:last-child { border-right: none; }
+.stat-number { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 2.4rem; line-height: 1; color: var(--accent); }
+.stat-unit { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--muted); letter-spacing: 0.05em; display: block; margin-top: 0.15rem; }
+.stat-label { font-family: 'DM Sans', sans-serif; font-size: 0.76rem; color: var(--muted); margin-top: 0.5rem; line-height: 1.4; }
+
+.content-grid { max-width: 1100px; margin: 0 auto; padding: 2.5rem 2rem; display: grid; grid-template-columns: 1fr 340px; gap: 3rem; }
+@media (max-width: 840px) { .content-grid { grid-template-columns: 1fr; } }
+
+.article-body h2 { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 1.6rem; margin: 2.6rem 0 0.8rem; line-height: 1.2; padding-left: 1rem; border-left: 4px solid var(--accent); }
+.article-body h2:first-child { margin-top: 0; }
+.article-body p { margin-bottom: 1.1rem; }
+.article-body p.lede { font-size: 1.08rem; }
+
+.article-body blockquote { margin: 1.8rem 0; padding: 1.4rem 1.6rem; background: var(--ink); color: var(--paper); position: relative; font-style: italic; font-size: 0.95rem; line-height: 1.7; }
+.article-body blockquote::before { content: '\201C'; position: absolute; top: -0.2rem; left: 0.6rem; font-family: 'Playfair Display', serif; font-size: 4rem; color: var(--accent); line-height: 1; }
+.article-body blockquote cite { display: block; font-style: normal; font-family: 'DM Sans', sans-serif; font-size: 0.72rem; letter-spacing: 0.05em; color: var(--rule); margin-top: 0.8rem; }
+
+.impact-box { margin: 2rem 0; border: 2px solid var(--ink); padding: 1.4rem 1.6rem; background: var(--paper-dark); }
+.impact-box h3 { font-family: 'DM Sans', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8rem; }
+.impact-item { display: flex; align-items: baseline; gap: 0.8rem; margin-bottom: 0.7rem; font-size: 0.92rem; }
+.impact-item strong { font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 0.82rem; color: var(--accent); white-space: nowrap; }
+
+.sidebar { border-left: 1px solid var(--rule); padding-left: 2rem; }
+@media (max-width: 840px) { .sidebar { border-left: none; padding-left: 0; border-top: 2px solid var(--ink); padding-top: 2rem; } }
+.sidebar-section { margin-bottom: 2.4rem; }
+.sidebar-section h3 { font-family: 'DM Sans', sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); border-bottom: 1px solid var(--rule); padding-bottom: 0.5rem; margin-bottom: 1rem; }
+
+.compare-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+.compare-table th { font-family: 'DM Sans', sans-serif; font-weight: 700; text-align: left; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); padding: 0.4rem 0; border-bottom: 1px solid var(--rule); }
+.compare-table td { padding: 0.55rem 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+.compare-table td:last-child { font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 0.78rem; color: var(--accent); text-align: right; white-space: nowrap; }
+
+.closing-quote { border-top: 2px solid var(--ink); margin-top: 2rem; padding-top: 1.6rem; text-align: center; }
+.closing-quote p { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.15rem; line-height: 1.6; max-width: 500px; margin: 0 auto 0.6rem; }
+.closing-quote cite { font-family: 'DM Sans', sans-serif; font-style: normal; font-size: 0.72rem; letter-spacing: 0.1em; color: var(--muted); }
+
+.callout-box { background: linear-gradient(135deg, var(--teal) 0%, var(--steel) 100%); color: var(--paper); padding: 1.4rem; font-size: 0.88rem; line-height: 1.6; }
+.callout-box strong { color: var(--highlight); font-family: 'DM Sans', sans-serif; font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; display: block; margin-bottom: 0.5rem; }
+
+.sources-list { list-style: none; font-size: 0.78rem; line-height: 1.55; color: var(--muted); }
+.sources-list li { margin-bottom: 0.6rem; padding-left: 1rem; position: relative; }
+.sources-list li::before { content: '\2192'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+.sources-list li strong { color: var(--ink); font-weight: 600; }
+
+.note-sm { font-family: 'DM Sans', sans-serif; font-size: 0.68rem; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 0.6rem; margin-top: 0.4rem; line-height: 1.45; }
+
+.dropcap::first-letter { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 3.8rem; float: left; line-height: 0.78; margin: 0.08em 0.12em 0 0; color: var(--accent); }
+.sep { text-align: center; margin: 2rem 0; color: var(--rule); font-size: 1.2rem; letter-spacing: 0.6em; }
+
+.footer { max-width: 1100px; margin: 0 auto; padding: 2rem; border-top: 4px double var(--ink); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+.footer-brand { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 1.1rem; }
+.footer-brand span { color: var(--accent); }
+.footer-links { font-family: 'DM Sans', sans-serif; font-size: 0.72rem; color: var(--muted); letter-spacing: 0.1em; }
+.footer-links a { color: var(--accent); text-decoration: none; }
+
+@media print { body { font-size: 10pt; } .share-strip { display: none; } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.hero, .stats-bar-inner, .content-grid, .footer { animation: fadeUp 0.6s ease-out both; }
+.stats-bar-inner { animation-delay: 0.15s; }
+.content-grid { animation-delay: 0.3s; }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-meta"><span>Issue 05 &middot; February 2026</span><span>Biweekly</span></div>
+  <div class="masthead-title">The Switch <span>Stack</span></div>
+  <div class="masthead-subtitle">Where the numbers flip the narrative</div>
+</header>
+
+<div class="share-strip">
+  <a href="https://twitter.com/intent/tweet?text=The%20Pill%20vs%20The%20Superbug&url=" target="_blank" rel="noopener">Share on X</a>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url=" target="_blank" rel="noopener">Share on LinkedIn</a>
+  <a onclick="navigator.clipboard.writeText(window.location.href);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy Link',2000)">Copy Link</a>
+</div>
+
+<section class="hero">
+  <div class="hero-kicker">Health Intelligence &middot; AMR &amp; Reproductive Health</div>
+  <h1>The Pill vs The Superbug</h1>
+  <p class="hero-deck">Antimicrobial resistance kills 1.27&nbsp;million people every year&mdash;more than malaria, more than HIV/AIDS. By 2050, the projected cumulative death toll is 39&nbsp;million. Meanwhile, pharma abandoned antibiotic R&amp;D because weight loss drugs are more profitable. The countries with the best contraception access have the lowest resistance rates. Coincidence doesn&rsquo;t begin to cover&nbsp;it.</p>
+</section>
+
+<section class="stats-bar">
+  <div class="stats-bar-inner">
+    <div class="stat-cell">
+      <div class="stat-number">1.27M</div>
+      <span class="stat-unit">deaths per year</span>
+      <div class="stat-label">Directly attributable to AMR (Lancet, 2019)</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-number">39M</div>
+      <span class="stat-unit">cumulative deaths by 2050</span>
+      <div class="stat-label">Projected AMR mortality (Lancet, 2024)</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-number">73M</div>
+      <span class="stat-unit">abortions per year</span>
+      <div class="stat-label">Global total; rates equal regardless of legality</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-number">259M</div>
+      <span class="stat-unit">women</span>
+      <div class="stat-label">Lack access to modern contraception (UNFPA)</div>
+    </div>
+  </div>
+</section>
+
+<main class="content-grid">
+  <article class="article-body">
+
+    <h2>The Slow Pandemic Nobody Discusses</h2>
+
+    <p class="lede dropcap">Antimicrobial resistance is the crisis without a villain, without a news cycle, and without a ribbon. In 2019, drug-resistant bacteria directly killed 1.27&nbsp;million people and were associated with 4.95&nbsp;million deaths worldwide. The September 2024 update from the Lancet projects 1.91&nbsp;million direct AMR deaths per year by 2050&mdash;a cumulative 39&nbsp;million over 25&nbsp;years. For context, HIV/AIDS has killed approximately 40&nbsp;million people in four decades.</p>
+
+    <p>The WHO calls AMR one of the top ten global public health threats. Third-generation cephalosporin-resistant E.&nbsp;coli is found in 42% of samples across 76&nbsp;countries. MRSA prevalence stands at 35% globally. The economic damage: $1&nbsp;trillion in additional healthcare costs and $1&ndash;3.4&nbsp;trillion in annual GDP losses from 2030 onward.</p>
+
+    <blockquote>
+      Antimicrobial resistance is a slow-moving pandemic. Unlike COVID-19, it won&rsquo;t generate a crisis response until millions have already died.
+      <cite>&mdash; Dame Sally Davies, UK Special Envoy on AMR</cite>
+    </blockquote>
+
+    <div class="sep">&middot; &middot; &middot;</div>
+
+    <h2>The Pharma Exodus</h2>
+
+    <p>Between 2016 and 2018, Novartis, AstraZeneca, and Sanofi all exited or drastically reduced antibiotic research. In 2019, Achaogen filed for bankruptcy&mdash;one year after the FDA approved its antibiotic plazomicin. Melinta Therapeutics followed into bankruptcy the same year.</p>
+
+    <p>The math is brutal. A new antibiotic earns on average $46&nbsp;million per year in its first five years. Semaglutide&mdash;sold as Ozempic and Wegovy&mdash;generates approximately $25&ndash;30&nbsp;billion per year for Novo Nordisk. A single weight-loss drug earns in roughly eight hours what a life-saving antibiotic earns in a year.</p>
+
+    <div class="impact-box">
+      <h3>The Perverse Incentive Structure</h3>
+      <div class="impact-item"><strong>Antibiotics:</strong> Cure in 5&ndash;14 days. Best ones reserved for last resort. Low volume sales. Generics compete immediately.</div>
+      <div class="impact-item"><strong>GLP-1 agonists:</strong> Taken daily for life. Millions of customers. Recurring revenue. Massive ROI.</div>
+      <div class="impact-item"><strong>Result:</strong> ~80 antibacterials in clinical pipeline (WHO 2024). Most modify existing classes. True innovation: negligible.</div>
+    </div>
+
+    <div class="sep">&middot; &middot; &middot;</div>
+
+    <h2>The 30&ndash;50% Problem</h2>
+
+    <p>Between 30% and 50% of all antibiotic prescriptions globally are unnecessary&mdash;prescribed for viral infections where antibiotics have zero effect. In low- and middle-income countries, the rate may reach 40&ndash;60%. Pediatric populations are disproportionately affected: children get more infections, visit doctors more often, and receive more prescriptions. Every unnecessary course breeds resistance.</p>
+
+    <p>A critical nuance from the 2024 Lancet data: AMR deaths in children under 5 have actually <em>declined</em> 50% since 1990&mdash;thanks to improved sanitation, vaccines, and water access. But AMR deaths in people over 70 have <em>increased</em> 80%. The AMR crisis is shifting from a pediatric emergency to a geriatric one. This doesn&rsquo;t eliminate the pediatric angle, but it complicates the simple narrative.</p>
+
+    <div class="sep">&middot; &middot; &middot;</div>
+
+    <h2>The Correlation Nobody Discusses</h2>
+
+    <p>The Netherlands: sex education from age 4, contraception covered by insurance for women under 21, abortion rate of 8.7 per 1,000 women (among Europe&rsquo;s lowest), teen pregnancy rate of 3.8 per 1,000, antibiotic consumption of roughly 10 DDD per 1,000 inhabitants per day (among EU&rsquo;s lowest), and antimicrobial resistance rates among the lowest on the continent.</p>
+
+    <p>Romania: abortion and contraception banned under Decree 770 from 1966 to 1989, 10,000 women dead from illegal abortions, 100,000+ children warehoused in orphanages, and today one of Europe&rsquo;s highest antibiotic consumption rates at 30+ DDD per 1,000 inhabitants per day, with AMR rates among the EU&rsquo;s highest.</p>
+
+    <p>The correlation is real. But the mechanism is not &ldquo;pill prevents superbugs.&rdquo; The mechanism is institutional. The same governance qualities&mdash;evidence-based policy, educational investment, healthcare infrastructure, respect for individual autonomy&mdash;produce both good reproductive health outcomes and good antibiotic stewardship. The same governance failures&mdash;religious interference in healthcare, weak institutions, contempt for evidence&mdash;produce both restricted contraception and antibiotic misuse.</p>
+
+    <blockquote>
+      The world cannot be understood without numbers. And it cannot be understood with numbers alone.
+      <cite>&mdash; Hans Rosling, Factfulness (2018)</cite>
+    </blockquote>
+
+    <div class="sep">&middot; &middot; &middot;</div>
+
+    <h2>The Arithmetic of &ldquo;Pro-Life&rdquo;</h2>
+
+    <p>Abortion rates are similar in countries where abortion is restricted and those where it is broadly legal. Excluding China and India, rates are actually <em>higher</em> in restrictive countries. In restrictive countries, the proportion of unintended pregnancies ending in abortion rose from 36% (1990&ndash;1994) to 50% (2015&ndash;2019). Banning abortion doesn&rsquo;t reduce abortion. It makes it lethal.</p>
+
+    <p>Approximately 39,000 women die each year from unsafe abortion. In Latin America and Africa, three out of four abortions are unsafe. In Africa, nearly half are performed under the &ldquo;least safe conditions&rdquo;&mdash;untrained providers, dangerous methods. Safe abortion has a mortality rate below 1 per 100,000. Unsafe abortion: above 200 per 100,000.</p>
+
+    <p>The most effective policy for reducing abortion is not banning it. It is providing comprehensive sex education and universal contraception access. The Netherlands demonstrates this with mathematical precision.</p>
+
+    <div class="sep">&middot; &middot; &middot;</div>
+
+    <h2>The Switch</h2>
+
+    <p>Countries that trust women with their own bodies also trust science with their medicine. Countries that legislate morality into healthcare produce more abortions (just unsafe ones), more maternal deaths, and more antibiotic resistance.</p>
+
+    <p>This is not a claim that contraception directly prevents superbugs. It is an observation that the institutional capacity to deliver evidence-based reproductive healthcare is the <em>same</em> institutional capacity needed to deliver rational antibiotic policy. You cannot build one without the other. And the countries that refuse to build either are paying with bodies&mdash;women&rsquo;s bodies and everybody&rsquo;s bodies.</p>
+
+    <div class="closing-quote">
+      <p>&ldquo;No woman can call herself free who does not own and control her body.&rdquo;</p>
+      <cite>&mdash; Margaret Sanger, Woman and the New Race (1920)</cite>
+    </div>
+
+  </article>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-section">
+      <h3>AMR Deaths by Age (2024 Lancet)</h3>
+      <table class="compare-table">
+        <thead><tr><th>Age Group</th><th>Trend 1990&ndash;2021</th></tr></thead>
+        <tbody>
+          <tr><td>Children under 5</td><td>-50%</td></tr>
+          <tr><td>Ages 5&ndash;69</td><td>Stable</td></tr>
+          <tr><td>Over 70</td><td>+80%</td></tr>
+        </tbody>
+      </table>
+      <p class="note-sm">Pediatric AMR improving. Geriatric AMR worsening. The crisis is shifting.</p>
+    </div>
+
+    <div class="sidebar-section">
+      <h3>Netherlands vs Romania</h3>
+      <table class="compare-table">
+        <thead><tr><th>Metric</th><th>NL</th><th>RO</th></tr></thead>
+        <tbody>
+          <tr><td>Abortion rate (/1,000)</td><td>8.7</td><td>~19.5</td></tr>
+          <tr><td>Teen pregnancy (/1,000)</td><td>3.8</td><td>~30</td></tr>
+          <tr><td>Antibiotic DDD/1,000/day</td><td>~10</td><td>~30+</td></tr>
+          <tr><td>AMR level (EU ranking)</td><td>Low</td><td>High</td></tr>
+        </tbody>
+      </table>
+      <p class="note-sm">Romania DDD and teen pregnancy: approximate. Source: ECDC, Eurostat.</p>
+    </div>
+
+    <div class="sidebar-section">
+      <h3>Pharma Revenue Comparison</h3>
+      <table class="compare-table">
+        <thead><tr><th>Product</th><th>Revenue/yr</th></tr></thead>
+        <tbody>
+          <tr><td>New antibiotic (avg first 5 yrs)</td><td>~$46M</td></tr>
+          <tr><td>Semaglutide (Ozempic/Wegovy)</td><td>~$25-30B</td></tr>
+          <tr><td>Global antibiotic market</td><td>~$42B</td></tr>
+          <tr><td>GLP-1 class projected (2030)</td><td>$100-150B</td></tr>
+        </tbody>
+      </table>
+      <p class="note-sm">GLP-1 figures: analyst estimates [UNVERIFIED for exact amounts].</p>
+    </div>
+
+    <div class="sidebar-section callout-box">
+      <strong>The Confounder</strong>
+      The contraception-AMR correlation is real. But economic development drives both: rich countries have better contraception AND better antibiotic stewardship. Israel (TFR 3.0, moderate AMR) and Japan (TFR 1.2, rising AMR in elderly) both complicate the simple narrative. The mechanism is institutional, not biological.
+    </div>
+
+    <div class="sidebar-section">
+      <h3>Sources</h3>
+      <ul class="sources-list">
+        <li><strong>Lancet 2022</strong> &mdash; Murray et al., AMR burden: 1.27M directly, 4.95M associated (2019)</li>
+        <li><strong>Lancet 2024</strong> &mdash; GBD AMR Collaborators, projections: 39M by 2050</li>
+        <li><strong>WHO</strong> &mdash; AMR Fact Sheet 2024; Abortion Fact Sheet 2024</li>
+        <li><strong>Guttmacher</strong> &mdash; 73M abortions/yr; rates similar regardless of legality</li>
+        <li><strong>UNFPA</strong> &mdash; 259M women lack contraception access</li>
+        <li><strong>ECDC/EARS-Net</strong> &mdash; European AMR surveillance data</li>
+        <li><strong>Kligman (1998)</strong> &mdash; Romania Decree 770 analysis</li>
+      </ul>
+    </div>
+
+  </aside>
+</main>
+
+<footer class="footer">
+  <div class="footer-brand">The Switch <span>Stack</span></div>
+  <div class="footer-links">Issue 05 &middot; Feb 2026 &middot; <a href="index.html">All articles</a></div>
+</footer>
+
+</body>
+</html>

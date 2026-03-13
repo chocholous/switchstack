@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Switch Stack — Issue 02 · The Kids Who Power the Future</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,300;0,7..72,400;0,7..72,700;0,7..72,900;1,7..72,300;1,7..72,400&family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f8f4ee;
+  --ink: #111;
+  --gray: #666;
+  --light: #ccc;
+  --red: #d62828;
+  --red-bg: #d6282812;
+  --blue: #003049;
+  --cream: #f8f4ee;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 17px; }
+body { background: var(--ink); color: var(--cream); font-family: 'Literata', Georgia, serif; line-height: 1.75; }
+
+/* COVER */
+.cover { min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 3rem; position: relative; overflow: hidden; background: var(--ink); }
+.cover::before { content: 'Co'; position: absolute; top: -5%; right: -3%; font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(15rem, 30vw, 40rem); color: #ffffff06; line-height: 0.85; pointer-events: none; }
+.cover-tag { font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--red); margin-bottom: 1rem; }
+.cover h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2.6rem, 6vw, 5.5rem); line-height: 0.95; max-width: 900px; margin-bottom: 1.5rem; letter-spacing: -0.03em; }
+.cover h1 em { font-style: normal; color: var(--red); }
+.cover-deck { font-size: 1.15rem; font-weight: 300; max-width: 560px; color: #aaa; line-height: 1.7; margin-bottom: 2rem; }
+.cover-meta { font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; color: #555; text-transform: uppercase; display: flex; gap: 2rem; }
+.scroll-hint { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); font-family: 'Space Mono', monospace; font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: #444; animation: pulse 2s ease-in-out infinite; }
+@keyframes pulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 0.8; } }
+
+/* RIBBON */
+.ribbon { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 3px solid var(--red); border-bottom: 1px solid #222; }
+@media (max-width: 700px) { .ribbon { grid-template-columns: repeat(2, 1fr); } }
+.ribbon-cell { padding: 1.5rem 2rem; border-right: 1px solid #222; }
+.ribbon-cell:last-child { border-right: none; }
+.ribbon-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.2rem; color: var(--red); line-height: 1; }
+.ribbon-unit { font-family: 'Space Mono', monospace; font-size: 0.58rem; color: #666; letter-spacing: 0.08em; margin-top: 0.2rem; }
+.ribbon-desc { font-size: 0.72rem; color: #888; margin-top: 0.4rem; }
+
+/* CONTENT */
+.content { background: var(--bg); color: var(--ink); padding: 4rem 0; }
+.content-inner { max-width: 1200px; margin: 0 auto; padding: 0 3rem; display: grid; grid-template-columns: 2fr 1fr; gap: 4rem; }
+@media (max-width: 840px) { .content-inner { grid-template-columns: 1fr; padding: 0 2rem; } }
+
+/* PROSE */
+.prose h2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.6rem; margin: 3rem 0 0.8rem; line-height: 1.15; letter-spacing: -0.02em; }
+.prose h2:first-child { margin-top: 0; }
+.prose h2::before { content: '\2014'; display: block; color: var(--red); font-size: 1.2rem; margin-bottom: 0.3rem; }
+.prose p { margin-bottom: 1.1rem; color: #333; }
+.prose p.lead { font-size: 1.1rem; color: var(--ink); font-weight: 400; }
+.prose p.lead::first-letter { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 4rem; float: left; line-height: 0.75; margin: 0.1em 0.12em 0 0; color: var(--red); }
+
+.prose blockquote { margin: 2rem 0; padding: 1.5rem 2rem; border-left: 4px solid var(--red); background: var(--red-bg); font-style: italic; font-size: 0.95rem; line-height: 1.7; color: #333; }
+.prose blockquote cite { display: block; font-style: normal; font-family: 'Space Mono', monospace; font-size: 0.62rem; letter-spacing: 0.05em; color: var(--gray); margin-top: 0.7rem; }
+
+.prose .impact-grid { display: grid; grid-template-columns: auto 1fr; gap: 0.4rem 1rem; margin: 1.5rem 0; padding: 1.2rem; background: var(--ink); color: var(--cream); }
+.prose .ig-num { font-family: 'Space Mono', monospace; font-weight: 700; font-size: 0.78rem; color: var(--red); white-space: nowrap; padding: 0.3rem 0; }
+.prose .ig-desc { font-size: 0.82rem; padding: 0.3rem 0; border-bottom: 1px solid #333; color: #bbb; }
+.prose .ig-desc:last-child { border-bottom: none; }
+.prose .divider { text-align: center; margin: 2.5rem 0; color: var(--red); font-family: 'Space Mono', monospace; font-size: 0.7rem; letter-spacing: 1em; }
+
+/* MARGIN */
+.margin { padding-top: 0.5rem; }
+.margin-note { margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid #ddd; }
+.margin-note:last-child { border-bottom: none; }
+.margin-note h4 { font-family: 'Space Mono', monospace; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); margin-bottom: 0.8rem; }
+.margin-note .mn-big { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.6rem; line-height: 1; color: var(--ink); }
+.margin-note .mn-unit { font-family: 'Space Mono', monospace; font-size: 0.6rem; color: var(--gray); margin-top: 0.2rem; }
+.margin-note .mn-text { font-size: 0.78rem; color: var(--gray); margin-top: 0.5rem; line-height: 1.55; }
+.mn-table { width: 100%; border-collapse: collapse; font-size: 0.76rem; margin-top: 0.6rem; }
+.mn-table td { padding: 0.35rem 0; border-bottom: 1px solid #e0dcd4; color: #555; }
+.mn-table td:last-child { font-family: 'Space Mono', monospace; font-weight: 700; font-size: 0.7rem; color: var(--red); text-align: right; }
+
+/* OUTRO */
+.outro { background: var(--bg); color: var(--ink); padding: 4rem 3rem; text-align: center; }
+@media (max-width: 700px) { .outro { padding: 3rem 2rem; } }
+.outro blockquote { font-family: 'Literata', serif; font-style: italic; font-weight: 300; font-size: 1.4rem; line-height: 1.5; max-width: 520px; margin: 0 auto 0.6rem; }
+.outro cite { font-family: 'Space Mono', monospace; font-size: 0.62rem; color: var(--gray); letter-spacing: 0.1em; }
+
+.foot { background: var(--ink); padding: 1.5rem 3rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #222; }
+.foot-brand { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; color: var(--cream); }
+.foot-brand span { color: var(--red); }
+.foot a { color: var(--red); text-decoration: none; font-family: 'Space Mono', monospace; font-size: 0.65rem; }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+.cover { animation: fadeUp 0.8s ease-out; }
+.ribbon { animation: fadeUp 0.5s ease-out 0.2s both; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<section class="cover">
+  <div class="cover-tag">The Switch Stack &middot; Issue 02</div>
+  <h1>The Kids Who Power <em>the Future</em></h1>
+  <p class="cover-deck">Somewhere in Kolwezi, a child is digging with bare hands so that a software engineer in Palo Alto can feel good about driving electric. The child has never heard of the Paris Agreement. He will not live to see its targets met.</p>
+  <div class="cover-meta"><span>January 2026</span><span>9 min read</span><span>Biweekly</span></div>
+  <div class="scroll-hint">&darr; Scroll</div>
+</section>
+
+<!-- RIBBON -->
+<div class="ribbon">
+  <div class="ribbon-cell"><div class="ribbon-num">78%</div><div class="ribbon-unit">of global cobalt</div><div class="ribbon-desc">From one country (DRC)</div></div>
+  <div class="ribbon-cell"><div class="ribbon-num">~40k</div><div class="ribbon-unit">children estimated</div><div class="ribbon-desc">In artisanal mining</div></div>
+  <div class="ribbon-cell"><div class="ribbon-num">82%</div><div class="ribbon-unit">of miners</div><div class="ribbon-desc">Report skin problems</div></div>
+  <div class="ribbon-cell"><div class="ribbon-num">$1&ndash;2</div><div class="ribbon-unit">per day</div><div class="ribbon-desc">Child miner wages</div></div>
+</div>
+
+<!-- MAIN CONTENT -->
+<section class="content">
+<div class="content-inner">
+
+<div class="prose">
+
+  <h2>The Ghost of Leopold</h2>
+
+  <p class="lead">In 1998, Adam Hochschild published King Leopold&rsquo;s Ghost, the definitive account of how Belgium&rsquo;s King Leopold II turned the Congo into a personal extraction colony. Leopold never set foot in the Congo. He never saw a drop of blood spilled. He sat in Brussels and grew wealthy while an estimated ten million Congolese died mining rubber and ivory for the European market. Hochschild called this &ldquo;something very modern.&rdquo;</p>
+
+  <p>It was modern. And it is current. Because in 2026, the same geography&mdash;the Katanga region, now Lualaba province&mdash;is the epicentre of a new extraction economy. The mineral is no longer rubber. It is cobalt. The beneficiaries are no longer Belgian royalty. They are technology companies and automakers in Cupertino, Wolfsburg, Munich, and Palo Alto. The mechanism is the same: resources extracted at devastating human cost from one of the poorest populations on Earth, processed through intermediaries who obscure provenance, and consumed by the world&rsquo;s wealthiest economies under a label&mdash;&ldquo;zero emissions,&rdquo; &ldquo;sustainable,&rdquo; &ldquo;ESG-compliant&rdquo;&mdash;that renders the human cost invisible.</p>
+
+  <blockquote>
+    Unlike many other great predators of history, from Genghis Khan to the Spanish conquistadors, King Leopold II never saw a drop of blood spilled in anger. He never set foot in the Congo. There is something very modern about that.
+    <cite>&mdash; Adam Hochschild, King Leopold&rsquo;s Ghost (1998)</cite>
+  </blockquote>
+
+  <div class="divider">&middot; &middot; &middot; &middot; &middot;</div>
+
+  <h2>The Open Veins of the Green Transition</h2>
+
+  <p>Eduardo Galeano wrote in 1971 that the division of labour among nations is that &ldquo;some specialise in winning and others in losing.&rdquo; He was writing about five centuries of resource extraction from Latin America&mdash;silver from Potos&iacute;, copper from Chile, oil from Venezuela&mdash;but the framework maps precisely onto the cobalt supply chain of the twenty-first century.</p>
+
+  <p>The Democratic Republic of the Congo produces 78% of the world&rsquo;s cobalt. An estimated 40,000 children work in artisanal cobalt mines, some as young as six, earning $1&ndash;2 per day. [PARTIALLY VERIFIED &mdash; UNICEF estimate ~2012, no updated census] They dig in tunnels that descend as deep as 100 metres, without helmets or safety equipment. They carry heavy loads of ore on their backs. They breathe cobalt dust that will give them chronic respiratory disease. In a 2024 survey by RAID UK and the University of Bath, 82% of miners reported skin problems, 85.4% reported breathing issues, and 52.7% reported a major injury in the past year.</p>
+
+  <p>The cobalt they mine travels through a supply chain of traders, depots, processors, and cathode manufacturers before arriving in the lithium-ion battery of an electric vehicle. By the time it reaches your dashboard, every trace of the child who dug it has been erased. The battery is &ldquo;sustainable.&rdquo; The car is &ldquo;zero emissions.&rdquo;</p>
+
+  <blockquote>
+    Colonialism hardly ever exploits the whole of a country. It contents itself with bringing to light the natural resources, which it extracts, and exports to meet the needs of the mother country&rsquo;s industries.
+    <cite>&mdash; Frantz Fanon, The Wretched of the Earth (1961)</cite>
+  </blockquote>
+
+  <div class="divider">&middot; &middot; &middot; &middot; &middot;</div>
+
+  <h2>The Ledger That Lies</h2>
+
+  <p>In 2026, Tesla leads the Lead the Charge Leaderboard with a supply chain sustainability score of 49%&mdash;the highest in the automotive industry. Tesla discloses that 55% of its cobalt is directly sourced from mines with binding environmental and social requirements. Tesla&rsquo;s MSCI ESG rating is BBB. Average.</p>
+
+  <p>The best performer in the industry fails more than half the assessed criteria. More than half its cobalt is untraceable. And the rating is &ldquo;average.&rdquo;</p>
+
+  <p>Meanwhile, in Kolwezi, RAID UK tested the rivers. Five water bodies assessed. All polluted by acidified industrial waste. The Katapula and Kalenge: hyper-acidic. The Dipeta and Dilala: very acidic. None can host fish. None are safe for human consumption. The communities that live beside these rivers have no alternative water source. The ESG report does not mention the rivers.</p>
+
+  <blockquote>
+    Spend a short time watching the filth-caked children of the Katanga region scrounge at the earth for cobalt, and you would be unable to determine whether they were working for the benefit of Leopold or a tech company.
+    <cite>&mdash; Siddharth Kara, Cobalt Red (2023)</cite>
+  </blockquote>
+
+  <div class="divider">&middot; &middot; &middot; &middot; &middot;</div>
+
+  <h2>The Ordinary Transaction</h2>
+
+  <p>In December 2019, International Rights Advocates filed a federal lawsuit on behalf of fourteen Congolese families against Apple, Google, Dell, Microsoft, and Tesla. The children in the case had been killed or paralysed in mine collapses. In March 2024, the US Court of Appeals dismissed the case. The court called the companies&rsquo; relationship with their cobalt suppliers an &ldquo;ordinary buyer-seller transaction.&rdquo;</p>
+
+  <p>An ordinary buyer-seller transaction. A child loses his legs in a tunnel, the cobalt he was digging ends up in a cathode, the cathode ends up in a battery, the battery ends up in a car that costs $45,000, and the court says this is ordinary.</p>
+
+  <p>It is ordinary. That is the point. That is the indictment.</p>
+
+  <div class="divider">&middot; &middot; &middot; &middot; &middot;</div>
+
+  <h2>The Honest Ledger</h2>
+
+  <p>There are facts that the comfortable narrative does not deny but simply does not mention. The average cobalt per EV battery has dropped from 12 kg to 4.8 kg. LFP batteries use zero cobalt. The EU will mandate mine-of-origin traceability by 2027. These are real improvements. They are also insufficient.</p>
+
+  <p>Electric vehicles produce 40&ndash;52% fewer lifecycle greenhouse gas emissions than gasoline cars. The green transition is real. The science is settled. The choice is not between EVs and the status quo. It is between a green transition that counts its full costs and one that hides them.</p>
+
+  <p>The child in Kolwezi does not need you to stop buying electric cars. He needs you to stop pretending the car is clean.</p>
+
+  <div class="divider">&middot; &middot; &middot; &middot; &middot;</div>
+
+  <h2>The Wretched</h2>
+
+  <p>Frantz Fanon wrote that &ldquo;Europe is literally the creation of the Third World. The wealth which smothers her is that which was stolen from the underdeveloped peoples.&rdquo; He wrote this in 1961, about the colonial system that extracted rubber, ivory, and labour from the Congo at the cost of ten million lives.</p>
+
+  <p>The same sentence could be written today about the green transition. The clean energy that powers the Global North is extracted from the bodies of children in the Global South. The &ldquo;zero emissions&rdquo; badge on the dashboard is manufactured from the suffering of people who will never sit behind that dashboard. The ledger balances only because it does not count everyone.</p>
+
+  <blockquote>
+    If conditions of work are not modified, centuries will be needed to humanise this world which has been forced down to animal level by imperial powers.
+    <cite>&mdash; Frantz Fanon, The Wretched of the Earth (1961)</cite>
+  </blockquote>
+
+  <p>Somewhere in Kolwezi, a child is still digging. He does not know what cobalt is for. He does not know that the mineral he carries on his back will power a vehicle that costs more than his entire community will earn in a lifetime. He knows the tunnel, and the dark, and the weight. He knows that his hands are stained blue-grey and that his chest hurts when he breathes.</p>
+
+  <p>He is the invisible workforce of the future. He is the entry that nobody audits. He is the cost of your clean conscience.</p>
+
+</div>
+
+<!-- MARGIN NOTES -->
+<aside class="margin">
+  <div class="margin-note">
+    <h4>The Pay Gap</h4>
+    <table class="mn-table">
+      <tr><td>Child miner / year</td><td>$365&ndash;730</td></tr>
+      <tr><td>Top artisanal miner / year</td><td>~$3,000</td></tr>
+      <tr><td>CEO of buyer company / hour</td><td>~$3,000</td></tr>
+      <tr><td>Avg US EV buyer household</td><td>~$150,000</td></tr>
+    </table>
+    <p class="mn-text" style="font-size:0.65rem;color:#999;margin-top:0.5rem;">Sources: Amnesty 2016; Kara 2023; JD Power 2024.</p>
+  </div>
+
+  <div class="margin-note">
+    <h4>Cobalt Per Battery</h4>
+    <div class="mn-big">4.8</div>
+    <div class="mn-unit">kg average (2023), down from ~12 kg (2018)</div>
+    <p class="mn-text">LFP batteries (zero cobalt) now ~40% of market. NMC811 uses 6&ndash;8 kg. Older NMC111 used 25&ndash;30 kg. Source: Adamas Intelligence.</p>
+  </div>
+
+  <div class="margin-note">
+    <h4>The Health Toll</h4>
+    <table class="mn-table">
+      <tr><td>Skin problems</td><td>82%</td></tr>
+      <tr><td>Breathing issues</td><td>85.4%</td></tr>
+      <tr><td>Major injury (past year)</td><td>52.7%</td></tr>
+      <tr><td>Lost someone (2 yrs)</td><td>937 miners</td></tr>
+    </table>
+    <p class="mn-text" style="font-size:0.65rem;color:#999;margin-top:0.4rem;">RAID UK / University of Bath, Feb 2024.</p>
+  </div>
+
+  <div class="margin-note">
+    <h4>The Water Ledger</h4>
+    <div class="mn-big">500k</div>
+    <div class="mn-unit">litres brine per tonne Li&#8322;CO&#8323;</div>
+    <p class="mn-text">Atacama: 65% of regional water consumed by mining. Land subsiding 2 cm/yr. Indigenous complaint filed Oct 2024.</p>
+  </div>
+
+  <div class="margin-note">
+    <h4>Galeano</h4>
+    <p class="mn-text" style="font-style:italic;">&ldquo;The division of labor among nations is that some specialize in winning and others in losing.&rdquo;</p>
+    <p class="mn-text" style="font-size:0.65rem;color:#999;">&mdash; Open Veins of Latin America, 1971</p>
+  </div>
+
+  <div class="margin-note">
+    <h4>Sources</h4>
+    <p class="mn-text">Amnesty (2016) &middot; Kara (2023) &middot; RAID UK (2024) &middot; African Arguments (Feb 2024) &middot; Mongabay (2024) &middot; Cobalt Institute (2024) &middot; Adamas Intelligence &middot; Lead the Charge (2026) &middot; IEA (2024) &middot; US DOL (2024) &middot; CNN/JURIST (2024)</p>
+  </div>
+</aside>
+
+</div>
+</section>
+
+<!-- OUTRO -->
+<section class="outro">
+  <blockquote>&ldquo;Europe is literally the creation of the Third World. The wealth which smothers her is that which was stolen from the underdeveloped peoples.&rdquo;</blockquote>
+  <cite>&mdash; Frantz Fanon, The Wretched of the Earth (1961)</cite>
+</section>
+
+<footer class="foot">
+  <div class="foot-brand">Switch <span>Stack</span></div>
+  <a href="index.html">Issue Home</a>
+</footer>
+
+</body>
+</html>

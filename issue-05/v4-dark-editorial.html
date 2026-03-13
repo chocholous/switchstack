@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Switch Stack — Issue 05 · Decree 770</title>
+<meta name="description" content="In 1966, Romania banned abortion and contraception. The consequences are still measured in superbugs.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,300;0,7..72,400;0,7..72,700;0,7..72,900;1,7..72,300;1,7..72,400&family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f8f4ee;
+  --ink: #111;
+  --gray: #666;
+  --light: #ccc;
+  --rose: #8b2252;
+  --rose-bg: #8b225212;
+  --cream: #f8f4ee;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 17px; }
+body { background: var(--ink); color: var(--cream); font-family: 'Literata', Georgia, serif; line-height: 1.78; }
+
+/* COVER */
+.cover {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '770';
+  position: absolute;
+  top: -8%;
+  right: -5%;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(18rem, 35vw, 50rem);
+  color: #ffffff04;
+  line-height: 0.85;
+  pointer-events: none;
+}
+.cover-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--rose);
+  margin-bottom: 1rem;
+}
+.cover h1 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(3rem, 8vw, 7rem);
+  line-height: 0.9;
+  max-width: 900px;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.04em;
+}
+.cover h1 em { font-style: normal; color: var(--rose); }
+.cover-deck {
+  font-size: 1.15rem;
+  font-weight: 300;
+  max-width: 560px;
+  color: #aaa;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+.cover-meta {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  color: #555;
+  text-transform: uppercase;
+  display: flex;
+  gap: 2rem;
+}
+.scroll-hint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #444;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 0.8; } }
+
+/* RIBBON */
+.ribbon {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 3px solid var(--rose);
+  border-bottom: 1px solid #222;
+}
+@media (max-width: 700px) { .ribbon { grid-template-columns: repeat(2, 1fr); } }
+.ribbon-cell { padding: 1.5rem 2rem; border-right: 1px solid #222; }
+.ribbon-cell:last-child { border-right: none; }
+.ribbon-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.2rem; color: var(--rose); line-height: 1; }
+.ribbon-unit { font-family: 'Space Mono', monospace; font-size: 0.58rem; color: #666; letter-spacing: 0.08em; margin-top: 0.2rem; }
+.ribbon-desc { font-size: 0.72rem; color: #888; margin-top: 0.4rem; }
+
+/* CONTENT */
+.content { background: var(--bg); color: var(--ink); padding: 4rem 0; }
+.content-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 3rem;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 4rem;
+}
+@media (max-width: 840px) { .content-inner { grid-template-columns: 1fr; padding: 0 2rem; } }
+
+.prose h2 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1.6rem;
+  margin: 3rem 0 0.8rem;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+.prose h2:first-child { margin-top: 0; }
+.prose h2::before { content: '\2014'; display: block; color: var(--rose); font-size: 1.2rem; margin-bottom: 0.3rem; }
+.prose p { margin-bottom: 1.1rem; color: #333; }
+.prose p.lead { font-size: 1.1rem; color: var(--ink); font-weight: 400; }
+.prose p.lead::first-letter {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 4rem;
+  float: left;
+  line-height: 0.75;
+  margin: 0.1em 0.12em 0 0;
+  color: var(--rose);
+}
+
+.prose blockquote {
+  margin: 2rem 0;
+  padding: 1.5rem 2rem;
+  border-left: 4px solid var(--rose);
+  background: var(--rose-bg);
+  font-style: italic;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #333;
+}
+.prose blockquote cite {
+  display: block;
+  font-style: normal;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.05em;
+  color: var(--gray);
+  margin-top: 0.7rem;
+}
+
+.prose .divider { text-align: center; margin: 2.5rem 0; color: var(--rose); font-family: 'Space Mono', monospace; font-size: 0.7rem; letter-spacing: 1em; }
+
+.prose .impact-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.4rem 1rem;
+  margin: 1.5rem 0;
+  padding: 1.2rem;
+  background: var(--ink);
+  color: var(--cream);
+}
+.prose .impact-grid .ig-num { font-family: 'Space Mono', monospace; font-weight: 700; font-size: 0.78rem; color: var(--rose); white-space: nowrap; padding: 0.3rem 0; }
+.prose .impact-grid .ig-desc { font-size: 0.82rem; padding: 0.3rem 0; border-bottom: 1px solid #333; color: #bbb; }
+.prose .impact-grid .ig-desc:last-child { border-bottom: none; }
+
+/* MARGIN */
+.margin { padding-top: 0.5rem; }
+.margin-note { margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid #ddd; }
+.margin-note:last-child { border-bottom: none; }
+.margin-note h4 { font-family: 'Space Mono', monospace; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rose); margin-bottom: 0.8rem; }
+.margin-note .mn-big { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.6rem; line-height: 1; color: var(--ink); }
+.margin-note .mn-unit { font-family: 'Space Mono', monospace; font-size: 0.6rem; color: var(--gray); margin-top: 0.2rem; }
+.margin-note .mn-text { font-size: 0.78rem; color: var(--gray); margin-top: 0.5rem; line-height: 1.55; }
+.mn-table { width: 100%; border-collapse: collapse; font-size: 0.76rem; margin-top: 0.6rem; }
+.mn-table td { padding: 0.35rem 0; border-bottom: 1px solid #e0dcd4; color: #555; }
+.mn-table td:last-child { font-family: 'Space Mono', monospace; font-weight: 700; font-size: 0.7rem; color: var(--rose); text-align: right; }
+
+/* DARK SECTIONS */
+.dark-section { background: var(--ink); color: var(--cream); padding: 4rem 3rem; }
+@media (max-width: 700px) { .dark-section { padding: 3rem 2rem; } }
+.dark-section h2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.6rem; margin-bottom: 0.5rem; }
+.dark-section > p { color: #999; font-size: 0.92rem; max-width: 620px; margin-bottom: 2rem; }
+.dark-section .inner { max-width: 1200px; margin: 0 auto; }
+
+.att-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+@media (max-width: 700px) { .att-grid { grid-template-columns: 1fr; } }
+.att-card { border: 1px solid #333; padding: 1.5rem; }
+.att-card h3 { font-family: 'Space Mono', monospace; font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rose); margin-bottom: 0.6rem; }
+.att-card p { color: #bbb; font-size: 0.85rem; line-height: 1.65; }
+
+/* OUTRO */
+.outro { background: var(--bg); color: var(--ink); padding: 4rem 3rem; text-align: center; }
+@media (max-width: 700px) { .outro { padding: 3rem 2rem; } }
+.outro blockquote { font-family: 'Literata', serif; font-style: italic; font-weight: 300; font-size: 1.4rem; line-height: 1.5; max-width: 520px; margin: 0 auto 0.6rem; }
+.outro cite { font-family: 'Space Mono', monospace; font-size: 0.62rem; color: var(--gray); letter-spacing: 0.1em; }
+
+.foot { background: var(--ink); padding: 1.5rem 3rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #222; }
+.foot-brand { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; color: var(--cream); }
+.foot-brand span { color: var(--rose); }
+.foot a { color: var(--rose); text-decoration: none; font-family: 'Space Mono', monospace; font-size: 0.65rem; }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+.cover { animation: fadeUp 0.8s ease-out; }
+.ribbon { animation: fadeUp 0.5s ease-out 0.2s both; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<section class="cover">
+  <div class="cover-tag">The Switch Stack &middot; Issue 05</div>
+  <h1>Decree <em>770</em></h1>
+  <p class="cover-deck">In 1966, Romania banned abortion and contraception. Ten thousand women died. A hundred thousand children were warehoused. Today, the decree&rsquo;s legacy is measured in antibiotic-resistant bacteria. The same governance that controls women&rsquo;s bodies cannot control its prescription pads.</p>
+  <div class="cover-meta"><span>February 2026</span><span>By Elena Petrescu</span></div>
+  <div class="scroll-hint">&darr; Scroll</div>
+</section>
+
+<!-- RIBBON -->
+<div class="ribbon">
+  <div class="ribbon-cell"><div class="ribbon-num">10,000</div><div class="ribbon-unit">women dead</div><div class="ribbon-desc">Illegal abortions under Decree 770 (1966-1989)</div></div>
+  <div class="ribbon-cell"><div class="ribbon-num">100k+</div><div class="ribbon-unit">children institutionalized</div><div class="ribbon-desc">Romanian orphanages by 1989</div></div>
+  <div class="ribbon-cell"><div class="ribbon-num">30+</div><div class="ribbon-unit">DDD/1,000/day</div><div class="ribbon-desc">Romania&rsquo;s antibiotic consumption today</div></div>
+  <div class="ribbon-cell"><div class="ribbon-num">1.27M</div><div class="ribbon-unit">AMR deaths/year</div><div class="ribbon-desc">Global, directly attributable (2019)</div></div>
+</div>
+
+<!-- MAIN CONTENT -->
+<section class="content">
+<div class="content-inner">
+
+<div class="prose">
+
+  <h2>The Decree</h2>
+
+  <p class="lead">You were born because a man in a bunker decided Romania needed more workers. On October 1, 1966, Nicolae Ceau&#x219;escu signed Decree 770, making abortion illegal for women under 45 with fewer than four children. Contraception was restricted. A &ldquo;celibacy tax&rdquo; was levied on anyone who remained childless. The state decided when, whether, and how many children Romanian women would bear.</p>
+
+  <p>The birth rate doubled within a year&mdash;from approximately 14 per 1,000 to 27 per 1,000 in 1967. Then it began to fall again, as women found underground means. The state responded with workplace gynecological inspections&mdash;the &ldquo;menstrual police.&rdquo; Women were monitored for signs of pregnancy, then monitored to ensure they carried to term.</p>
+
+  <p>Maternal mortality quintupled. The pre-decree rate of approximately 86 per 100,000 live births rose to an estimated 150&ndash;170 per 100,000 through the 1980s. Some sources record peaks as high as 545 per 100,000 in certain years. Romania had the highest maternal mortality in Europe throughout the decree&rsquo;s 23-year reign.</p>
+
+  <p>An estimated 10,000 women died from illegal abortions between 1966 and 1989.</p>
+
+  <div class="divider">&middot; &middot; &middot; &middot; &middot;</div>
+
+  <h2>The Children</h2>
+
+  <p>The children who could not be aborted and could not be fed were delivered to the state. By 1989, between 100,000 and 170,000 children lived in Romanian orphanages. The word &ldquo;lived&rdquo; is generous. They were warehoused. The conditions, documented by international journalists after December 1989, included chronic malnourishment, physical and psychological neglect, and rampant infection.</p>
+
+  <p>In these institutions, antibiotics were not medicine. They were infrastructure. Children in squalid, overcrowded wards developed constant infections&mdash;respiratory, gastrointestinal, skin. Without adequate hygiene, nutrition, or staffing, the institutional response was massive and indiscriminate antibiotic dosing. An estimated 10,000 institutionalized children were HIV-positive by 1990, infected through reused needles and unscreened blood transfusions.</p>
+
+  <p>The generation born of Decree 770&mdash;the <em>decre&#x21B;ei</em>&mdash;became the generation that taught Romanian medicine that antibiotics could substitute for care.</p>
+
+  <div class="divider">&middot; &middot; &middot; &middot; &middot;</div>
+
+  <h2>The Legacy in Bacteria</h2>
+
+  <p>Today, Romania has one of the European Union&rsquo;s highest rates of antibiotic consumption&mdash;approximately 30+ defined daily doses per 1,000 inhabitants per day. The EU average is roughly 22. The Netherlands manages with 10. Romania also ranks among the EU&rsquo;s highest for antimicrobial resistance, according to ECDC/EARS-Net surveillance data.</p>
+
+  <p>The connection is not a simple causal chain&mdash;&ldquo;banned contraception therefore superbugs.&rdquo; It is a cascade of institutional failure. A state that was willing to control women&rsquo;s reproductive systems could not build the healthcare infrastructure to care for the children it forced into existence. The antibiotic overuse that filled the gap became embedded in medical culture. It persists today, long after the decree that created it has been forgotten by everyone except the women who survived it.</p>
+
+  <blockquote>
+    One is not born, but rather becomes, a woman.
+    <cite>&mdash; Simone de Beauvoir, The Second Sex (1949)</cite>
+  </blockquote>
+
+  <p>In Romania, women were not born into subjugation. They were decreed into it. And the bacteria that bred in the wreckage of that decree are still multiplying.</p>
+
+  <div class="divider">&middot; &middot; &middot; &middot; &middot;</div>
+
+  <h2>The Pattern</h2>
+
+  <p>Romania is not unique. It is merely the most extreme test case of a universal pattern.</p>
+
+  <p>Ireland&rsquo;s 8th Amendment: 35 years, 170,000+ women forced to travel for abortions, Savita Halappanavar dead at 31 because &ldquo;this is a Catholic country.&rdquo; Repealed by 66.4% in 2018. Total abortion rate unchanged. Safety: transformed.</p>
+
+  <p>The Soviet Union: first country to legalize abortion (1920), re-banned under Stalin (1936-1955), re-legalized. Average Soviet woman: 6-8 abortions in a lifetime. Abortion as primary contraception&mdash;the grotesque inversion of Ceau&#x219;escu&rsquo;s grotesque ban.</p>
+
+  <p>And today, globally: 73 million abortions per year. Rates identical whether legal or not. In restrictive countries, the proportion of unintended pregnancies ending in abortion rose from 36% in the early 1990s to 50% by 2015-2019. Restricting abortion does not reduce it. It makes it lethal. Thirty-nine thousand women die each year from unsafe procedures.</p>
+
+  <div class="divider">&middot; &middot; &middot; &middot; &middot;</div>
+
+  <h2>The Slow Pandemic</h2>
+
+  <p>While 39,000 women die from unsafe abortions, 1.27&nbsp;million people die from antimicrobial resistance every year. By 2050, the projected cumulative toll reaches 39&nbsp;million. The September 2024 Lancet update recorded 1.14&nbsp;million direct AMR deaths in 2021&mdash;a slight improvement attributable almost entirely to reductions in child mortality. AMR deaths in people over 70 rose 80% since 1990.</p>
+
+  <p>Between 30% and 50% of all antibiotics prescribed globally are unnecessary. Pharma companies fled antibiotic R&amp;D: Novartis (2018), AstraZeneca (2016), Sanofi (~2018). Achaogen filed bankruptcy one year after FDA approval. Because a new antibiotic earns $46&nbsp;million per year. And Ozempic earns $25&ndash;30&nbsp;billion.</p>
+
+  <p>The market rewards drugs for comfortable lives. It punishes drugs that save desperate ones.</p>
+
+  <div class="divider">&middot; &middot; &middot; &middot; &middot;</div>
+
+  <h2>The Switch</h2>
+
+  <p>The Netherlands: sex education from age 4, contraception covered by insurance, abortion rate 8.7 per 1,000 (Europe&rsquo;s lowest), antibiotic consumption 10 DDD per 1,000 per day (Europe&rsquo;s lowest), AMR rates among the continent&rsquo;s lowest. Not because the Dutch are morally superior. Because they built institutions on evidence instead of ideology.</p>
+
+  <p>Romania: Decree 770, 10,000 dead women, 100,000 orphans, embedded antibiotic overuse, among Europe&rsquo;s highest AMR rates. Not because Romanians are morally inferior. Because a dictator decided that women&rsquo;s bodies were state property, and the institutional wreckage has never been fully repaired.</p>
+
+  <p>The contraception-AMR correlation is real. But the mechanism is not &ldquo;pill prevents superbug.&rdquo; The mechanism is this: societies that respect women&rsquo;s autonomy build institutions capable of evidence-based policy. Societies that do not, cannot. And the incapacity expresses itself everywhere&mdash;in maternal mortality wards and in antibiotic resistance maps. In the bodies of women and in the bodies of bacteria.</p>
+
+  <p>My mother was a <em>decre&#x21B;&#x103;</em>&mdash;a child of the decree. She does not discuss it. The number 770 is never spoken in our house. But I was raised on the silence of it, and I have learned to read what silence means: it means the state took something that could not be returned. It means the consequences are still compounding. It means the bacteria remember what the politicians have forgotten.</p>
+
+  <blockquote>
+    No woman can call herself free who does not own and control her body.
+    <cite>&mdash; Margaret Sanger, Woman and the New Race (1920)</cite>
+  </blockquote>
+
+  <p style="font-size:0.78rem; color:var(--gray); margin-top:-0.6rem;">Note: Margaret Sanger&rsquo;s documented connections to the eugenics movement are acknowledged. Her words on bodily autonomy are cited here alongside that historical context.</p>
+
+</div>
+
+<!-- MARGIN -->
+<aside class="margin">
+
+  <div class="margin-note">
+    <h4>Decree 770 Timeline</h4>
+    <table class="mn-table">
+      <tr><td>Decree enacted</td><td>Oct 1, 1966</td></tr>
+      <tr><td>Birth rate peak</td><td>~27/1,000 (1967)</td></tr>
+      <tr><td>Maternal mortality peak</td><td>~170/100k (1980s)</td></tr>
+      <tr><td>Ceau&#x219;escu executed</td><td>Dec 25, 1989</td></tr>
+      <tr><td>Decree repealed</td><td>Dec 26, 1989</td></tr>
+    </table>
+  </div>
+
+  <div class="margin-note">
+    <h4>The Bodies</h4>
+    <div class="mn-big">10,000</div>
+    <div class="mn-unit">women killed by illegal abortions</div>
+    <p class="mn-text">Estimated deaths from unsafe procedures during Decree 770 (1966-1989). Some sources estimate 10,000-15,000. No definitive count exists.</p>
+  </div>
+
+  <div class="margin-note">
+    <h4>Netherlands vs Romania</h4>
+    <table class="mn-table">
+      <tr><td>Abortion rate (NL)</td><td>8.7/1k</td></tr>
+      <tr><td>Abortion rate (RO)</td><td>~19.5/1k</td></tr>
+      <tr><td>Antibiotic DDD (NL)</td><td>~10</td></tr>
+      <tr><td>Antibiotic DDD (RO)</td><td>~30+</td></tr>
+      <tr><td>AMR level (NL)</td><td>Low</td></tr>
+      <tr><td>AMR level (RO)</td><td>High</td></tr>
+    </table>
+  </div>
+
+  <div class="margin-note">
+    <h4>Global AMR</h4>
+    <div class="mn-big">39M</div>
+    <div class="mn-unit">projected deaths by 2050</div>
+    <p class="mn-text">Cumulative AMR mortality (Lancet Sept 2024). Currently 1.27M directly attributable per year (2019 baseline).</p>
+  </div>
+
+  <div class="margin-note">
+    <h4>The Confounder</h4>
+    <p class="mn-text">Economic development drives both contraception access and antibiotic stewardship. Israel (TFR 3.0, moderate AMR) and Japan (TFR 1.2, rising AMR) complicate the simple narrative. The mechanism is institutional.</p>
+  </div>
+
+  <div class="margin-note">
+    <h4>Sources</h4>
+    <p class="mn-text">Lancet 2022 &amp; 2024 (AMR) &middot; WHO &middot; Guttmacher &middot; UNFPA &middot; ECDC/EARS-Net &middot; Kligman (1998) &middot; Pop-Eleches (2006)</p>
+  </div>
+
+</aside>
+
+</div>
+</section>
+
+<!-- THE ARGUMENT -->
+<section class="dark-section">
+<div class="inner">
+  <h2>The Argument Against Itself</h2>
+  <p>This essay challenges every position. Here is what the data does NOT support&mdash;and what it does.</p>
+
+  <div class="att-grid">
+    <div class="att-card">
+      <h3>It Does Not Support</h3>
+      <p>That contraception directly prevents antibiotic resistance. That birth rates mechanically drive AMR. That the &ldquo;pro-life&rdquo; position is solely responsible for AMR. That any single policy intervention can solve either crisis. That the correlation is simple.</p>
+    </div>
+    <div class="att-card">
+      <h3>It Does Support</h3>
+      <p>That the same governance failures restrict contraception AND enable antibiotic misuse. That countries investing in women&rsquo;s autonomy also invest in rational medicine. That restricting abortion does not reduce it. That Romania&rsquo;s Decree 770 created institutional conditions whose AMR consequences persist. That the correlation is real, meaningful, and institutional.</p>
+    </div>
+    <div class="att-card">
+      <h3>Challenge to Pro-Life</h3>
+      <p>Your policies produce more abortions (unsafe ones), more maternal deaths, and correlate with worse AMR outcomes. Decree 770 is the most extreme test of your ideology. It killed 10,000 women and left institutional damage still measurable in antibiotic consumption data.</p>
+    </div>
+    <div class="att-card">
+      <h3>Challenge to Pro-Choice</h3>
+      <p>Abortion access without contraception access is treating symptoms. The Netherlands succeeds not because of liberal abortion laws but because it invested in prevention so thoroughly that abortion is rarely needed. The argument for bodily autonomy is correct; it is also incomplete.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- OUTRO -->
+<section class="outro">
+  <blockquote>&ldquo;The idea that some lives matter less is the root of all that is wrong with the world.&rdquo;</blockquote>
+  <cite>&mdash; Paul Farmer</cite>
+</section>
+
+<footer class="foot">
+  <div class="foot-brand">Switch <span>Stack</span></div>
+  <a href="index.html">All articles</a>
+</footer>
+
+</body>
+</html>

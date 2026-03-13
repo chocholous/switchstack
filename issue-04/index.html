@@ -3,29 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Switch Stack — Where the Numbers Flip the Narrative</title>
-<meta name="description" content="Data-driven investigative journalism, biweekly. Plastics, child labor, nuclear fear, drug policy, conflict emissions — the data nobody publishes.">
-<link rel="canonical" href="https://switchstack.cz/">
-<meta property="og:title" content="The Switch Stack — Where the Numbers Flip the Narrative">
-<meta property="og:description" content="Data-driven investigative journalism, biweekly. The data nobody publishes.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://switchstack.cz/">
-<meta property="og:site_name" content="The Switch Stack">
-<meta property="og:locale" content="en_US">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="The Switch Stack — Where the Numbers Flip the Narrative">
-<meta name="twitter:description" content="Data-driven investigative journalism, biweekly. The data nobody publishes.">
-<link rel="alternate" type="application/rss+xml" title="The Switch Stack" href="/feed.xml">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "The Switch Stack",
-  "url": "https://switchstack.cz",
-  "description": "Where the numbers flip the narrative. Data-driven investigative journalism, biweekly.",
-  "publisher": { "@type": "Organization", "name": "The Switch Stack" }
-}
-</script>
+<title>The Switch Stack — Issue 04</title>
+<meta name="description" content="Where the numbers flip the narrative. Nuclear Fear vs Nuclear Reality.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -42,7 +21,6 @@
 html { font-size: 17px; }
 body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', system-ui, sans-serif; line-height: 1.6; -webkit-font-smoothing: antialiased; }
 
-/* MASTHEAD */
 .masthead {
   max-width: 1100px;
   margin: 0 auto;
@@ -58,10 +36,7 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
   color: var(--muted);
   padding-bottom: 0.8rem;
 }
-.masthead-bar {
-  height: 5px;
-  background: var(--accent);
-}
+.masthead-bar { height: 5px; background: var(--accent); }
 .masthead-title {
   font-family: 'Playfair Display', serif;
   font-weight: 900;
@@ -80,12 +55,8 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
   color: var(--muted);
   padding-bottom: 1rem;
 }
-.masthead-rule {
-  border: none;
-  border-top: 3px double var(--ink);
-}
+.masthead-rule { border: none; border-top: 3px double var(--ink); }
 
-/* ISSUE STRIP */
 .issue-strip {
   max-width: 1100px;
   margin: 0 auto;
@@ -100,7 +71,6 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
   color: var(--muted);
 }
 
-/* HERO — featured article */
 .hero {
   max-width: 1100px;
   margin: 0 auto;
@@ -112,7 +82,6 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
 }
 @media (max-width: 780px) { .hero { grid-template-columns: 1fr; } }
 
-.hero-text { }
 .hero-kicker {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.62rem;
@@ -130,11 +99,7 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
   letter-spacing: -0.015em;
   margin-bottom: 1rem;
 }
-.hero h2 a {
-  color: inherit;
-  text-decoration: none;
-  transition: color 0.2s;
-}
+.hero h2 a { color: inherit; text-decoration: none; transition: color 0.2s; }
 .hero h2 a:hover { color: var(--accent); }
 .hero-deck {
   font-family: 'Playfair Display', serif;
@@ -143,6 +108,18 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
   color: #4a4640;
   line-height: 1.65;
   margin-bottom: 1.2rem;
+}
+.hero-readtime {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1rem;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid var(--rule);
+  display: inline-block;
+  border-radius: 2px;
 }
 .hero-link {
   font-family: 'JetBrains Mono', monospace;
@@ -178,24 +155,11 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
   background: linear-gradient(180deg, transparent 50%, var(--paper) 100%);
   pointer-events: none;
 }
-.hero-preview a {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-}
+.hero-preview a { position: absolute; inset: 0; z-index: 2; }
 
-/* DIVIDER */
-.section-rule {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-.section-rule hr {
-  border: none;
-  border-top: 1px solid var(--rule);
-}
+.section-rule { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+.section-rule hr { border: none; border-top: 1px solid var(--rule); }
 
-/* ARTICLES GRID */
 .articles {
   max-width: 1100px;
   margin: 0 auto;
@@ -267,16 +231,7 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
   letter-spacing: -0.01em;
   margin-bottom: 0.5rem;
 }
-.article-card p {
-  font-size: 0.82rem;
-  color: var(--muted);
-  line-height: 1.55;
-  flex: 1;
-}
-
-/* READ TIME */
-.article-card-readtime,
-.hero-readtime {
+.article-card-readtime {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.6rem;
   letter-spacing: 0.1em;
@@ -288,11 +243,13 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
   display: inline-block;
   border-radius: 2px;
 }
-.hero-readtime {
-  margin-bottom: 1rem;
+.article-card p {
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.55;
+  flex: 1;
 }
 
-/* ABOUT */
 .about {
   max-width: 1100px;
   margin: 0 auto;
@@ -317,17 +274,6 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
   line-height: 1.65;
 }
 
-/* NEWSLETTER */
-.newsletter { max-width:1100px; margin:0 auto; padding:2.5rem 2rem; border-top:1px solid var(--rule); text-align:center; }
-.newsletter h3 { font-family:'Playfair Display',serif; font-weight:900; font-size:1.4rem; margin-bottom:0.4rem; }
-.newsletter p { font-size:0.82rem; color:var(--muted); margin-bottom:1.2rem; }
-.newsletter-form { display:flex; gap:0.5rem; justify-content:center; flex-wrap:wrap; }
-.newsletter-form input[type="email"] { font-family:'DM Sans',system-ui,sans-serif; font-size:0.85rem; padding:0.6rem 1rem; border:1px solid var(--rule); background:#fff; color:var(--ink); width:280px; outline:none; }
-.newsletter-form input[type="email"]:focus { border-color:var(--accent); }
-.newsletter-form button { font-family:'JetBrains Mono',monospace; font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; padding:0.6rem 1.5rem; background:var(--accent); color:#fff; border:none; cursor:pointer; }
-.newsletter-form button:hover { opacity:0.85; }
-
-/* FOOTER */
 .footer {
   max-width: 1100px;
   margin: 0 auto;
@@ -353,7 +299,6 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
 .footer-links a { color: var(--accent); text-decoration: none; }
 .footer-links a:hover { text-decoration: underline; }
 
-/* ANIMATIONS */
 @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
 .hero { animation: fadeUp 0.6s ease-out; }
 .articles-grid .article-card { animation: fadeUp 0.5s ease-out both; }
@@ -361,8 +306,8 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
 .articles-grid .article-card:nth-child(2) { animation-delay: 0.2s; }
 .articles-grid .article-card:nth-child(3) { animation-delay: 0.3s; }
 
-/* VONNEGUT TICKER — steampunk style */
-.vonnegut-ticker {
+/* QUOTE TICKER */
+.quote-ticker {
   background: #2a2118;
   border-bottom: 2px solid #8b6914;
   overflow: hidden;
@@ -370,9 +315,9 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
   height: 2rem;
   line-height: 2rem;
 }
-.vonnegut-ticker::before,
-.vonnegut-ticker::after {
-  content: '⚙';
+.quote-ticker::before,
+.quote-ticker::after {
+  content: '\2622';
   position: absolute;
   top: 0;
   height: 2rem;
@@ -384,26 +329,26 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
   background: #2a2118;
   z-index: 2;
 }
-.vonnegut-ticker::before { left: 0; border-right: 1px solid #5a4420; }
-.vonnegut-ticker::after { right: 0; border-left: 1px solid #5a4420; }
+.quote-ticker::before { left: 0; border-right: 1px solid #5a4420; }
+.quote-ticker::after { right: 0; border-left: 1px solid #5a4420; }
 
-.vonnegut-ticker__track {
+.quote-ticker__track {
   display: flex;
   white-space: nowrap;
-  animation: tickerScroll 38s linear infinite;
+  animation: tickerScroll 50s linear infinite;
   width: max-content;
 }
-.vonnegut-ticker:hover .vonnegut-ticker__track {
+.quote-ticker:hover .quote-ticker__track {
   animation-play-state: paused;
 }
-.vonnegut-ticker__track span {
+.quote-ticker__track span {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.72rem;
   letter-spacing: 0.03em;
   color: #c4a35a;
   padding: 0 0.6rem;
 }
-.vonnegut-ticker__track .ticker-sep {
+.quote-ticker__track .ticker-sep {
   color: #8b6914;
   padding: 0 0.5rem;
   font-size: 0.75rem;
@@ -530,7 +475,7 @@ body { margin-left: 260px; }
   <div class="issue-nav-inner">
     <a href="/" class="issue-nav-brand">The Switch <span>Stack</span></a>
     <div class="issue-nav-list">
-      <a class="issue-nav-item active" href="/issue-07/">
+      <a class="issue-nav-item" href="/issue-07/">
         <span class="issue-nav-num">#07</span>
         <span class="issue-nav-topic">Carbon, Methane & Nanoplastics</span>
       </a>
@@ -542,7 +487,7 @@ body { margin-left: 260px; }
         <span class="issue-nav-num">#05</span>
         <span class="issue-nav-topic">The Inconvenient Correlation</span>
       </a>
-      <a class="issue-nav-item" href="/issue-04/">
+      <a class="issue-nav-item active" href="/issue-04/">
         <span class="issue-nav-num">#04</span>
         <span class="issue-nav-topic">The Safest Energy</span>
       </a>
@@ -565,11 +510,11 @@ body { margin-left: 260px; }
   </div>
 </nav>
 
-<!-- VONNEGUT QUOTE TICKER -->
-<div class="vonnegut-ticker">
-  <div class="vonnegut-ticker__track">
-    <span>"So it goes." — Slaughterhouse-Five</span><span class="ticker-sep">⚙</span><span>"Everything was beautiful and nothing hurt." — Slaughterhouse-Five</span><span class="ticker-sep">⚙</span><span>"We are what we pretend to be, so we must be careful about what we pretend to be." — Mother Night</span><span class="ticker-sep">⚙</span><span>"I was a victim of a series of accidents, as are we all." — The Sirens of Titan</span><span class="ticker-sep">⚙</span><span>"One of the few good things about modern times: If you die horribly on television, you will not have died in vain." — Cold Turkey</span><span class="ticker-sep">⚙</span><span>"Another flaw in the human character is that everybody wants to build and nobody wants to do maintenance." — Hocus Pocus</span><span class="ticker-sep">⚙</span><span>"Dear future generations: Please accept our apologies. We were rolling drunk on petroleum." — attributed</span><span class="ticker-sep">⚙</span>
-    <span>"So it goes." — Slaughterhouse-Five</span><span class="ticker-sep">⚙</span><span>"Everything was beautiful and nothing hurt." — Slaughterhouse-Five</span><span class="ticker-sep">⚙</span><span>"We are what we pretend to be, so we must be careful about what we pretend to be." — Mother Night</span><span class="ticker-sep">⚙</span><span>"I was a victim of a series of accidents, as are we all." — The Sirens of Titan</span><span class="ticker-sep">⚙</span><span>"One of the few good things about modern times: If you die horribly on television, you will not have died in vain." — Cold Turkey</span><span class="ticker-sep">⚙</span><span>"Another flaw in the human character is that everybody wants to build and nobody wants to do maintenance." — Hocus Pocus</span><span class="ticker-sep">⚙</span><span>"Dear future generations: Please accept our apologies. We were rolling drunk on petroleum." — attributed</span><span class="ticker-sep">⚙</span>
+<!-- QUOTE TICKER -->
+<div class="quote-ticker">
+  <div class="quote-ticker__track">
+    <span>"I am a Green, and I entreat my friends in the movement to drop their wrongheaded objection to nuclear energy." &mdash; James Lovelock</span><span class="ticker-sep">&#9762;</span><span>"There's no room for facts when our minds are occupied by fear." &mdash; Hans Rosling, Factfulness</span><span class="ticker-sep">&#9762;</span><span>"Nuclear replaces coal and it works, and it's clean as hell in terms of greenhouse gas emissions." &mdash; Stewart Brand</span><span class="ticker-sep">&#9762;</span><span>"Nuclear power remains the cleanest, most practical source of energy &mdash; less damaging than dams, less polluting than oil, less lethal than coal." &mdash; Richard Rhodes</span><span class="ticker-sep">&#9762;</span><span>"Only nuclear power can now halt global warming." &mdash; James Lovelock, 2004</span><span class="ticker-sep">&#9762;</span><span>"Because of climate change I reinvestigated the matter and discovered that I'd been misled." &mdash; Stewart Brand</span><span class="ticker-sep">&#9762;</span>
+    <span>"I am a Green, and I entreat my friends in the movement to drop their wrongheaded objection to nuclear energy." &mdash; James Lovelock</span><span class="ticker-sep">&#9762;</span><span>"There's no room for facts when our minds are occupied by fear." &mdash; Hans Rosling, Factfulness</span><span class="ticker-sep">&#9762;</span><span>"Nuclear replaces coal and it works, and it's clean as hell in terms of greenhouse gas emissions." &mdash; Stewart Brand</span><span class="ticker-sep">&#9762;</span><span>"Nuclear power remains the cleanest, most practical source of energy &mdash; less damaging than dams, less polluting than oil, less lethal than coal." &mdash; Richard Rhodes</span><span class="ticker-sep">&#9762;</span><span>"Only nuclear power can now halt global warming." &mdash; James Lovelock, 2004</span><span class="ticker-sep">&#9762;</span><span>"Because of climate change I reinvestigated the matter and discovered that I'd been misled." &mdash; Stewart Brand</span><span class="ticker-sep">&#9762;</span>
   </div>
 </div>
 
@@ -577,8 +522,8 @@ body { margin-left: 260px; }
 <div class="masthead-bar"></div>
 <header class="masthead">
   <div class="masthead-top">
-    <span>Issue 07 &middot; March 15, 2026</span>
-    <span>Biweekly &middot; Investigative Data Journalism</span>
+    <span>Issue 04 &middot; February 2026</span>
+    <span>Biweekly &middot; Environmental Intelligence</span>
   </div>
   <div class="masthead-title">The Switch <span>Stack</span></div>
   <div class="masthead-subtitle">Where the numbers flip the narrative</div>
@@ -586,22 +531,22 @@ body { margin-left: 260px; }
 </header>
 
 <div class="issue-strip">
-  <span>Conflict &amp; Climate Special</span>
-  <span>4 Articles &middot; Carbon, Methane &amp; Nanoplastics</span>
+  <span>Nuclear Fear &amp; Nuclear Reality</span>
+  <span>4 Articles &middot; Energy, Safety &amp; Geopolitics</span>
 </div>
 
-<!-- HERO — Featured Article (Full Narrative) -->
+<!-- HERO -->
 <section class="hero">
   <div class="hero-text">
     <div class="hero-kicker">The Investigation</div>
-    <h2><a href="/issue-07/carbon-methane-nanoplastics-household-footprint/">Carbon, Methane, and Nanoplastics: Why Your Household Footprint Doesn't Stand a Chance</a></h2>
-    <div class="hero-readtime">12 min read</div>
-    <p class="hero-deck">Ukraine and Gaza are the first wars in human history with real-time environmental tracking. The CEO of Europe&rsquo;s largest missile maker boasts about &ldquo;doubling production without compromising sustainability.&rdquo; Meanwhile, 200 US cargo flights to Israel emitted more CO&#8322; than the entire nation of Grenada does in a&nbsp;year.</p>
-    <a class="hero-link" href="/issue-07/carbon-methane-nanoplastics-household-footprint/">Read the full story &rarr;</a>
+    <h2><a href="/issue-04/the-safest-energy-on-earth-and-why-were-terrified-of-it/">The Safest Energy on Earth and Why We&rsquo;re Terrified of&nbsp;It</a></h2>
+    <div class="hero-readtime">14 min read</div>
+    <p class="hero-deck">On February 28, a US-Israeli operation killed 1,348 people in Iran to prevent nuclear proliferation. In April 2023, Germany shut down its last nuclear reactor and restarted coal plants. Nuclear energy has killed fewer people in its entire history than coal kills every single day. The most dangerous thing about nuclear power is our fear of&nbsp;it.</p>
+    <a class="hero-link" href="/issue-04/the-safest-energy-on-earth-and-why-were-terrified-of-it/">Read the full story &rarr;</a>
   </div>
   <div class="hero-preview">
-    <a href="/issue-07/carbon-methane-nanoplastics-household-footprint/" aria-label="Read the full investigation"></a>
-    <iframe src="/issue-07/v2-full-narrative.html" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+    <a href="/issue-04/the-safest-energy-on-earth-and-why-were-terrified-of-it/" aria-label="Read the full investigation"></a>
+    <iframe src="v2-full-narrative.html" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
     <div class="hero-preview-overlay"></div>
   </div>
 </section>
@@ -613,40 +558,37 @@ body { margin-left: 260px; }
   <div class="articles-label">Also in this issue</div>
   <div class="articles-grid">
 
-    <!-- V1 — Compact / Briefing -->
-    <a class="article-card" href="/issue-07/how-to-conduct-genocide-sustainably/">
+    <a class="article-card" href="/issue-04/fear-of-nuclear-has-killed-more-people-than-nuclear/">
       <div class="article-card-preview">
-        <iframe src="/issue-07/v1-magazine-compact.html" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+        <iframe src="v1-magazine-compact.html" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
         <div class="card-overlay"></div>
       </div>
       <div class="article-card-kicker">The Briefing</div>
-      <h3>How to Conduct a Genocide, Sustainably</h3>
+      <h3>Fear of Nuclear Has Killed More People Than Nuclear</h3>
       <div class="article-card-readtime">8 min read</div>
-      <p>Oct 7 killed 1,200 people at 0.03 tonnes of CO&#8322; per death. Israel&rsquo;s operation in Gaza: 4 tonnes per kill, 81% of structures destroyed, up to 61 Mt long-term CO&#8322;&mdash;and an arms industry that files ESG reports about it. Russia burns 460 tonnes per kill in Ukraine. The most carbon-efficient atrocity leaves no trace in any climate framework.</p>
+      <p>Fukushima evacuation: 2,300 dead. Fukushima radiation: 1. Germany shut down nuclear, restarted coal&mdash;1,100 additional deaths per year from air pollution. Nuclear kills 0.03 people per TWh. Coal: 24.6. The safest energy source on Earth, feared into irrelevance.</p>
     </a>
 
-    <!-- V3 — Infographic -->
-    <a class="article-card" href="/issue-07/precision-warfare-esg-compliant-numbers/">
+    <a class="article-card" href="/issue-04/deaths-per-terawatt-hour/">
       <div class="article-card-preview">
-        <iframe src="/issue-07/v3-infographic-light.html" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+        <iframe src="v3-infographic-light.html" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
         <div class="card-overlay"></div>
       </div>
       <div class="article-card-kicker">The Data</div>
-      <h3>Precision Warfare, ESG Compliant: The Numbers Behind the&nbsp;Narrative</h3>
-      <div class="article-card-readtime">4 min read</div>
-      <p>In Gaza&rsquo;s first 60 days, Israel and its US supply chain produced over 99% of all war emissions. 81% of structures destroyed. Up to 61 Mt CO&#8322;. Hamas rockets have killed roughly 60 people in 22 years&mdash;and zero since mid-2024. 713 tonnes of CO&#8322; for nothing. The most carbon-inefficient weapon in modern warfare, aimed at the most carbon-efficient genocide.</p>
+      <h3>Deaths per Terawatt-Hour: The Energy Source Ranking Nobody&nbsp;Publishes</h3>
+      <div class="article-card-readtime">5 min read</div>
+      <p>Nuclear: 0.03. Wind: 0.04. Solar: 0.05. Gas: 2.8. Coal: 24.6. One football field of waste vs continents of coal ash. 1.84 million lives saved. 50 million medical procedures per year. The data the anti-nuclear movement does not cite.</p>
     </a>
 
-    <!-- V4 — Noir / Editorial -->
-    <a class="article-card" href="/issue-07/futures-breadbasket-heavy-metals-ukraine/">
+    <a class="article-card" href="/issue-04/the-glowing-paradise/">
       <div class="article-card-preview">
-        <iframe src="/issue-07/v4-dark-editorial.html" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+        <iframe src="v4-dark-editorial.html" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
         <div class="card-overlay"></div>
       </div>
       <div class="article-card-kicker">The Editorial</div>
-      <h3>Future&rsquo;s Breadbasket, Rich on Heavy&nbsp;Metals</h3>
-      <div class="article-card-readtime">9 min read</div>
-      <p>Nanoplastics from pulverized drone casings. Lead, cadmium, and mercury from 26,000 detonated shells. All of it saturating Ukraine&rsquo;s soil&mdash;Europe&rsquo;s most fertile farmland. 100 to 300 years to clean naturally. The choice: spend billions on remediation, or harvest the metals and serve them for dinner.</p>
+      <h3>The Glowing Paradise</h3>
+      <div class="article-card-readtime">10 min read</div>
+      <p>In the Chernobyl exclusion zone, wolves and European bison roam through abandoned Soviet apartment blocks. Thirty-eight years after the worst nuclear disaster in history, nature is thriving&mdash;precisely because humans left. The most radioactive place in Europe has become its most biodiverse.</p>
     </a>
 
   </div>
@@ -656,22 +598,12 @@ body { margin-left: 260px; }
 <section class="about">
   <div>
     <h3>About This Issue</h3>
-    <p>All articles share the same fact-checked dataset. Key figures: Gaza long-term total up to 61&nbsp;Mt CO&#8322;e (281k tCO&#8322;e first 60 days, ~32&nbsp;Mt direct over 15 months, 47&ndash;60&nbsp;Mt reconstruction of 123,000+ destroyed structures). Ukraine: ~237&nbsp;Mt CO&#8322;e over 3 years. New in this edition: CO&#8322;/atrocity ratio analysis showing carbon footprint and human suffering are decoupled.</p>
+    <p>All articles share the same fact-checked dataset. Key figures: Nuclear kills 0.03 people per TWh vs coal&rsquo;s 24.6&mdash;an 820x difference. Fukushima radiation deaths: 1. Evacuation deaths: ~2,300. Germany&rsquo;s nuclear phase-out: ~1,100 additional deaths per year (Jarvis et al., NBER). France: 95% low-carbon grid thanks to nuclear. Nuclear power has prevented 1.84 million deaths since 1971 (Kharecha &amp; Hansen, NASA).</p>
   </div>
   <div>
     <h3>Data Sources</h3>
-    <p>IGAW &mdash; Initiative on GHG Accounting of War (Feb 2025). CEOBS &amp; SGR &mdash; Global military emissions (Nov 2022). UNEP &mdash; Conflict zone environmental assessments. SSRN / Queen Mary / Lancaster &mdash; Gaza carbon tracking (2024&ndash;2025). Hobbs &amp; Radke &mdash; Kuwait oil fires, Science (1992).</p>
+    <p>Our World in Data &mdash; Deaths per TWh (Markandya &amp; Wilkinson, 2007). UNSCEAR &mdash; Fukushima &amp; Chernobyl assessments. Jarvis, Deschenes &amp; Jha &mdash; German nuclear phase-out (NBER, 2019). Kharecha &amp; Hansen &mdash; Nuclear prevented deaths (ES&amp;T, 2013). Ember / Sfen &mdash; France electricity data. WarCosts &mdash; Operation Epic Fury (2026).</p>
   </div>
-</section>
-
-<!-- NEWSLETTER -->
-<section class="newsletter">
-  <h3>Get the next issue in your inbox</h3>
-  <p>Data that flips the narrative, biweekly. No spam, no fluff — just the numbers that matter.</p>
-  <form class="newsletter-form" action="#" method="post">
-    <input type="email" name="email" placeholder="your@email.com" required>
-    <button type="submit">Subscribe</button>
-  </form>
 </section>
 
 <!-- FOOTER -->

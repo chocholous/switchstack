@@ -3,29 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Switch Stack — Where the Numbers Flip the Narrative</title>
-<meta name="description" content="Data-driven investigative journalism, biweekly. Plastics, child labor, nuclear fear, drug policy, conflict emissions — the data nobody publishes.">
-<link rel="canonical" href="https://switchstack.cz/">
-<meta property="og:title" content="The Switch Stack — Where the Numbers Flip the Narrative">
-<meta property="og:description" content="Data-driven investigative journalism, biweekly. The data nobody publishes.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://switchstack.cz/">
-<meta property="og:site_name" content="The Switch Stack">
-<meta property="og:locale" content="en_US">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="The Switch Stack — Where the Numbers Flip the Narrative">
-<meta name="twitter:description" content="Data-driven investigative journalism, biweekly. The data nobody publishes.">
-<link rel="alternate" type="application/rss+xml" title="The Switch Stack" href="/feed.xml">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "The Switch Stack",
-  "url": "https://switchstack.cz",
-  "description": "Where the numbers flip the narrative. Data-driven investigative journalism, biweekly.",
-  "publisher": { "@type": "Organization", "name": "The Switch Stack" }
-}
-</script>
+<title>The Switch Stack — Issue 01</title>
+<meta name="description" content="Where the numbers flip the narrative. Microplastics, recycling, and the fifty-year deception.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -34,7 +13,7 @@
   --ink: #1a1714;
   --paper: #f5f0e8;
   --paper-dark: #ebe4d8;
-  --accent: #c43e2a;
+  --accent: #1a7a5c;
   --muted: #7a7168;
   --rule: #c8bfb0;
 }
@@ -58,10 +37,7 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
   color: var(--muted);
   padding-bottom: 0.8rem;
 }
-.masthead-bar {
-  height: 5px;
-  background: var(--accent);
-}
+.masthead-bar { height: 5px; background: var(--accent); }
 .masthead-title {
   font-family: 'Playfair Display', serif;
   font-weight: 900;
@@ -80,10 +56,7 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
   color: var(--muted);
   padding-bottom: 1rem;
 }
-.masthead-rule {
-  border: none;
-  border-top: 3px double var(--ink);
-}
+.masthead-rule { border: none; border-top: 3px double var(--ink); }
 
 /* ISSUE STRIP */
 .issue-strip {
@@ -100,7 +73,7 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
   color: var(--muted);
 }
 
-/* HERO — featured article */
+/* HERO */
 .hero {
   max-width: 1100px;
   margin: 0 auto;
@@ -112,7 +85,6 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
 }
 @media (max-width: 780px) { .hero { grid-template-columns: 1fr; } }
 
-.hero-text { }
 .hero-kicker {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.62rem;
@@ -130,12 +102,20 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
   letter-spacing: -0.015em;
   margin-bottom: 1rem;
 }
-.hero h2 a {
-  color: inherit;
-  text-decoration: none;
-  transition: color 0.2s;
-}
+.hero h2 a { color: inherit; text-decoration: none; transition: color 0.2s; }
 .hero h2 a:hover { color: var(--accent); }
+.hero-readtime {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1rem;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid var(--rule);
+  display: inline-block;
+  border-radius: 2px;
+}
 .hero-deck {
   font-family: 'Playfair Display', serif;
   font-style: italic;
@@ -178,29 +158,14 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
   background: linear-gradient(180deg, transparent 50%, var(--paper) 100%);
   pointer-events: none;
 }
-.hero-preview a {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-}
+.hero-preview a { position: absolute; inset: 0; z-index: 2; }
 
 /* DIVIDER */
-.section-rule {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-.section-rule hr {
-  border: none;
-  border-top: 1px solid var(--rule);
-}
+.section-rule { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+.section-rule hr { border: none; border-top: 1px solid var(--rule); }
 
 /* ARTICLES GRID */
-.articles {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 2rem 2rem 1rem;
-}
+.articles { max-width: 1100px; margin: 0 auto; padding: 2rem 2rem 1rem; }
 .articles-label {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.6rem;
@@ -211,20 +176,10 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
   padding-bottom: 0.5rem;
   border-bottom: 1px solid var(--rule);
 }
-.articles-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-}
+.articles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
 @media (max-width: 780px) { .articles-grid { grid-template-columns: 1fr; } }
 
-.article-card {
-  text-decoration: none;
-  color: inherit;
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.2s;
-}
+.article-card { text-decoration: none; color: inherit; display: flex; flex-direction: column; transition: transform 0.2s; }
 .article-card:hover { transform: translateY(-3px); }
 
 .article-card-preview {
@@ -267,16 +222,7 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
   letter-spacing: -0.01em;
   margin-bottom: 0.5rem;
 }
-.article-card p {
-  font-size: 0.82rem;
-  color: var(--muted);
-  line-height: 1.55;
-  flex: 1;
-}
-
-/* READ TIME */
-.article-card-readtime,
-.hero-readtime {
+.article-card-readtime {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.6rem;
   letter-spacing: 0.1em;
@@ -288,9 +234,7 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
   display: inline-block;
   border-radius: 2px;
 }
-.hero-readtime {
-  margin-bottom: 1rem;
-}
+.article-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.55; flex: 1; }
 
 /* ABOUT */
 .about {
@@ -311,21 +255,7 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
   color: var(--accent);
   margin-bottom: 0.6rem;
 }
-.about p {
-  font-size: 0.82rem;
-  color: var(--muted);
-  line-height: 1.65;
-}
-
-/* NEWSLETTER */
-.newsletter { max-width:1100px; margin:0 auto; padding:2.5rem 2rem; border-top:1px solid var(--rule); text-align:center; }
-.newsletter h3 { font-family:'Playfair Display',serif; font-weight:900; font-size:1.4rem; margin-bottom:0.4rem; }
-.newsletter p { font-size:0.82rem; color:var(--muted); margin-bottom:1.2rem; }
-.newsletter-form { display:flex; gap:0.5rem; justify-content:center; flex-wrap:wrap; }
-.newsletter-form input[type="email"] { font-family:'DM Sans',system-ui,sans-serif; font-size:0.85rem; padding:0.6rem 1rem; border:1px solid var(--rule); background:#fff; color:var(--ink); width:280px; outline:none; }
-.newsletter-form input[type="email"]:focus { border-color:var(--accent); }
-.newsletter-form button { font-family:'JetBrains Mono',monospace; font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; padding:0.6rem 1.5rem; background:var(--accent); color:#fff; border:none; cursor:pointer; }
-.newsletter-form button:hover { opacity:0.85; }
+.about p { font-size: 0.82rem; color: var(--muted); line-height: 1.65; }
 
 /* FOOTER */
 .footer {
@@ -339,17 +269,9 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
   flex-wrap: wrap;
   gap: 1rem;
 }
-.footer-brand {
-  font-family: 'Playfair Display', serif;
-  font-weight: 900;
-  font-size: 1.1rem;
-}
+.footer-brand { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 1.1rem; }
 .footer-brand span { color: var(--accent); }
-.footer-links {
-  font-size: 0.72rem;
-  color: var(--muted);
-  letter-spacing: 0.08em;
-}
+.footer-links { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.08em; }
 .footer-links a { color: var(--accent); text-decoration: none; }
 .footer-links a:hover { text-decoration: underline; }
 
@@ -361,18 +283,18 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
 .articles-grid .article-card:nth-child(2) { animation-delay: 0.2s; }
 .articles-grid .article-card:nth-child(3) { animation-delay: 0.3s; }
 
-/* VONNEGUT TICKER — steampunk style */
-.vonnegut-ticker {
-  background: #2a2118;
-  border-bottom: 2px solid #8b6914;
+/* QUOTE TICKER */
+.quote-ticker {
+  background: #1a2d2a;
+  border-bottom: 2px solid var(--accent);
   overflow: hidden;
   position: relative;
   height: 2rem;
   line-height: 2rem;
 }
-.vonnegut-ticker::before,
-.vonnegut-ticker::after {
-  content: '⚙';
+.quote-ticker::before,
+.quote-ticker::after {
+  content: '\2668';
   position: absolute;
   top: 0;
   height: 2rem;
@@ -380,31 +302,29 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
   width: 2rem;
   text-align: center;
   font-size: 0.9rem;
-  color: #8b6914;
-  background: #2a2118;
+  color: var(--accent);
+  background: #1a2d2a;
   z-index: 2;
 }
-.vonnegut-ticker::before { left: 0; border-right: 1px solid #5a4420; }
-.vonnegut-ticker::after { right: 0; border-left: 1px solid #5a4420; }
+.quote-ticker::before { left: 0; border-right: 1px solid #2a4a3a; }
+.quote-ticker::after { right: 0; border-left: 1px solid #2a4a3a; }
 
-.vonnegut-ticker__track {
+.quote-ticker__track {
   display: flex;
   white-space: nowrap;
-  animation: tickerScroll 38s linear infinite;
+  animation: tickerScroll 50s linear infinite;
   width: max-content;
 }
-.vonnegut-ticker:hover .vonnegut-ticker__track {
-  animation-play-state: paused;
-}
-.vonnegut-ticker__track span {
+.quote-ticker:hover .quote-ticker__track { animation-play-state: paused; }
+.quote-ticker__track span {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.72rem;
   letter-spacing: 0.03em;
-  color: #c4a35a;
+  color: #8abfa0;
   padding: 0 0.6rem;
 }
-.vonnegut-ticker__track .ticker-sep {
-  color: #8b6914;
+.quote-ticker__track .ticker-sep {
+  color: var(--accent);
   padding: 0 0.5rem;
   font-size: 0.75rem;
 }
@@ -530,7 +450,7 @@ body { margin-left: 260px; }
   <div class="issue-nav-inner">
     <a href="/" class="issue-nav-brand">The Switch <span>Stack</span></a>
     <div class="issue-nav-list">
-      <a class="issue-nav-item active" href="/issue-07/">
+      <a class="issue-nav-item" href="/issue-07/">
         <span class="issue-nav-num">#07</span>
         <span class="issue-nav-topic">Carbon, Methane & Nanoplastics</span>
       </a>
@@ -554,7 +474,7 @@ body { margin-left: 260px; }
         <span class="issue-nav-num">#02</span>
         <span class="issue-nav-topic">Green Transition's Workforce</span>
       </a>
-      <a class="issue-nav-item" href="/issue-01/">
+      <a class="issue-nav-item active" href="/issue-01/">
         <span class="issue-nav-num">#01</span>
         <span class="issue-nav-topic">The Recycling Lie</span>
       </a>
@@ -565,11 +485,11 @@ body { margin-left: 260px; }
   </div>
 </nav>
 
-<!-- VONNEGUT QUOTE TICKER -->
-<div class="vonnegut-ticker">
-  <div class="vonnegut-ticker__track">
-    <span>"So it goes." — Slaughterhouse-Five</span><span class="ticker-sep">⚙</span><span>"Everything was beautiful and nothing hurt." — Slaughterhouse-Five</span><span class="ticker-sep">⚙</span><span>"We are what we pretend to be, so we must be careful about what we pretend to be." — Mother Night</span><span class="ticker-sep">⚙</span><span>"I was a victim of a series of accidents, as are we all." — The Sirens of Titan</span><span class="ticker-sep">⚙</span><span>"One of the few good things about modern times: If you die horribly on television, you will not have died in vain." — Cold Turkey</span><span class="ticker-sep">⚙</span><span>"Another flaw in the human character is that everybody wants to build and nobody wants to do maintenance." — Hocus Pocus</span><span class="ticker-sep">⚙</span><span>"Dear future generations: Please accept our apologies. We were rolling drunk on petroleum." — attributed</span><span class="ticker-sep">⚙</span>
-    <span>"So it goes." — Slaughterhouse-Five</span><span class="ticker-sep">⚙</span><span>"Everything was beautiful and nothing hurt." — Slaughterhouse-Five</span><span class="ticker-sep">⚙</span><span>"We are what we pretend to be, so we must be careful about what we pretend to be." — Mother Night</span><span class="ticker-sep">⚙</span><span>"I was a victim of a series of accidents, as are we all." — The Sirens of Titan</span><span class="ticker-sep">⚙</span><span>"One of the few good things about modern times: If you die horribly on television, you will not have died in vain." — Cold Turkey</span><span class="ticker-sep">⚙</span><span>"Another flaw in the human character is that everybody wants to build and nobody wants to do maintenance." — Hocus Pocus</span><span class="ticker-sep">⚙</span><span>"Dear future generations: Please accept our apologies. We were rolling drunk on petroleum." — attributed</span><span class="ticker-sep">⚙</span>
+<!-- QUOTE TICKER -->
+<div class="quote-ticker">
+  <div class="quote-ticker__track">
+    <span>"In nature, nothing exists alone." &mdash; Rachel Carson, Silent Spring</span><span class="ticker-sep">&diams;</span><span>"The planet will be here for a long, long, LONG time after we're gone." &mdash; George Carlin</span><span class="ticker-sep">&diams;</span><span>"Here I was in the middle of the ocean, and there was nowhere I could go to avoid the plastic." &mdash; Captain Charles Moore</span><span class="ticker-sep">&diams;</span><span>"We have subjected enormous numbers of people to contact with these poisons, without their consent." &mdash; Rachel Carson</span><span class="ticker-sep">&diams;</span><span>"The earth plus plastic. The earth doesn't share our prejudice towards plastic." &mdash; George Carlin</span><span class="ticker-sep">&diams;</span><span>"Only we humans make waste that nature can't digest." &mdash; Captain Charles Moore</span><span class="ticker-sep">&diams;</span><span>"The 'control of nature' is a phrase conceived in arrogance." &mdash; Rachel Carson, Silent Spring</span><span class="ticker-sep">&diams;</span>
+    <span>"In nature, nothing exists alone." &mdash; Rachel Carson, Silent Spring</span><span class="ticker-sep">&diams;</span><span>"The planet will be here for a long, long, LONG time after we're gone." &mdash; George Carlin</span><span class="ticker-sep">&diams;</span><span>"Here I was in the middle of the ocean, and there was nowhere I could go to avoid the plastic." &mdash; Captain Charles Moore</span><span class="ticker-sep">&diams;</span><span>"We have subjected enormous numbers of people to contact with these poisons, without their consent." &mdash; Rachel Carson</span><span class="ticker-sep">&diams;</span><span>"The earth plus plastic. The earth doesn't share our prejudice towards plastic." &mdash; George Carlin</span><span class="ticker-sep">&diams;</span><span>"Only we humans make waste that nature can't digest." &mdash; Captain Charles Moore</span><span class="ticker-sep">&diams;</span><span>"The 'control of nature' is a phrase conceived in arrogance." &mdash; Rachel Carson, Silent Spring</span><span class="ticker-sep">&diams;</span>
   </div>
 </div>
 
@@ -577,8 +497,8 @@ body { margin-left: 260px; }
 <div class="masthead-bar"></div>
 <header class="masthead">
   <div class="masthead-top">
-    <span>Issue 07 &middot; March 15, 2026</span>
-    <span>Biweekly &middot; Investigative Data Journalism</span>
+    <span>Issue 01 &middot; December 15, 2025</span>
+    <span>Biweekly &middot; Environmental Intelligence</span>
   </div>
   <div class="masthead-title">The Switch <span>Stack</span></div>
   <div class="masthead-subtitle">Where the numbers flip the narrative</div>
@@ -586,22 +506,22 @@ body { margin-left: 260px; }
 </header>
 
 <div class="issue-strip">
-  <span>Conflict &amp; Climate Special</span>
-  <span>4 Articles &middot; Carbon, Methane &amp; Nanoplastics</span>
+  <span>Microplastics &amp; Recycling Special</span>
+  <span>4 Articles &middot; Plastic, Health &amp; Industry Deception</span>
 </div>
 
-<!-- HERO — Featured Article (Full Narrative) -->
+<!-- HERO -->
 <section class="hero">
   <div class="hero-text">
     <div class="hero-kicker">The Investigation</div>
-    <h2><a href="/issue-07/carbon-methane-nanoplastics-household-footprint/">Carbon, Methane, and Nanoplastics: Why Your Household Footprint Doesn't Stand a Chance</a></h2>
+    <h2><a href="/issue-01/the-recycling-lie/">The Recycling Lie: How the Plastic Industry Sold You a Symbol</a></h2>
     <div class="hero-readtime">12 min read</div>
-    <p class="hero-deck">Ukraine and Gaza are the first wars in human history with real-time environmental tracking. The CEO of Europe&rsquo;s largest missile maker boasts about &ldquo;doubling production without compromising sustainability.&rdquo; Meanwhile, 200 US cargo flights to Israel emitted more CO&#8322; than the entire nation of Grenada does in a&nbsp;year.</p>
-    <a class="hero-link" href="/issue-07/carbon-methane-nanoplastics-household-footprint/">Read the full story &rarr;</a>
+    <p class="hero-deck">In 1988, the plastics industry introduced the recycling symbol&mdash;not because plastic was recyclable, but because it made you feel better about buying it. Thirty-seven years later, microplastics are found in every human organ tested. And 91% of your carefully sorted waste was never recycled at all.</p>
+    <a class="hero-link" href="/issue-01/the-recycling-lie/">Read the full story &rarr;</a>
   </div>
   <div class="hero-preview">
-    <a href="/issue-07/carbon-methane-nanoplastics-household-footprint/" aria-label="Read the full investigation"></a>
-    <iframe src="/issue-07/v2-full-narrative.html" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+    <a href="/issue-01/the-recycling-lie/" aria-label="Read the full investigation"></a>
+    <iframe src="v2-full-narrative.html" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
     <div class="hero-preview-overlay"></div>
   </div>
 </section>
@@ -613,40 +533,40 @@ body { margin-left: 260px; }
   <div class="articles-label">Also in this issue</div>
   <div class="articles-grid">
 
-    <!-- V1 — Compact / Briefing -->
-    <a class="article-card" href="/issue-07/how-to-conduct-genocide-sustainably/">
+    <!-- V1 -->
+    <a class="article-card" href="/issue-01/you-eat-a-credit-card-every-week/">
       <div class="article-card-preview">
-        <iframe src="/issue-07/v1-magazine-compact.html" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+        <iframe src="v1-magazine-compact.html" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
         <div class="card-overlay"></div>
       </div>
       <div class="article-card-kicker">The Briefing</div>
-      <h3>How to Conduct a Genocide, Sustainably</h3>
+      <h3>You Eat a Credit Card Every Week</h3>
       <div class="article-card-readtime">8 min read</div>
-      <p>Oct 7 killed 1,200 people at 0.03 tonnes of CO&#8322; per death. Israel&rsquo;s operation in Gaza: 4 tonnes per kill, 81% of structures destroyed, up to 61 Mt long-term CO&#8322;&mdash;and an arms industry that files ESG reports about it. Russia burns 460 tonnes per kill in Ukraine. The most carbon-efficient atrocity leaves no trace in any climate framework.</p>
+      <p>5 grams of plastic enter your body weekly. Microplastics are now in your brain, your blood, your placenta. Only 9% of plastic ever made was recycled. The industry that told you to sort your waste is the same one filling your organs. The recycling symbol is not a promise&mdash;it&rsquo;s a logo.</p>
     </a>
 
-    <!-- V3 — Infographic -->
-    <a class="article-card" href="/issue-07/precision-warfare-esg-compliant-numbers/">
+    <!-- V3 -->
+    <a class="article-card" href="/issue-01/sorted-shipped-dumped/">
       <div class="article-card-preview">
-        <iframe src="/issue-07/v3-infographic-light.html" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+        <iframe src="v3-infographic-light.html" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
         <div class="card-overlay"></div>
       </div>
       <div class="article-card-kicker">The Data</div>
-      <h3>Precision Warfare, ESG Compliant: The Numbers Behind the&nbsp;Narrative</h3>
+      <h3>Sorted, Shipped, Dumped: The Plastic Lifecycle in&nbsp;Data</h3>
       <div class="article-card-readtime">4 min read</div>
-      <p>In Gaza&rsquo;s first 60 days, Israel and its US supply chain produced over 99% of all war emissions. 81% of structures destroyed. Up to 61 Mt CO&#8322;. Hamas rockets have killed roughly 60 people in 22 years&mdash;and zero since mid-2024. 713 tonnes of CO&#8322; for nothing. The most carbon-inefficient weapon in modern warfare, aimed at the most carbon-efficient genocide.</p>
+      <p>5g/week ingested. 9% recycled. 100% in your blood. Brain, placenta, lungs&mdash;confirmed 2024. Concentrations doubling every 10&ndash;15 years. Production tripling by 2060. The numbers behind the world&rsquo;s most successful greenwashing campaign.</p>
     </a>
 
-    <!-- V4 — Noir / Editorial -->
-    <a class="article-card" href="/issue-07/futures-breadbasket-heavy-metals-ukraine/">
+    <!-- V4 -->
+    <a class="article-card" href="/issue-01/the-symbol-that-lied/">
       <div class="article-card-preview">
-        <iframe src="/issue-07/v4-dark-editorial.html" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+        <iframe src="v4-dark-editorial.html" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
         <div class="card-overlay"></div>
       </div>
       <div class="article-card-kicker">The Editorial</div>
-      <h3>Future&rsquo;s Breadbasket, Rich on Heavy&nbsp;Metals</h3>
+      <h3>The Symbol That Lied</h3>
       <div class="article-card-readtime">9 min read</div>
-      <p>Nanoplastics from pulverized drone casings. Lead, cadmium, and mercury from 26,000 detonated shells. All of it saturating Ukraine&rsquo;s soil&mdash;Europe&rsquo;s most fertile farmland. 100 to 300 years to clean naturally. The choice: spend billions on remediation, or harvest the metals and serve them for dinner.</p>
+      <p>The chasing arrows on a plastic bottle are perhaps the most successful piece of corporate fiction since &ldquo;Diamonds Are Forever.&rdquo; You believed it meant the bottle would be reborn. It meant you&rsquo;d stop asking questions. The arrows chase each other in a perfect triangle, and nothing catches anything at all.</p>
     </a>
 
   </div>
@@ -656,29 +576,19 @@ body { margin-left: 260px; }
 <section class="about">
   <div>
     <h3>About This Issue</h3>
-    <p>All articles share the same fact-checked dataset. Key figures: Gaza long-term total up to 61&nbsp;Mt CO&#8322;e (281k tCO&#8322;e first 60 days, ~32&nbsp;Mt direct over 15 months, 47&ndash;60&nbsp;Mt reconstruction of 123,000+ destroyed structures). Ukraine: ~237&nbsp;Mt CO&#8322;e over 3 years. New in this edition: CO&#8322;/atrocity ratio analysis showing carbon footprint and human suffering are decoupled.</p>
+    <p>All four articles share the same fact-checked dataset. Key figures: up to 5g microplastics ingested per week (upper estimate, WWF/Newcastle 2019). 9% of all plastic ever produced has been recycled (OECD 2022). Microplastics detected in brain (100% of samples, Nature Medicine 2024), blood (77%, Environment International 2022), placenta (100%, Toxicological Sciences 2024), and arteries (4.5x cardiovascular risk, NEJM March 2024). Concentrations doubling every 10&ndash;15&nbsp;years.</p>
   </div>
   <div>
     <h3>Data Sources</h3>
-    <p>IGAW &mdash; Initiative on GHG Accounting of War (Feb 2025). CEOBS &amp; SGR &mdash; Global military emissions (Nov 2022). UNEP &mdash; Conflict zone environmental assessments. SSRN / Queen Mary / Lancaster &mdash; Gaza carbon tracking (2024&ndash;2025). Hobbs &amp; Radke &mdash; Kuwait oil fires, Science (1992).</p>
+    <p>Campen et al., Nature Medicine (2024). Marfella et al., NEJM (March 2024). Leslie et al., Environment International (2022). OECD Global Plastics Outlook (2022). Geyer et al., Science Advances (2017). WWF / University of Newcastle (2019). NPR / PBS Frontline &ldquo;Plastic Wars&rdquo; (2020). Food Packaging Forum / Env. Sci. &amp; Technology (2024).</p>
   </div>
-</section>
-
-<!-- NEWSLETTER -->
-<section class="newsletter">
-  <h3>Get the next issue in your inbox</h3>
-  <p>Data that flips the narrative, biweekly. No spam, no fluff — just the numbers that matter.</p>
-  <form class="newsletter-form" action="#" method="post">
-    <input type="email" name="email" placeholder="your@email.com" required>
-    <button type="submit">Subscribe</button>
-  </form>
 </section>
 
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-brand">The Switch <span>Stack</span></div>
   <div class="footer-links">
-    &copy; 2026 &middot; <a href="https://github.com/chocholous/switchstack">GitHub</a>
+    &copy; 2025 &middot; <a href="https://github.com/chocholous/switchstack">GitHub</a>
   </div>
 </footer>
 

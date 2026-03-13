@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Switch Stack — Issue 04: The Safest Energy on Earth and Why We're Terrified of It</title>
+<meta name="description" content="Nuclear energy has killed fewer people in its entire history than coal kills every single day. The most dangerous thing about nuclear power is our fear of it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;600&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1714;
+  --paper: #f5f0e8;
+  --paper-dark: #ebe4d8;
+  --accent: #c43e2a;
+  --muted: #7a7168;
+  --rule: #c8bfb0;
+  --highlight: #ffeaa7;
+  --nuclear: #3d7a5f;
+  --steel: #3d4f5f;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 17px; scroll-behavior: smooth; }
+body { background: var(--paper); color: var(--ink); font-family: 'Source Serif 4', Georgia, serif; line-height: 1.78; -webkit-font-smoothing: antialiased; }
+
+.masthead { border-bottom: 4px double var(--ink); padding: 1.2rem 0 0.8rem; text-align: center; position: relative; }
+.masthead::before { content: ''; display: block; height: 6px; background: var(--accent); margin-bottom: 1rem; }
+.masthead-meta { font-family: 'DM Sans', sans-serif; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); display: flex; justify-content: space-between; max-width: 780px; margin: 0 auto; padding: 0 2rem; }
+.masthead-title { font-family: 'Playfair Display', serif; font-weight: 900; font-size: clamp(2.4rem, 5vw, 3.6rem); letter-spacing: -0.02em; line-height: 1; margin: 0.4rem 0; }
+.masthead-title span { color: var(--accent); }
+.masthead-subtitle { font-family: 'DM Sans', sans-serif; font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); }
+
+.share-strip { background: var(--ink); padding: 0.8rem 2rem; text-align: center; }
+.share-strip a { font-family: 'DM Sans', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--paper); text-decoration: none; margin: 0 1rem; cursor: pointer; transition: color 0.2s; }
+.share-strip a:hover { color: var(--accent); }
+
+.long-form { max-width: 780px; margin: 0 auto; padding: 3rem 2rem 4rem; }
+
+.chapter-kicker { font-family: 'DM Sans', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8rem; }
+
+.long-form h1 { font-family: 'Playfair Display', serif; font-weight: 900; font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.1; letter-spacing: -0.015em; margin-bottom: 1.4rem; }
+
+.long-form .deck { font-size: 1.15rem; line-height: 1.7; color: #3a3630; border-left: 3px solid var(--accent); padding-left: 1.2rem; margin-bottom: 2.5rem; }
+
+.long-form h2 { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 1.7rem; margin: 3rem 0 1rem; line-height: 1.2; }
+.long-form h2::before { content: '\2014'; display: block; color: var(--accent); font-size: 1.2rem; margin-bottom: 0.3rem; }
+
+.long-form p { margin-bottom: 1.2rem; }
+
+.dropcap::first-letter { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 3.8rem; float: left; line-height: 0.78; margin: 0.08em 0.12em 0 0; color: var(--accent); }
+
+.long-form blockquote { margin: 2rem 0; padding: 1.5rem 2rem; border-left: 4px solid var(--accent); background: var(--ink); color: var(--paper); font-style: italic; font-size: 0.95rem; line-height: 1.7; position: relative; }
+.long-form blockquote::before { content: '\201C'; position: absolute; top: -0.3rem; left: 0.6rem; font-family: 'Playfair Display', serif; font-size: 4rem; color: var(--accent); line-height: 1; }
+.long-form blockquote cite { display: block; font-style: normal; font-family: 'DM Sans', sans-serif; font-size: 0.72rem; letter-spacing: 0.05em; color: var(--rule); margin-top: 0.8rem; }
+
+.pull-quote { margin: 2.5rem -2rem; padding: 2rem 2rem; border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); text-align: center; }
+.pull-quote p { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 1.6rem; line-height: 1.3; color: var(--accent); margin: 0; }
+
+.data-callout { margin: 2rem 0; border: 2px solid var(--ink); padding: 1.5rem 2rem; background: var(--paper-dark); }
+.data-callout h3 { font-family: 'DM Sans', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8rem; }
+.data-callout .d-row { display: flex; align-items: baseline; gap: 0.8rem; margin-bottom: 0.6rem; font-size: 0.92rem; }
+.data-callout .d-row strong { font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 0.82rem; color: var(--accent); white-space: nowrap; }
+
+.chapter-break { text-align: center; margin: 3rem 0; color: var(--rule); font-size: 1.2rem; letter-spacing: 0.8em; }
+
+.closing { border-top: 2px solid var(--ink); margin-top: 3rem; padding-top: 2rem; text-align: center; }
+.closing p { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.15rem; line-height: 1.6; max-width: 540px; margin: 0 auto 0.6rem; }
+.closing cite { font-family: 'DM Sans', sans-serif; font-style: normal; font-size: 0.72rem; letter-spacing: 0.1em; color: var(--muted); }
+
+.source-note { font-family: 'DM Sans', sans-serif; font-size: 0.68rem; color: var(--muted); margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--rule); line-height: 1.6; }
+
+.footer { max-width: 780px; margin: 0 auto; padding: 2rem; border-top: 4px double var(--ink); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+.footer-brand { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 1.1rem; }
+.footer-brand span { color: var(--accent); }
+.footer-links { font-family: 'DM Sans', sans-serif; font-size: 0.72rem; color: var(--muted); }
+.footer-links a { color: var(--accent); text-decoration: none; }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.long-form { animation: fadeUp 0.6s ease-out; }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-meta"><span>Issue 04 &middot; February 2026</span><span>Biweekly</span></div>
+  <div class="masthead-title">The Switch <span>Stack</span></div>
+  <div class="masthead-subtitle">Where the numbers flip the narrative</div>
+</header>
+
+<div class="share-strip">
+  <a href="https://twitter.com/intent/tweet?text=The%20Safest%20Energy%20on%20Earth%20and%20Why%20We're%20Terrified%20of%20It&url=" target="_blank" rel="noopener">Share on X</a>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url=" target="_blank" rel="noopener">Share on LinkedIn</a>
+  <a onclick="navigator.clipboard.writeText(window.location.href);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy Link',2000)">Copy Link</a>
+</div>
+
+<article class="long-form">
+
+  <div class="chapter-kicker">The Investigation &middot; 14 Min Read</div>
+  <h1>The Safest Energy on Earth and Why We&rsquo;re Terrified of&nbsp;It</h1>
+  <p class="deck">On February 28, 2026, a US-Israeli operation killed 1,348 people in Iran to prevent nuclear proliferation. In April 2023, Germany shut down its last nuclear reactor and restarted coal plants. Nuclear energy has killed fewer people in its entire history than coal kills every single day. The most dangerous thing about nuclear power is our fear of&nbsp;it.</p>
+
+  <h2>Chapter I: Two Ways to Destroy Nuclear&nbsp;Power</h2>
+
+  <p class="dropcap">On the morning of February 28, 2026, nearly 900 missiles and bombs struck targets across Iran in the first twelve hours of what the Pentagon called Operation Epic Fury. The stated objective was unambiguous: to "permanently deny them nuclear weapons forever." By Day 13, the operation had cost approximately $24.5 billion and killed at least 1,348 Iranians, including 168 schoolgirls in the city of Minab.</p>
+
+  <p>Two years and ten months earlier, on April 15, 2023, Germany's last three nuclear reactors&mdash;Isar 2, Neckarwestheim 2, and Emsland&mdash;were quietly disconnected from the grid. No missiles were required. A country that once generated 33% of its electricity from nuclear power had reduced that figure to zero through twelve years of deliberate policy.</p>
+
+  <p>One country destroyed nuclear capability with explosives. Another destroyed it with paperwork. Both actions killed people. But the paperwork, measured over time, may prove the deadlier weapon.</p>
+
+  <div class="chapter-break">&middot; &middot; &middot;</div>
+
+  <h2>Chapter II: The Number That Ends the&nbsp;Argument</h2>
+
+  <p>In 2007, Anil Markandya and Paul Wilkinson published a study in The Lancet calculating the death rate of every major energy source per terawatt-hour of electricity produced. Their findings, now maintained and updated by Our World in Data, are among the most important and least-known statistics in energy policy.</p>
+
+  <div class="data-callout">
+    <h3>Deaths per Terawatt-Hour of Electricity</h3>
+    <div class="d-row"><strong>Brown coal</strong> 32.72</div>
+    <div class="d-row"><strong>Coal</strong> 24.62</div>
+    <div class="d-row"><strong>Oil</strong> 18.43</div>
+    <div class="d-row"><strong>Biomass</strong> 4.63</div>
+    <div class="d-row"><strong>Gas</strong> 2.82</div>
+    <div class="d-row"><strong>Hydropower</strong> 1.30</div>
+    <div class="d-row"><strong>Solar</strong> 0.05</div>
+    <div class="d-row"><strong>Wind</strong> 0.04</div>
+    <div class="d-row"><strong>Nuclear</strong> 0.03</div>
+  </div>
+
+  <p>Read that list again. Nuclear sits at the bottom. Below wind. Below solar. It is the safest energy source humanity has ever harnessed, by any measure, across any timeframe. Coal kills 820 times more people per unit of electricity. Gas kills 94 times more. Even hydropower&mdash;the benign, photogenic dam&mdash;kills 43 times more.</p>
+
+  <p>These figures include everything: mining accidents, air pollution, and every nuclear disaster in history&mdash;Three Mile Island, Chernobyl, Fukushima. The total. All of it. And nuclear still comes out safest.</p>
+
+  <div class="pull-quote">
+    <p>Coal kills 820 times more people per unit of energy than nuclear. This is not a close call. This is not a matter of opinion. It is arithmetic.</p>
+  </div>
+
+  <div class="chapter-break">&middot; &middot; &middot;</div>
+
+  <h2>Chapter III: The Day the Evacuation Became the&nbsp;Disaster</h2>
+
+  <p>At 2:46 PM on March 11, 2011, a magnitude 9.0 earthquake struck off the coast of northeastern Japan. The tsunami that followed killed approximately 19,500 people. It also knocked out backup power at the Fukushima Daiichi nuclear plant, leading to three reactor meltdowns.</p>
+
+  <p>Fourteen years later, the confirmed death toll from radiation exposure at Fukushima is <strong>one</strong>. A single worker developed leukemia and received government compensation in 2018. Six workers total have received compensation for cancers that may be linked to their cleanup work.</p>
+
+  <p>The evacuation, meanwhile, killed approximately <strong>2,300 people</strong>.</p>
+
+  <p>They died in the chaos of relocation. Elderly patients in nursing homes within the 20-kilometer evacuation zone were moved in buses and trucks, many without adequate medical support. Fifty-one died directly from the evacuation itself&mdash;of hypothermia, dehydration, and the deterioration of existing conditions. Hundreds more died in the weeks and months that followed, from the stress of displacement, the rupture of social networks, the loss of purpose.</p>
+
+  <blockquote>
+    The biggest health effect of nuclear accidents is on mental health, caused by fear of radiation rather than radiation itself.
+    <cite>&mdash; Dr. Geraldine Thomas, Professor of Molecular Pathology, Imperial College London</cite>
+  </blockquote>
+
+  <p>The United Nations Scientific Committee on the Effects of Atomic Radiation published its definitive assessment in 2020: "No adverse health effects among Fukushima residents have been documented that are directly attributable to radiation exposure." The World Health Organization concurred: "No acute radiation injuries or deaths among workers or the public."</p>
+
+  <p>As of November 2025, approximately 27,000 people remain displaced&mdash;many from areas long since decontaminated and declared safe for return. They do not go back because the word "radiation" carries a weight that no scientific report can lift.</p>
+
+  <div class="chapter-break">&middot; &middot; &middot;</div>
+
+  <h2>Chapter IV: The Energiewende&rsquo;s Body&nbsp;Count</h2>
+
+  <p>When the images from Fukushima reached Berlin, Germany's response was swift and decisive. Chancellor Angela Merkel&mdash;herself a physicist&mdash;ordered the immediate shutdown of the country's eight oldest reactors. A plan was set in motion to close all seventeen by 2022. The last three received a brief reprieve during the 2022 energy crisis but were finally disconnected in April 2023.</p>
+
+  <p>The Energiewende&mdash;Germany's "energy transition"&mdash;was sold as a leap into a clean future. The reality, measured in human bodies, is considerably darker.</p>
+
+  <p>In 2019, economists at UC Berkeley, UC Santa Barbara, and Carnegie Mellon University published a study through the National Bureau of Economic Research. Using hourly data on power plant operations and a novel machine learning framework, they calculated what would have happened if Germany had not shut down its nuclear fleet.</p>
+
+  <p>Their finding: the phase-out caused approximately <strong>1,100 additional deaths per year</strong> from increased air pollution. Coal-fired power, predominantly, replaced shuttered nuclear plants, driving a 12% increase in local air pollution. The social cost: roughly $12 billion per year, with over 70% attributable to the increased mortality risk.</p>
+
+  <p>A 2025 study published in Environmental and Resource Economics confirmed the pattern: the nuclear phase-out was associated with an 8% increase in mortality from respiratory diseases, amounting to 17 life-years lost per 100,000 inhabitants per year.</p>
+
+  <p>Germany did not merely make an abstract policy error. It is, measurably and provably, killing its own citizens at a rate of roughly three per day through a decision driven by fear of a technology that kills 0.03 people per terawatt-hour.</p>
+
+  <div class="chapter-break">&middot; &middot; &middot;</div>
+
+  <h2>Chapter V: Ninety-Five Percent</h2>
+
+  <p>France, Germany's immediate neighbor, made the opposite choice decades ago. In the late 1970s, following the oil crisis, France embarked on a massive nuclear construction program. By the 1990s, nuclear provided roughly 75% of French electricity.</p>
+
+  <p>In 2025, nuclear still accounts for 69% of French electricity. The country's low-carbon share reached <strong>95.2%</strong>&mdash;a record. Carbon intensity dropped to 21.3 grams of CO&#8322; per kilowatt-hour, the lowest since 1945 and among the lowest in the world. France is Europe's biggest electricity exporter.</p>
+
+  <p>Germany, having eliminated nuclear, has one of Europe's most expensive and dirtiest electricity grids. When Russia cut gas supplies in 2022, Germany reactivated 8 GW of coal capacity&mdash;including five lignite units, the dirtiest fuel available. The country that shut down nuclear to be safe was burning brown coal to survive.</p>
+
+  <blockquote>
+    Nuclear replaces coal and it works, and it's clean as hell in terms of greenhouse gas emissions.
+    <cite>&mdash; Stewart Brand, Whole Earth Discipline (2009)</cite>
+  </blockquote>
+
+  <div class="chapter-break">&middot; &middot; &middot;</div>
+
+  <h2>Chapter VI: The Glowing&nbsp;Sanctuary</h2>
+
+  <p>Two thousand kilometers east of Berlin, in northern Ukraine, there is a place where the nuclear nightmare came true. On April 26, 1986, Reactor No. 4 at the Chernobyl Nuclear Power Plant exploded, releasing a plume of radioactive fallout across Europe. Approximately 350,000 people were evacuated. The immediate death toll was about 30; long-term estimates from the WHO and UNSCEAR project up to 4,000 eventual cancer deaths among the 600,000 most exposed individuals.</p>
+
+  <p>Thirty-eight years later, the exclusion zone has become one of the richest ecosystems in Europe.</p>
+
+  <p>Camera trap studies in 2024 and 2025 documented robust populations of wolves, European bison, Eurasian lynx, wild boar, and red foxes. Some populations are 30% more abundant than in nearby uncontaminated areas. Pine plantations have been replaced by biodiverse primary forests. Frogs have developed darker pigmentation as an adaptive response to radiation. Recent studies found they show no signs of accelerated aging.</p>
+
+  <p>UNEP's assessment is direct: "The lack of human activity&mdash;not radiation&mdash;is the main driver of biodiversity growth."</p>
+
+  <p>The worst nuclear disaster in history created, inadvertently, one of Europe's largest nature reserves. The most radioactive place on the continent is also its most alive.</p>
+
+  <div class="chapter-break">&middot; &middot; &middot;</div>
+
+  <h2>Chapter VII: Fifty Million&nbsp;Procedures</h2>
+
+  <p>There is a dimension of the nuclear story that rarely enters the debate about power plants: nuclear medicine.</p>
+
+  <p>Every year, over 50 million nuclear medicine procedures are performed worldwide. In the United States alone, 20 million. In Europe, 10 million. These are PET scans finding tumors, SPECT imaging mapping blood flow in the heart, radioiodine therapy destroying thyroid cancers, cobalt-60 sterilizing 40% of the world's single-use medical devices.</p>
+
+  <p>The dominant isotope, technetium-99m, is produced in nuclear reactors and used in 85% of all diagnostic nuclear medicine procedures. Without nuclear reactors, modern diagnostic medicine would lose one of its most powerful tools.</p>
+
+  <p>In 2013, NASA researchers Pushker Kharecha and James Hansen published a landmark study in Environmental Science &amp; Technology. They calculated that global nuclear power prevented approximately <strong>1.84 million air-pollution-related deaths</strong> between 1971 and 2009, along with 64 gigatonnes of CO&#8322;-equivalent emissions. A higher estimate reached 7.5 million lives saved.</p>
+
+  <p>The same nuclear physics that people fear in power plants performs 50 million medical procedures per year and has prevented nearly two million deaths from air pollution. The atom does not distinguish between a reactor and a PET scanner. We do.</p>
+
+  <div class="chapter-break">&middot; &middot; &middot;</div>
+
+  <h2>Chapter VIII: The Honest&nbsp;Objections</h2>
+
+  <p>Intellectual honesty requires acknowledging that nuclear energy has real, unresolved problems.</p>
+
+  <p><strong>Waste storage</strong> remains genuinely unsolved. No country has a permanent geological repository in operation. Finland's Onkalo facility, designed to store spent fuel for 100,000 years, is expected to begin operations around 2025&mdash;the first in the world. Until then, 88,000 metric tons of US spent fuel sits at 79 temporary sites in 39 states. It could all fit on one football field stacked ten yards deep. But it must be managed for millennia. This is not a trivial problem.</p>
+
+  <p><strong>Proliferation</strong> is real. Iran's enrichment program was originally justified as civilian. The line between civilian nuclear technology and weapons capability is real, narrow, and requires vigilant international safeguards. Thirty-one countries operate nuclear power plants; only nine have nuclear weapons. The technology can be safeguarded, but it requires sustained political will.</p>
+
+  <p><strong>Cost overruns</strong> threaten nuclear's viability. Vogtle Units 3 and 4 in Georgia cost $36.8 billion against an original estimate of roughly $14 billion. Flamanville in France: EUR 23.7 billion, twelve years late. Hinkley Point C in the UK: at least GBP 49 billion and still unfinished. These numbers are real, and they are a legitimate argument against new nuclear construction in the current regulatory and industrial environment.</p>
+
+  <p>But these are engineering problems, political problems, economic problems. They are not safety problems. The thing people fear about nuclear&mdash;that it will kill them&mdash;is the thing nuclear does least.</p>
+
+  <div class="chapter-break">&middot; &middot; &middot;</div>
+
+  <h2>Chapter IX: The Arithmetic of&nbsp;Fear</h2>
+
+  <p>On one side of the ledger: 0.03 deaths per terawatt-hour. 1.84 million lives saved. 50 million medical procedures per year. France at 95% clean electricity. Chernobyl's wolves.</p>
+
+  <p>On the other: 2,300 dead in a Fukushima evacuation from a disaster that killed one person with radiation. 1,100 Germans dying every year from air pollution because their government chose coal over nuclear. 1,348 Iranians killed in an operation to prevent the same technology that powers French hospitals. $24.5 billion in missiles aimed at centrifuges.</p>
+
+  <p>The most dangerous thing about nuclear energy is not the atom. It is not the waste. It is not the reactor. It is the fear. The fear that drove Japan to shut down 54 reactors and burn imported coal. The fear that drove Germany to dismantle a working, safe energy infrastructure and replace it with something that kills a thousand people a year. The fear that makes it politically easier to bomb a country than to build a reactor.</p>
+
+  <blockquote>
+    Only nuclear power can now halt global warming.
+    <cite>&mdash; James Lovelock, inventor of the Gaia hypothesis, 2004</cite>
+  </blockquote>
+
+  <p>The data is not ambiguous. The rankings are not close. Nuclear energy is the safest large-scale power source on Earth. It has prevented more deaths than it has caused by a factor of thousands. The exclusion zone around the worst nuclear disaster in history has become a wildlife sanctuary.</p>
+
+  <p>And still we fear it. And the fear, measurably, kills.</p>
+
+  <div class="closing">
+    <p>&ldquo;There's no room for facts when our minds are occupied by fear.&rdquo;</p>
+    <cite>&mdash; Hans Rosling, Factfulness (2018)</cite>
+  </div>
+
+  <div class="source-note">
+    <strong>Sources:</strong> Deaths per TWh: Markandya &amp; Wilkinson (2007), via Our World in Data. Fukushima: UNSCEAR 2020 Report; WHO; Fukushima Prefecture disaster-related deaths. Germany: Jarvis, Deschenes &amp; Jha (NBER, 2019); 2025 Springer Environmental and Resource Economics. France: Ember; Sfen (2025-2026). Chernobyl wildlife: UNEP (2024); ScienceDirect (2025). Nuclear medicine: World Nuclear Association; IAEA. Lives saved: Kharecha &amp; Hansen, ES&amp;T (2013). Operation Epic Fury: WarCosts.org; CSIS; Military Times. Nuclear waste: US DOE. Cost overruns: IEEFA; World Nuclear News. All figures traceable to analysis.md.
+  </div>
+
+</article>
+
+<footer class="footer">
+  <div class="footer-brand">The Switch <span>Stack</span></div>
+  <div class="footer-links">Issue 04 &middot; February 2026 &middot; <a href="https://github.com/chocholous/switchstack">GitHub</a></div>
+</footer>
+
+</body>
+</html>

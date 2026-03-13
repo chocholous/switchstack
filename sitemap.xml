@@ -3,31 +3,181 @@
   <url>
     <loc>https://switchstack.cz/</loc>
     <lastmod>2026-03-12</lastmod>
-    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://switchstack.cz/issue-01/carbon-methane-nanoplastics-household-footprint/</loc>
+    <loc>https://switchstack.cz/issue-07/</loc>
     <lastmod>2026-03-12</lastmod>
-    <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://switchstack.cz/issue-01/how-to-conduct-genocide-sustainably/</loc>
+    <loc>https://switchstack.cz/issue-07/carbon-methane-nanoplastics-household-footprint/</loc>
     <lastmod>2026-03-12</lastmod>
-    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://switchstack.cz/issue-01/precision-warfare-esg-compliant-numbers/</loc>
+    <loc>https://switchstack.cz/issue-07/how-to-conduct-genocide-sustainably/</loc>
     <lastmod>2026-03-12</lastmod>
-    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://switchstack.cz/issue-01/futures-breadbasket-heavy-metals-ukraine/</loc>
+    <loc>https://switchstack.cz/issue-07/precision-warfare-esg-compliant-numbers/</loc>
     <lastmod>2026-03-12</lastmod>
-    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://switchstack.cz/issue-07/futures-breadbasket-heavy-metals-ukraine/</loc>
+    <lastmod>2026-03-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://switchstack.cz/issue-06/</loc>
+    <lastmod>2026-03-12</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://switchstack.cz/issue-06/legal-prescribed-lethal/</loc>
+    <lastmod>2026-03-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://switchstack.cz/issue-06/the-patent-on-pain/</loc>
+    <lastmod>2026-03-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://switchstack.cz/issue-06/the-drug-ledger/</loc>
+    <lastmod>2026-03-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://switchstack.cz/issue-06/the-pharma-cartel/</loc>
+    <lastmod>2026-03-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://switchstack.cz/issue-05/</loc>
+    <lastmod>2026-03-12</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://switchstack.cz/issue-05/the-inconvenient-correlation/</loc>
+    <lastmod>2026-03-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://switchstack.cz/issue-05/the-pill-vs-the-superbug/</loc>
+    <lastmod>2026-03-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://switchstack.cz/issue-05/the-data-nobody-compares/</loc>
+    <lastmod>2026-03-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://switchstack.cz/issue-05/decree-770/</loc>
+    <lastmod>2026-03-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://switchstack.cz/issue-04/</loc>
+    <lastmod>2026-03-12</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://switchstack.cz/issue-04/the-safest-energy-on-earth-and-why-were-terrified-of-it/</loc>
+    <lastmod>2026-03-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://switchstack.cz/issue-04/fear-of-nuclear-has-killed-more-people-than-nuclear/</loc>
+    <lastmod>2026-03-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://switchstack.cz/issue-04/deaths-per-terawatt-hour/</loc>
+    <lastmod>2026-03-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://switchstack.cz/issue-04/the-glowing-paradise/</loc>
+    <lastmod>2026-03-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://switchstack.cz/issue-03/</loc>
+    <lastmod>2026-03-12</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://switchstack.cz/issue-03/the-safety-cage/</loc>
+    <lastmod>2026-03-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://switchstack.cz/issue-03/your-car-is-a-weapon-with-a-seatbelt/</loc>
+    <lastmod>2026-03-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://switchstack.cz/issue-03/urban-kill-rate/</loc>
+    <lastmod>2026-03-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://switchstack.cz/issue-03/the-cage-and-the-exposed/</loc>
+    <lastmod>2026-03-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://switchstack.cz/issue-02/</loc>
+    <lastmod>2026-03-12</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://switchstack.cz/issue-02/the-green-transitions-invisible-workforce/</loc>
+    <lastmod>2026-03-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://switchstack.cz/issue-02/zero-emissions-full-morgue/</loc>
+    <lastmod>2026-03-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://switchstack.cz/issue-02/per-battery-per-child-per-litre/</loc>
+    <lastmod>2026-03-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://switchstack.cz/issue-02/the-kids-who-power-the-future/</loc>
+    <lastmod>2026-03-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://switchstack.cz/issue-01/</loc>
+    <lastmod>2026-03-12</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://switchstack.cz/issue-01/the-recycling-lie/</loc>
+    <lastmod>2026-03-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://switchstack.cz/issue-01/you-eat-a-credit-card-every-week/</loc>
+    <lastmod>2026-03-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://switchstack.cz/issue-01/sorted-shipped-dumped/</loc>
+    <lastmod>2026-03-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://switchstack.cz/issue-01/the-symbol-that-lied/</loc>
+    <lastmod>2026-03-12</lastmod>
     <priority>0.8</priority>
   </url>
 </urlset>

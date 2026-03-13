@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://switchstack.cz/issue-06/the-patent-on-pain/">
+<meta property="og:title" content="The Patent on Pain — The Switch Stack">
+<meta property="og:description" content="Fentanyl was patented in 1964. OxyContin launched in 1996. By 2023, 806,000 Americans had died from opioid overdoses.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://switchstack.cz/issue-06/the-patent-on-pain/">
+<meta property="og:site_name" content="The Switch Stack">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Patent on Pain — The Switch Stack">
+<meta name="twitter:description" content="Fentanyl was patented in 1964. OxyContin launched in 1996. By 2023, 806,000 Americans had died from opioid overdoses.">
+<link rel="alternate" type="application/rss+xml" title="The Switch Stack" href="/feed.xml">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NewsArticle",
+  "headline": "The Patent on Pain",
+  "description": "Fentanyl was patented in 1964. OxyContin launched in 1996. By 2023, 806,000 Americans had died from opioid overdoses.",
+  "datePublished": "2026-03-12",
+  "author": { "@type": "Organization", "name": "The Switch Stack" },
+  "publisher": { "@type": "Organization", "name": "The Switch Stack", "url": "https://switchstack.cz" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://switchstack.cz/issue-06/the-patent-on-pain/" }
+}
+</script>
+<title>The Switch Stack — Issue 06: The Patent on Pain</title>
+<meta name="description" content="Fentanyl was patented in 1964. OxyContin launched in 1996. By 2023, 806,000 Americans had died from opioid overdoses.">
+<meta property="og:title" content="The Switch Stack — Issue 06: The Patent on Pain">
+<meta property="og:description" content="The corporate trail from lab to graveyard.">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;600&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1714;
+  --paper: #f5f0e8;
+  --paper-dark: #ebe4d8;
+  --accent: #c43e2a;
+  --accent-dark: #9a2f1f;
+  --muted: #7a7168;
+  --rule: #c8bfb0;
+  --highlight: #ffeaa7;
+  --pharma: #2d5a3d;
+  --death: #8b1a1a;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 17px; scroll-behavior: smooth; }
+body { background: var(--paper); color: var(--ink); font-family: 'Source Serif 4', Georgia, serif; line-height: 1.72; -webkit-font-smoothing: antialiased; }
+
+.masthead { border-bottom: 4px double var(--ink); padding: 1.2rem 0 0.8rem; text-align: center; position: relative; background: var(--paper); }
+.masthead::before { content: ''; display: block; height: 6px; background: var(--accent); margin-bottom: 1rem; }
+.masthead-meta { font-family: 'DM Sans', sans-serif; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+.masthead-title { font-family: 'Playfair Display', serif; font-weight: 900; font-size: clamp(2.4rem, 5vw, 4rem); letter-spacing: -0.02em; line-height: 1; margin: 0.4rem 0; }
+.masthead-title span { color: var(--accent); }
+.masthead-subtitle { font-family: 'DM Sans', sans-serif; font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.6rem; }
+
+.hero { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem 2rem; }
+.hero-kicker { font-family: 'DM Sans', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8rem; }
+.hero h1 { font-family: 'Playfair Display', serif; font-weight: 900; font-size: clamp(2rem, 4.5vw, 3.4rem); line-height: 1.12; letter-spacing: -0.015em; max-width: 820px; margin-bottom: 1.4rem; }
+.hero-deck { font-size: 1.18rem; line-height: 1.65; color: #3a3630; max-width: 680px; border-left: 3px solid var(--accent); padding-left: 1.2rem; }
+
+.stats-bar { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+.stats-bar-inner { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0; border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); }
+.stat-cell { padding: 1.2rem 1.4rem; border-right: 1px solid var(--rule); }
+.stat-cell:last-child { border-right: none; }
+.stat-number { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 2.4rem; line-height: 1; color: var(--accent); }
+.stat-unit { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--muted); letter-spacing: 0.05em; display: block; margin-top: 0.15rem; }
+.stat-label { font-family: 'DM Sans', sans-serif; font-size: 0.76rem; color: var(--muted); margin-top: 0.5rem; line-height: 1.4; }
+
+.content-grid { max-width: 1100px; margin: 0 auto; padding: 2.5rem 2rem; display: grid; grid-template-columns: 1fr 340px; gap: 3rem; }
+@media (max-width: 840px) { .content-grid { grid-template-columns: 1fr; } }
+
+.article-body h2 { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 1.6rem; margin: 2.6rem 0 0.8rem; line-height: 1.2; padding-left: 1rem; border-left: 4px solid var(--accent); }
+.article-body h2:first-child { margin-top: 0; }
+.article-body p { margin-bottom: 1.1rem; }
+.article-body p.lede { font-size: 1.08rem; font-weight: 400; }
+
+.article-body blockquote { margin: 1.8rem 0; padding: 1.4rem 1.6rem; background: var(--ink); color: var(--paper); position: relative; font-style: italic; font-size: 0.95rem; line-height: 1.7; }
+.article-body blockquote::before { content: '\201C'; position: absolute; top: -0.2rem; left: 0.6rem; font-family: 'Playfair Display', serif; font-size: 4rem; color: var(--accent); line-height: 1; }
+.article-body blockquote cite { display: block; font-style: normal; font-family: 'DM Sans', sans-serif; font-size: 0.72rem; letter-spacing: 0.05em; color: var(--rule); margin-top: 0.8rem; }
+
+.impact-box { margin: 2rem 0; border: 2px solid var(--ink); padding: 1.4rem 1.6rem; background: var(--paper-dark); }
+.impact-box h3 { font-family: 'DM Sans', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8rem; }
+.impact-item { display: flex; align-items: baseline; gap: 0.8rem; margin-bottom: 0.7rem; font-size: 0.92rem; }
+.impact-item strong { font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 0.82rem; color: var(--accent); white-space: nowrap; }
+
+.sidebar { border-left: 1px solid var(--rule); padding-left: 2rem; }
+@media (max-width: 840px) { .sidebar { border-left: none; padding-left: 0; border-top: 2px solid var(--ink); padding-top: 2rem; } }
+.sidebar-section { margin-bottom: 2.4rem; }
+.sidebar-section h3 { font-family: 'DM Sans', sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); border-bottom: 1px solid var(--rule); padding-bottom: 0.5rem; margin-bottom: 1rem; }
+
+.compare-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+.compare-table th { font-family: 'DM Sans', sans-serif; font-weight: 700; text-align: left; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); padding: 0.4rem 0; border-bottom: 1px solid var(--rule); }
+.compare-table td { padding: 0.55rem 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+.compare-table td:last-child { font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 0.78rem; color: var(--accent); text-align: right; white-space: nowrap; }
+
+.timeline-item { margin-bottom: 1.2rem; padding-left: 1rem; border-left: 2px solid var(--rule); }
+.timeline-item .year { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 600; color: var(--accent); display: block; margin-bottom: 0.2rem; }
+.timeline-item .event { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+
+.back-link { display: inline-block; font-family: 'DM Sans', sans-serif; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); text-decoration: none; padding: 0.8rem 0; border-top: 1px solid var(--rule); margin-top: 2rem; }
+.back-link:hover { text-decoration: underline; }
+
+.footer { max-width: 1100px; margin: 0 auto; padding: 1.5rem 2rem; border-top: 3px double var(--ink); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+.footer-brand { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 1.1rem; }
+.footer-brand span { color: var(--accent); }
+.footer-links { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.08em; }
+.footer-links a { color: var(--accent); text-decoration: none; }
+
+/* ISSUE NAVIGATION SIDEBAR */
+.issue-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+}
+.issue-nav-toggle {
+  display: none;
+  position: fixed;
+  top: 0.8rem;
+  left: 0.8rem;
+  z-index: 1001;
+  background: var(--paper, #f5f0e8);
+  border: 1px solid var(--rule, #c8bfb0);
+  width: 2.2rem;
+  height: 2.2rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink, #1a1714);
+}
+.issue-nav .nav-close { display: none; }
+.issue-nav.open .nav-close { display: inline; }
+.issue-nav.open .nav-hamburger { display: none; }
+.issue-nav-inner {
+  height: 100%;
+  background: var(--paper, #f5f0e8);
+  border-right: 1px solid var(--rule, #c8bfb0);
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 1rem;
+  overflow-y: auto;
+}
+.issue-nav-brand {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 1.1rem;
+  color: var(--ink, #1a1714);
+  text-decoration: none;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--ink, #1a1714);
+}
+.issue-nav-brand span { color: var(--accent, #c43e2a); }
+.issue-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  flex: 1;
+}
+.issue-nav-item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  padding: 0.5rem 0.6rem;
+  text-decoration: none;
+  color: var(--ink, #1a1714);
+  border-radius: 4px;
+  transition: background 0.15s;
+}
+.issue-nav-item:hover { background: var(--paper-dark, #ebe4d8); }
+.issue-nav-item.active {
+  background: var(--ink, #1a1714);
+  color: var(--paper, #f5f0e8);
+}
+.issue-nav-item.active .issue-nav-num { color: var(--accent, #c43e2a); }
+.issue-nav-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--accent, #c43e2a);
+  white-space: nowrap;
+}
+.issue-nav-topic {
+  font-size: 0.78rem;
+  line-height: 1.3;
+}
+.issue-nav-footer {
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule, #c8bfb0);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.issue-nav-footer a {
+  color: var(--accent, #c43e2a);
+  text-decoration: none;
+}
+
+/* Push content right to make room for sidebar */
+body { margin-left: 260px; }
+
+@media (max-width: 900px) {
+  .issue-nav { transform: translateX(-100%); }
+  .issue-nav.open { transform: translateX(0); }
+  .issue-nav-toggle { display: flex; }
+  body { margin-left: 0; }
+}
+
+</style>
+</head>
+<body>
+<nav class="issue-nav" id="issueNav">
+  <button class="issue-nav-toggle" onclick="document.getElementById('issueNav').classList.toggle('open')" aria-label="Toggle navigation">
+    <span class="nav-hamburger">&#9776;</span>
+    <span class="nav-close">&times;</span>
+  </button>
+  <div class="issue-nav-inner">
+    <a href="/" class="issue-nav-brand">The Switch <span>Stack</span></a>
+    <div class="issue-nav-list">
+      <a class="issue-nav-item" href="/issue-07/">
+        <span class="issue-nav-num">#07</span>
+        <span class="issue-nav-topic">Carbon, Methane & Nanoplastics</span>
+      </a>
+      <a class="issue-nav-item active" href="/issue-06/">
+        <span class="issue-nav-num">#06</span>
+        <span class="issue-nav-topic">The Drug War Backwards</span>
+      </a>
+      <a class="issue-nav-item" href="/issue-05/">
+        <span class="issue-nav-num">#05</span>
+        <span class="issue-nav-topic">The Inconvenient Correlation</span>
+      </a>
+      <a class="issue-nav-item" href="/issue-04/">
+        <span class="issue-nav-num">#04</span>
+        <span class="issue-nav-topic">The Safest Energy</span>
+      </a>
+      <a class="issue-nav-item" href="/issue-03/">
+        <span class="issue-nav-num">#03</span>
+        <span class="issue-nav-topic">The Safety Cage</span>
+      </a>
+      <a class="issue-nav-item" href="/issue-02/">
+        <span class="issue-nav-num">#02</span>
+        <span class="issue-nav-topic">Green Transition's Workforce</span>
+      </a>
+      <a class="issue-nav-item" href="/issue-01/">
+        <span class="issue-nav-num">#01</span>
+        <span class="issue-nav-topic">The Recycling Lie</span>
+      </a>
+    </div>
+    <div class="issue-nav-footer">
+      <a href="/feed.xml">RSS</a>
+    </div>
+  </div>
+</nav>
+
+<header class="masthead">
+  <div class="masthead-meta">
+    <span>Issue 06 &middot; March 1, 2026</span>
+    <span><a href="index.html" style="color:var(--muted);text-decoration:none;">The Switch Stack</a></span>
+  </div>
+  <div class="masthead-title">The Switch <span>Stack</span></div>
+  <div class="masthead-subtitle">Where the numbers flip the narrative</div>
+</header>
+
+<section class="hero">
+  <div class="hero-kicker">The Briefing</div>
+  <h1>The Patent on Pain</h1>
+  <p class="hero-deck">Fentanyl was synthesized in a Belgian laboratory in 1960. OxyContin was launched with the promise that &ldquo;fewer than 1% of patients become addicted.&rdquo; By 2023, 806,000 Americans had died from opioid overdoses. The patent trail from pharmaceutical lab to graveyard.</p>
+</section>
+
+<div class="stats-bar">
+  <div class="stats-bar-inner">
+    <div class="stat-cell">
+      <div class="stat-number">480K</div>
+      <span class="stat-unit">deaths / year</span>
+      <div class="stat-label">Tobacco (legal) &mdash; CDC</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-number">178K</div>
+      <span class="stat-unit">deaths / year</span>
+      <div class="stat-label">Alcohol (legal) &mdash; NIAAA</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-number">806K</div>
+      <span class="stat-unit">cumulative since 1999</span>
+      <div class="stat-label">Opioid overdoses &mdash; CDC</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-number">$1T+</div>
+      <span class="stat-unit">since 1971</span>
+      <div class="stat-label">War on Drugs spending</div>
+    </div>
+  </div>
+</div>
+
+<div class="content-grid">
+  <div class="article-body">
+
+    <h2>The Molecule</h2>
+
+    <p class="lede">In 1959, in a laboratory in Beerse, Belgium, a 33-year-old chemist named Paul Janssen synthesized a compound 50 to 100 times more potent than morphine. He called it fentanyl. His company, Janssen Pharmaceutica &mdash; founded just three years earlier &mdash; was acquired by Johnson &amp; Johnson in 1961. The patent was filed in 1964.</p>
+
+    <p>Fentanyl was designed for a specific, narrow purpose: surgical anesthesia and severe pain management in hospital settings. It was a Schedule II controlled substance &mdash; legal, regulated, prescribed. For decades, it worked as intended.</p>
+
+    <p>The crisis did not begin with fentanyl. It began with a different opioid, a different company, and a different lie.</p>
+
+    <h2>The Lie</h2>
+
+    <p>In 1996, Purdue Pharma launched OxyContin &mdash; a time-release formulation of oxycodone. First-year sales: $48 million. By 2000: $1.1 billion. The growth was not organic. It was engineered.</p>
+
+    <p>Between 1996 and 2001, Purdue hosted over 40 all-expenses-paid conferences at resorts in Florida, Arizona, and California. More than 5,000 physicians, pharmacists, and nurses attended. The company increased its sales force by 73% in seven years. The message to every doctor: OxyContin is different. It&rsquo;s safer. Fewer than 1% of patients become addicted.</p>
+
+    <blockquote>
+      I was advised by the manufacturer of OxyContin, through its employees and marketing materials, that OxyContin was less addictive, less prone to tolerance, and less prone to abuse than other opiates.
+      <cite>&mdash; Physician testimony, DOJ proceedings</cite>
+    </blockquote>
+
+    <p>The &ldquo;fewer than 1%&rdquo; claim was based on a one-paragraph letter published in the New England Journal of Medicine in 1980 &mdash; the Porter &amp; Jick letter. It was not a study. It was not peer-reviewed research. It was a brief correspondence about hospitalized patients receiving short-term, supervised opioid treatment. Purdue extrapolated this single paragraph to justify prescribing OxyContin for chronic outpatient pain.</p>
+
+    <h2>The Reckoning</h2>
+
+    <p>On May 10, 2007, Purdue Frederick &mdash; a Purdue Pharma affiliate &mdash; pled guilty to criminal misbranding of OxyContin. Three executives pled guilty individually. Fine: $634 million. The company admitted it had &ldquo;fraudulently and misleadingly marketed OxyContin as less addictive.&rdquo;</p>
+
+    <p>In 2020, Purdue Pharma itself pled guilty to two federal criminal charges: conspiracy to defraud the United States and violation of federal anti-kickback statutes.</p>
+
+    <p>In June 2024, the Supreme Court ruled 5&ndash;4 that the original bankruptcy plan improperly shielded the Sackler family from civil liability. In December 2024, a new settlement was reached: $7.4 billion total. The Sacklers will pay $6.5 billion over 15 years. Purdue will pay $900 million upfront.</p>
+
+    <div class="impact-box">
+      <h3>The Arithmetic of Accountability</h3>
+      <div class="impact-item"><strong>>$35B</strong> Total OxyContin revenue (1996&ndash;2020) [APPROXIMATE]</div>
+      <div class="impact-item"><strong>>$10B</strong> Extracted by Sackler family before bankruptcy [APPROXIMATE]</div>
+      <div class="impact-item"><strong>$7.4B</strong> Settlement amount (Dec 2024)</div>
+      <div class="impact-item"><strong>806,000</strong> Opioid deaths (1999&ndash;2023, CDC)</div>
+      <div class="impact-item"><strong>$9,180</strong> Settlement per opioid death</div>
+      <div class="impact-item"><strong>0</strong> Sackler family members in prison</div>
+    </div>
+
+    <h2>The Chain</h2>
+
+    <p>The opioid epidemic followed a three-wave pattern documented by the CDC. Wave one (1990s): prescription opioid overprescription, driven by Purdue&rsquo;s marketing. Wave two (2010): patients cut off from prescriptions turned to heroin. Wave three (2013): illicitly manufactured fentanyl &mdash; Paul Janssen&rsquo;s molecule, now cooked in Mexican labs using Chinese precursor chemicals &mdash; flooded the street supply.</p>
+
+    <p>By 2023, synthetic opioids (primarily illicit fentanyl) accounted for 72,776 of 105,007 total drug overdose deaths in the United States. Nearly 70% of cocaine-involved deaths also involved fentanyl. The molecule designed for surgical suites in 1960 became the leading killer in the unregulated drug market.</p>
+
+    <h2>The Ledger</h2>
+
+    <p>While 806,000 Americans died from opioids &mdash; a crisis with clear pharmaceutical origins &mdash; the federal government spent over $1 trillion on the War on Drugs since 1971. The federal drug control budget grew from $81 million in 1969 to an estimated $41 billion in 2022 &mdash; a 1,090% increase adjusted for inflation.</p>
+
+    <p>Today, 44&ndash;46% of federal prisoners are incarcerated for drug offenses. That is roughly 89,000 people out of approximately 154,000. Drug offenses are the single largest category in the federal prison system. Across all facilities &mdash; federal, state, and local &mdash; an estimated 361,000 people are incarcerated for drugs.</p>
+
+    <p>The Sackler family is not among them.</p>
+
+    <a class="back-link" href="index.html">&larr; Back to Issue 06</a>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <h3>Death Toll: Legal vs Illegal</h3>
+      <table class="compare-table">
+        <thead><tr><th>Substance</th><th>Deaths/yr</th></tr></thead>
+        <tbody>
+          <tr><td>Tobacco (legal)</td><td>480,000</td></tr>
+          <tr><td>Alcohol (legal)</td><td>178,000</td></tr>
+          <tr><td>Synth. opioids (fentanyl)</td><td>72,776</td></tr>
+          <tr><td>Cocaine</td><td>29,449</td></tr>
+          <tr><td>Rx opioids</td><td>14,716</td></tr>
+          <tr><td>Heroin</td><td>5,871</td></tr>
+          <tr><td>Cannabis (direct OD)</td><td>0</td></tr>
+          <tr><td>Psilocybin</td><td>0</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:0.68rem;color:var(--muted);margin-top:0.6rem;">Sources: CDC, NIDA, NIAAA (2023 data unless noted)</p>
+    </div>
+
+    <div class="sidebar-section">
+      <h3>The Patent Timeline</h3>
+      <div class="timeline-item">
+        <span class="year">1960</span>
+        <span class="event">Paul Janssen synthesizes fentanyl at Janssen Pharmaceutica, Belgium</span>
+      </div>
+      <div class="timeline-item">
+        <span class="year">1961</span>
+        <span class="event">Johnson &amp; Johnson acquires Janssen Pharmaceutica</span>
+      </div>
+      <div class="timeline-item">
+        <span class="year">1964</span>
+        <span class="event">Fentanyl patent filed</span>
+      </div>
+      <div class="timeline-item">
+        <span class="year">1996</span>
+        <span class="event">Purdue Pharma launches OxyContin ($48M first year)</span>
+      </div>
+      <div class="timeline-item">
+        <span class="year">2000</span>
+        <span class="event">OxyContin reaches $1.1B annual revenue</span>
+      </div>
+      <div class="timeline-item">
+        <span class="year">2007</span>
+        <span class="event">Purdue pleads guilty to criminal misbranding ($634M fine)</span>
+      </div>
+      <div class="timeline-item">
+        <span class="year">2013</span>
+        <span class="event">Illicit fentanyl begins flooding US street supply</span>
+      </div>
+      <div class="timeline-item">
+        <span class="year">2020</span>
+        <span class="event">Purdue pleads guilty to federal criminal charges</span>
+      </div>
+      <div class="timeline-item">
+        <span class="year">2023</span>
+        <span class="event">72,776 synthetic opioid deaths (CDC)</span>
+      </div>
+      <div class="timeline-item">
+        <span class="year">2024</span>
+        <span class="event">$7.4B Sackler settlement. 0 prison sentences.</span>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <h3>War on Drugs Budget</h3>
+      <table class="compare-table">
+        <thead><tr><th>Year</th><th>Budget</th></tr></thead>
+        <tbody>
+          <tr><td>1969</td><td>$81M</td></tr>
+          <tr><td>1981</td><td>~$1B</td></tr>
+          <tr><td>2000</td><td>~$18B</td></tr>
+          <tr><td>2020</td><td>$34.6B</td></tr>
+          <tr><td>2022</td><td>~$41B</td></tr>
+          <tr><td>Total (1971&ndash;)</td><td>>$1T</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:0.68rem;color:var(--muted);margin-top:0.6rem;">Source: White House ONDCP, CNBC analysis</p>
+    </div>
+
+    <div class="sidebar-section">
+      <h3>Federal Drug Prisoners</h3>
+      <p style="font-size:0.88rem;line-height:1.6;color:var(--muted);">
+        <strong style="font-family:'Playfair Display',serif;font-size:2.2rem;color:var(--accent);display:block;">44&ndash;46%</strong>
+        of federal inmates are incarcerated for drug offenses (~89,000 of ~154,000). Drug offenses are the single largest category. Total across all US facilities: ~361,000.
+      </p>
+      <p style="font-size:0.68rem;color:var(--muted);margin-top:0.6rem;">Source: BOP, USSC (2024&ndash;2025)</p>
+    </div>
+  </aside>
+</div>
+
+<footer class="footer">
+  <div class="footer-brand">The Switch <span>Stack</span></div>
+  <div class="footer-links">&copy; 2026 &middot; <a href="index.html">Issue 06</a></div>
+</footer>
+
+</body>
+</html>

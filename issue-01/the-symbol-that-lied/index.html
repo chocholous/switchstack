@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://switchstack.cz/issue-01/the-symbol-that-lied/">
+<meta property="og:title" content="The Symbol That Lied — The Switch Stack">
+<meta property="og:description" content="The Symbol That Lied">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://switchstack.cz/issue-01/the-symbol-that-lied/">
+<meta property="og:site_name" content="The Switch Stack">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Symbol That Lied — The Switch Stack">
+<meta name="twitter:description" content="The Symbol That Lied">
+<link rel="alternate" type="application/rss+xml" title="The Switch Stack" href="/feed.xml">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NewsArticle",
+  "headline": "The Symbol That Lied",
+  "description": "The Symbol That Lied",
+  "datePublished": "2026-03-12",
+  "author": { "@type": "Organization", "name": "The Switch Stack" },
+  "publisher": { "@type": "Organization", "name": "The Switch Stack", "url": "https://switchstack.cz" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://switchstack.cz/issue-01/the-symbol-that-lied/" }
+}
+</script>
+<title>Switch Stack — The Symbol That Lied</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,300;0,7..72,400;0,7..72,700;0,7..72,900;1,7..72,300;1,7..72,400&family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f8f4ee;
+  --ink: #111;
+  --gray: #666;
+  --light: #ccc;
+  --red: #1a7a5c;
+  --red-bg: #1a7a5c12;
+  --toxic: #c43e2a;
+  --blue: #003049;
+  --cream: #f8f4ee;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 17px; }
+body { background: var(--ink); color: var(--cream); font-family: 'Literata', Georgia, serif; line-height: 1.75; }
+
+/* === COVER === */
+.cover {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 3rem;
+  position: relative;
+  overflow: hidden;
+  background: var(--ink);
+}
+.cover::before {
+  content: '\2672';
+  position: absolute;
+  top: -5%;
+  right: -3%;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(15rem, 30vw, 40rem);
+  color: #ffffff06;
+  line-height: 0.85;
+  pointer-events: none;
+}
+.cover-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 1rem;
+}
+.cover h1 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.6rem, 6vw, 5.5rem);
+  line-height: 0.95;
+  max-width: 900px;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.03em;
+}
+.cover h1 em { font-style: normal; color: var(--toxic); }
+.cover-deck {
+  font-size: 1.15rem;
+  font-weight: 300;
+  max-width: 560px;
+  color: #aaa;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+.cover-meta {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  color: #555;
+  text-transform: uppercase;
+  display: flex;
+  gap: 2rem;
+}
+.scroll-hint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #444;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 0.8; } }
+
+/* === STATS RIBBON === */
+.ribbon {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 3px solid var(--toxic);
+  border-bottom: 1px solid #222;
+}
+@media (max-width: 700px) { .ribbon { grid-template-columns: repeat(2, 1fr); } }
+.ribbon-cell { padding: 1.5rem 2rem; border-right: 1px solid #222; }
+.ribbon-cell:last-child { border-right: none; }
+.ribbon-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.2rem; color: var(--toxic); line-height: 1; }
+.ribbon-unit { font-family: 'Space Mono', monospace; font-size: 0.58rem; color: #666; letter-spacing: 0.08em; margin-top: 0.2rem; }
+.ribbon-desc { font-size: 0.72rem; color: #888; margin-top: 0.4rem; }
+
+/* === CONTENT SECTION === */
+.content { background: var(--bg); color: var(--ink); padding: 4rem 0; }
+.content-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 3rem;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 4rem;
+}
+@media (max-width: 840px) { .content-inner { grid-template-columns: 1fr; padding: 0 2rem; } }
+
+/* PROSE */
+.prose h2 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1.6rem;
+  margin: 3rem 0 0.8rem;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+.prose h2:first-child { margin-top: 0; }
+.prose h2::before { content: '\2014'; display: block; color: var(--toxic); font-size: 1.2rem; margin-bottom: 0.3rem; }
+.prose p { margin-bottom: 1.1rem; color: #333; }
+.prose p.lead { font-size: 1.1rem; color: var(--ink); font-weight: 400; }
+.prose p.lead::first-letter {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 4rem;
+  float: left;
+  line-height: 0.75;
+  margin: 0.1em 0.12em 0 0;
+  color: var(--toxic);
+}
+.prose blockquote {
+  margin: 2rem 0;
+  padding: 1.5rem 2rem;
+  border-left: 4px solid var(--toxic);
+  background: var(--red-bg);
+  font-style: italic;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #333;
+}
+.prose blockquote cite {
+  display: block;
+  font-style: normal;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.05em;
+  color: var(--gray);
+  margin-top: 0.7rem;
+}
+.prose .divider { text-align: center; margin: 2.5rem 0; color: var(--toxic); font-family: 'Space Mono', monospace; font-size: 0.7rem; letter-spacing: 1em; }
+
+/* MARGIN NOTES */
+.margin { padding-top: 0.5rem; }
+.margin-note { margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid #ddd; }
+.margin-note:last-child { border-bottom: none; }
+.margin-note h4 {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--toxic);
+  margin-bottom: 0.8rem;
+}
+.margin-note .mn-big {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 2.6rem;
+  line-height: 1;
+  color: var(--ink);
+}
+.margin-note .mn-unit {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--gray);
+  margin-top: 0.2rem;
+}
+.margin-note .mn-text { font-size: 0.78rem; color: var(--gray); margin-top: 0.5rem; line-height: 1.55; }
+.mn-table { width: 100%; border-collapse: collapse; font-size: 0.76rem; margin-top: 0.6rem; }
+.mn-table td { padding: 0.35rem 0; border-bottom: 1px solid #e0dcd4; color: #555; }
+.mn-table td:last-child { font-family: 'Space Mono', monospace; font-weight: 700; font-size: 0.7rem; color: var(--toxic); text-align: right; }
+
+/* === OUTRO === */
+.outro { background: var(--bg); color: var(--ink); padding: 4rem 3rem; text-align: center; }
+@media (max-width: 700px) { .outro { padding: 3rem 2rem; } }
+.outro blockquote {
+  font-family: 'Literata', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 1.4rem;
+  line-height: 1.5;
+  max-width: 520px;
+  margin: 0 auto 0.6rem;
+}
+.outro cite { font-family: 'Space Mono', monospace; font-size: 0.62rem; color: var(--gray); letter-spacing: 0.1em; }
+
+/* FOOTER */
+.foot {
+  background: var(--ink);
+  padding: 1.5rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #222;
+}
+.foot-brand { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; color: var(--cream); }
+.foot-brand span { color: var(--toxic); }
+.foot a { color: var(--toxic); text-decoration: none; font-family: 'Space Mono', monospace; font-size: 0.65rem; }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+.cover { animation: fadeUp 0.8s ease-out; }
+.ribbon { animation: fadeUp 0.5s ease-out 0.2s both; }
+
+/* ISSUE NAVIGATION SIDEBAR */
+.issue-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+}
+.issue-nav-toggle {
+  display: none;
+  position: fixed;
+  top: 0.8rem;
+  left: 0.8rem;
+  z-index: 1001;
+  background: var(--paper, #f5f0e8);
+  border: 1px solid var(--rule, #c8bfb0);
+  width: 2.2rem;
+  height: 2.2rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink, #1a1714);
+}
+.issue-nav .nav-close { display: none; }
+.issue-nav.open .nav-close { display: inline; }
+.issue-nav.open .nav-hamburger { display: none; }
+.issue-nav-inner {
+  height: 100%;
+  background: var(--paper, #f5f0e8);
+  border-right: 1px solid var(--rule, #c8bfb0);
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 1rem;
+  overflow-y: auto;
+}
+.issue-nav-brand {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 1.1rem;
+  color: var(--ink, #1a1714);
+  text-decoration: none;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--ink, #1a1714);
+}
+.issue-nav-brand span { color: var(--accent, #c43e2a); }
+.issue-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  flex: 1;
+}
+.issue-nav-item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  padding: 0.5rem 0.6rem;
+  text-decoration: none;
+  color: var(--ink, #1a1714);
+  border-radius: 4px;
+  transition: background 0.15s;
+}
+.issue-nav-item:hover { background: var(--paper-dark, #ebe4d8); }
+.issue-nav-item.active {
+  background: var(--ink, #1a1714);
+  color: var(--paper, #f5f0e8);
+}
+.issue-nav-item.active .issue-nav-num { color: var(--accent, #c43e2a); }
+.issue-nav-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--accent, #c43e2a);
+  white-space: nowrap;
+}
+.issue-nav-topic {
+  font-size: 0.78rem;
+  line-height: 1.3;
+}
+.issue-nav-footer {
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule, #c8bfb0);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.issue-nav-footer a {
+  color: var(--accent, #c43e2a);
+  text-decoration: none;
+}
+
+/* Push content right to make room for sidebar */
+body { margin-left: 260px; }
+
+@media (max-width: 900px) {
+  .issue-nav { transform: translateX(-100%); }
+  .issue-nav.open { transform: translateX(0); }
+  .issue-nav-toggle { display: flex; }
+  body { margin-left: 0; }
+}
+
+</style>
+</head>
+<body>
+<nav class="issue-nav" id="issueNav">
+  <button class="issue-nav-toggle" onclick="document.getElementById('issueNav').classList.toggle('open')" aria-label="Toggle navigation">
+    <span class="nav-hamburger">&#9776;</span>
+    <span class="nav-close">&times;</span>
+  </button>
+  <div class="issue-nav-inner">
+    <a href="/" class="issue-nav-brand">The Switch <span>Stack</span></a>
+    <div class="issue-nav-list">
+      <a class="issue-nav-item" href="/issue-07/">
+        <span class="issue-nav-num">#07</span>
+        <span class="issue-nav-topic">Carbon, Methane & Nanoplastics</span>
+      </a>
+      <a class="issue-nav-item" href="/issue-06/">
+        <span class="issue-nav-num">#06</span>
+        <span class="issue-nav-topic">The Drug War Backwards</span>
+      </a>
+      <a class="issue-nav-item" href="/issue-05/">
+        <span class="issue-nav-num">#05</span>
+        <span class="issue-nav-topic">The Inconvenient Correlation</span>
+      </a>
+      <a class="issue-nav-item" href="/issue-04/">
+        <span class="issue-nav-num">#04</span>
+        <span class="issue-nav-topic">The Safest Energy</span>
+      </a>
+      <a class="issue-nav-item" href="/issue-03/">
+        <span class="issue-nav-num">#03</span>
+        <span class="issue-nav-topic">The Safety Cage</span>
+      </a>
+      <a class="issue-nav-item" href="/issue-02/">
+        <span class="issue-nav-num">#02</span>
+        <span class="issue-nav-topic">Green Transition's Workforce</span>
+      </a>
+      <a class="issue-nav-item active" href="/issue-01/">
+        <span class="issue-nav-num">#01</span>
+        <span class="issue-nav-topic">The Recycling Lie</span>
+      </a>
+    </div>
+    <div class="issue-nav-footer">
+      <a href="/feed.xml">RSS</a>
+    </div>
+  </div>
+</nav>
+
+<!-- COVER -->
+<section class="cover">
+  <div class="cover-tag">The Switch Stack &middot; Issue 01</div>
+  <h1>The Symbol <em>That Lied</em></h1>
+  <p class="cover-deck">The chasing arrows on a plastic bottle are perhaps the most successful piece of corporate fiction since &ldquo;Diamonds Are Forever.&rdquo; You believed it meant the bottle would be reborn. It meant you would stop asking questions.</p>
+  <div class="cover-meta"><span>December 15, 2025</span><span>Biweekly</span></div>
+  <div class="scroll-hint">&darr; Scroll</div>
+</section>
+
+<!-- RIBBON -->
+<div class="ribbon">
+  <div class="ribbon-cell"><div class="ribbon-num">5g</div><div class="ribbon-unit">per week ingested</div><div class="ribbon-desc">Microplastics entering your body (upper est.)</div></div>
+  <div class="ribbon-cell"><div class="ribbon-num">9%</div><div class="ribbon-unit">ever recycled</div><div class="ribbon-desc">Of all plastic produced since 1950</div></div>
+  <div class="ribbon-cell"><div class="ribbon-num">1974</div><div class="ribbon-unit">year</div><div class="ribbon-desc">Industry knew recycling was unviable</div></div>
+  <div class="ribbon-cell"><div class="ribbon-num">4.5&times;</div><div class="ribbon-unit">heart risk</div><div class="ribbon-desc">With microplastics in arteries (NEJM)</div></div>
+</div>
+
+<!-- MAIN CONTENT -->
+<section class="content">
+<div class="content-inner">
+
+<div class="prose">
+
+  <h2>The Confession Booth</h2>
+
+  <p class="lead">There is a small ritual that millions of people perform every day. They rinse a plastic bottle. They check the bottom for a symbol. They see three arrows, chasing each other in an eternal triangle. They place the bottle in the correct bin. And they feel, for a moment, the quiet satisfaction of participation. Of doing their part. The ritual is comforting. The ritual is orderly. The ritual is a lie.</p>
+
+  <p>The chasing arrows on the bottom of a plastic bottle are not a recycling symbol. They are a resin identification code, introduced in 1988 by the Society of the Plastics Industry. The code tells a sorting facility what type of polymer the container is made from. It says nothing about whether that container will be recycled, can be recycled, or has ever been recycled. The EPA has stated this explicitly: the codes &ldquo;do not accurately represent recyclability.&rdquo;</p>
+
+  <p>But the arrows were drawn to look like a promise. And that was the entire point.</p>
+
+  <div class="divider">&middot; &middot; &middot; &middot; &middot;</div>
+
+  <h2>A Brief History of Misdirection</h2>
+
+  <p>In 1953, Coca-Cola, Anheuser-Busch, and Philip Morris founded an organization called Keep America Beautiful. Its stated mission was to reduce litter. Its actual function was to shift responsibility for waste from the companies that produced it to the people who bought it. They introduced a word&mdash;&ldquo;litterbug&rdquo;&mdash;and with it, a frame: the problem was not the packaging, but the person.</p>
+
+  <p>In 1971, Keep America Beautiful launched the &ldquo;Crying Indian&rdquo; advertisement, considered one of the most effective public service announcements in television history. A Native American man sheds a tear at the sight of litter. The message was clear: <em>you</em> did this. Not the companies that made the containers disposable. Not the industry that fought every bottle-deposit law. You.</p>
+
+  <p>William Coors, president of Coors Brewing Company, testified that the industry spent &ldquo;a minimum of $20 million a year fighting container deposit legislation.&rdquo; In today&rsquo;s currency, that is roughly $143 million per year spent ensuring that the bottles you were taught to feel guilty about could never be efficiently returned.</p>
+
+  <div class="divider">&middot; &middot; &middot; &middot; &middot;</div>
+
+  <h2>The Internal Confession</h2>
+
+  <p>In 2020, NPR and PBS Frontline published an investigation that did what investigations do: it found the documents the industry hoped would stay buried.</p>
+
+  <p>A 1974 industry speech acknowledged &ldquo;serious doubt that [recycling plastic] can ever be made viable on an economic basis.&rdquo; Former SPI president Larry Thomas told NPR: &ldquo;The industry sold the public on an idea it knew wouldn&rsquo;t work.&rdquo; Lewis Freeman, former SPI vice president, confirmed the strategy: &ldquo;If the public thinks recycling is working, then they&rsquo;re not going to be as concerned about the environment.&rdquo;</p>
+
+  <p>This was not a failure of optimism. This was not a miscalculation. This was a half-century campaign of deliberate misdirection, designed to sustain the production of disposable plastic by making consumers believe it would come back to life.</p>
+
+  <p>It did not come back to life. It came to live inside you.</p>
+
+  <div class="divider">&middot; &middot; &middot; &middot; &middot;</div>
+
+  <h2>The Body as Landfill</h2>
+
+  <p>In 2022, researchers at Vrije Universiteit Amsterdam detected microplastics in human blood for the first time. Seventy-seven percent of donors had plastic circulating in their bloodstream.</p>
+
+  <p>In February 2024, a team at the University of New Mexico found microplastics in every human brain sample they examined. The concentrations were 7 to 30 times higher than in the kidneys or liver. Samples from 2024 contained roughly 50% more plastic than those from 2016. The rate of accumulation doubles every 10 to 15 years.</p>
+
+  <p>That same month, another study found microplastics in every single human placenta tested&mdash;62 out of 62 samples. Concentrations ranged from 6.5 to 790 micrograms per gram of tissue. The plastic is there before the child is born.</p>
+
+  <p>In March 2024, the <em>New England Journal of Medicine</em> published a study that found patients with microplastics in their carotid artery plaque had a 4.5 times higher risk of heart attack, stroke, or death. This was the first study to link the tiny fragments to concrete cardiovascular outcomes in humans.</p>
+
+  <p>In May, microplastics were found in every one of 23 human testicle samples examined. The concentrations were three times higher than in dogs. All 40 semen samples in a separate Chinese study contained plastic particles.</p>
+
+  <p>Every organ that has been tested has tested positive. Brain. Blood. Placenta. Heart. Lungs. Liver. Kidneys. Testicles. Semen. Bone marrow. Breast milk. The body, it turns out, is not a closed system. It is a repository.</p>
+
+  <blockquote>
+    In nature, nothing exists alone.
+    <cite>&mdash; Rachel Carson, Silent Spring (1962)</cite>
+  </blockquote>
+
+  <div class="divider">&middot; &middot; &middot; &middot; &middot;</div>
+
+  <h2>The Ouroboros</h2>
+
+  <p>Nine point two billion tonnes of plastic have been produced since 1950. Nine percent has been recycled. Seventy-nine percent has accumulated in landfills or the natural environment. Annual production is on track to nearly triple by 2060.</p>
+
+  <p>And now, a final irony: the plastic that <em>does</em> enter the recycling stream may carry its own poison. A 2024 study found 68 PFAS compounds&mdash;per- and polyfluoroalkyl substances, the chemicals known as &ldquo;forever chemicals&rdquo;&mdash;in food packaging across 17 countries. Four out of twelve recycled paper packaging samples showed unintentional PFAS contamination from the recycling process itself. The circle is not virtuous. It is toxic.</p>
+
+  <p>The WWF estimates that a person may consume up to five grams of microplastics per week&mdash;the weight of a credit card. The estimate is debated; more conservative figures put it at 0.1 to 5 grams. Either way, you are eating plastic. You have been eating plastic. You will continue eating plastic. There is no opt-out.</p>
+
+  <div class="divider">&middot; &middot; &middot; &middot; &middot;</div>
+
+  <h2>The Silence After</h2>
+
+  <p>I do not know what to tell you to do. The plastic is already in your brain. It was there before you read this. It will be there after. Sorting your recycling will not remove it from your arteries. Buying a metal water bottle will not empty it from your children&rsquo;s placentas.</p>
+
+  <p>The arrows on the bottle keep chasing each other. Nothing catches anything. The triangle closes on itself, and nothing changes, and nothing is reborn.</p>
+
+  <p>In 1974, an industry insider said the quiet part out loud: recycling plastic would probably never work. Fifty-one years later, we are still standing at the bin, bottle in hand, looking for the symbol that tells us everything will be all right.</p>
+
+  <p>The symbol is there. It has always been there. It never meant what you thought it meant.</p>
+
+</div>
+
+<!-- MARGIN NOTES -->
+<aside class="margin">
+  <div class="margin-note">
+    <h4>The Numbers</h4>
+    <table class="mn-table">
+      <tr><td>Plastic ever produced</td><td>9.2B tonnes</td></tr>
+      <tr><td>Recycled</td><td>9%</td></tr>
+      <tr><td>Landfill + environment</td><td>79%</td></tr>
+      <tr><td>Incinerated</td><td>12%</td></tr>
+      <tr><td>2060 projected production</td><td>1,231 Mt/yr</td></tr>
+    </table>
+  </div>
+
+  <div class="margin-note">
+    <h4>Concentration Growth</h4>
+    <div class="mn-big">2&times;</div>
+    <div class="mn-unit">doubling every 10&ndash;15 years</div>
+    <p class="mn-text">Microplastic concentration in human brain tissue, based on cadaver samples from 1997&ndash;2024. Source: Campen et al., Nature Medicine.</p>
+  </div>
+
+  <div class="margin-note">
+    <h4>The Timeline</h4>
+    <table class="mn-table">
+      <tr><td>1953</td><td>Keep America Beautiful founded</td></tr>
+      <tr><td>1971</td><td>&ldquo;Crying Indian&rdquo; ad</td></tr>
+      <tr><td>1974</td><td>Industry doubts recycling viability</td></tr>
+      <tr><td>1988</td><td>Chasing arrows introduced</td></tr>
+      <tr><td>2017</td><td>China stops importing plastic waste</td></tr>
+      <tr><td>2020</td><td>NPR/Frontline &ldquo;Plastic Wars&rdquo;</td></tr>
+      <tr><td>2022</td><td>Microplastics found in blood</td></tr>
+      <tr><td>2024</td><td>Brain, placenta, arteries, testicles</td></tr>
+    </table>
+  </div>
+
+  <div class="margin-note">
+    <h4>The Caveat</h4>
+    <p class="mn-text">The 5g/week figure is an upper estimate from a 2019 WWF/Newcastle meta-analysis. Conservative estimates range 0.1&ndash;5g. The NEJM cardiovascular study shows association, not proven causation. PET and HDPE recycling genuinely works in deposit-return systems. The problem is systemic, not universal.</p>
+  </div>
+
+  <div class="margin-note">
+    <h4>Sources</h4>
+    <p class="mn-text">Nature Medicine (2024) &middot; NEJM (March 2024) &middot; Environment International (2022) &middot; OECD (2022) &middot; NPR/PBS Frontline (2020) &middot; Geyer et al., Science Advances (2017) &middot; WWF/Newcastle (2019)</p>
+  </div>
+</aside>
+
+</div>
+</section>
+
+<!-- OUTRO -->
+<section class="outro">
+  <blockquote>&ldquo;Only we humans make waste that nature can&rsquo;t digest.&rdquo;</blockquote>
+  <cite>&mdash; Captain Charles Moore, discoverer of the Great Pacific Garbage Patch</cite>
+</section>
+
+<footer class="foot">
+  <div class="foot-brand">Switch <span>Stack</span></div>
+  <a href="index.html">All Articles</a>
+</footer>
+
+</body>
+</html>

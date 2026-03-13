@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://switchstack.cz/issue-04/the-glowing-paradise/">
+<meta property="og:title" content="The Glowing Paradise — The Switch Stack">
+<meta property="og:description" content="The Glowing Paradise">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://switchstack.cz/issue-04/the-glowing-paradise/">
+<meta property="og:site_name" content="The Switch Stack">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Glowing Paradise — The Switch Stack">
+<meta name="twitter:description" content="The Glowing Paradise">
+<link rel="alternate" type="application/rss+xml" title="The Switch Stack" href="/feed.xml">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NewsArticle",
+  "headline": "The Glowing Paradise",
+  "description": "The Glowing Paradise",
+  "datePublished": "2026-03-12",
+  "author": { "@type": "Organization", "name": "The Switch Stack" },
+  "publisher": { "@type": "Organization", "name": "The Switch Stack", "url": "https://switchstack.cz" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://switchstack.cz/issue-04/the-glowing-paradise/" }
+}
+</script>
+<title>Switch Stack — Issue 04 &middot; The Glowing Paradise</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,300;0,7..72,400;0,7..72,700;0,7..72,900;1,7..72,300;1,7..72,400&family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f8f4ee;
+  --ink: #111;
+  --gray: #666;
+  --light: #ccc;
+  --red: #d62828;
+  --red-bg: #d6282812;
+  --green: #2d6a4f;
+  --cream: #f8f4ee;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 17px; }
+body { background: var(--ink); color: var(--cream); font-family: 'Literata', Georgia, serif; line-height: 1.75; }
+
+.cover {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 3rem;
+  position: relative;
+  overflow: hidden;
+  background: var(--ink);
+}
+.cover::before {
+  content: '\2622';
+  position: absolute;
+  top: -8%;
+  right: -5%;
+  font-size: clamp(15rem, 35vw, 45rem);
+  color: #ffffff04;
+  line-height: 0.85;
+  pointer-events: none;
+}
+.cover-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 1rem;
+}
+.cover h1 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.6rem, 6vw, 5.5rem);
+  line-height: 0.95;
+  max-width: 900px;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.03em;
+}
+.cover h1 em { font-style: normal; color: var(--green); }
+.cover-deck {
+  font-size: 1.15rem;
+  font-weight: 300;
+  max-width: 560px;
+  color: #aaa;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+.cover-meta {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  color: #555;
+  text-transform: uppercase;
+  display: flex;
+  gap: 2rem;
+}
+.scroll-hint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #444;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 0.8; } }
+
+.ribbon {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 3px solid var(--green);
+  border-bottom: 1px solid #222;
+}
+@media (max-width: 700px) { .ribbon { grid-template-columns: repeat(2, 1fr); } }
+.ribbon-cell { padding: 1.5rem 2rem; border-right: 1px solid #222; }
+.ribbon-cell:last-child { border-right: none; }
+.ribbon-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.2rem; color: var(--green); line-height: 1; }
+.ribbon-unit { font-family: 'Space Mono', monospace; font-size: 0.58rem; color: #666; letter-spacing: 0.08em; margin-top: 0.2rem; }
+.ribbon-desc { font-size: 0.72rem; color: #888; margin-top: 0.4rem; }
+
+.content { background: var(--bg); color: var(--ink); padding: 4rem 0; }
+.content-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 3rem;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 4rem;
+}
+@media (max-width: 840px) { .content-inner { grid-template-columns: 1fr; padding: 0 2rem; } }
+
+.prose h2 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1.6rem;
+  margin: 3rem 0 0.8rem;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+.prose h2:first-child { margin-top: 0; }
+.prose h2::before { content: '\2014'; display: block; color: var(--green); font-size: 1.2rem; margin-bottom: 0.3rem; }
+.prose p { margin-bottom: 1.1rem; color: #333; }
+.prose p.lead { font-size: 1.1rem; color: var(--ink); font-weight: 400; }
+.prose p.lead::first-letter {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 4rem;
+  float: left;
+  line-height: 0.75;
+  margin: 0.1em 0.12em 0 0;
+  color: var(--green);
+}
+.prose blockquote {
+  margin: 2rem 0;
+  padding: 1.5rem 2rem;
+  border-left: 4px solid var(--green);
+  background: #2d6a4f12;
+  font-style: italic;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #333;
+}
+.prose blockquote cite {
+  display: block;
+  font-style: normal;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.05em;
+  color: var(--gray);
+  margin-top: 0.7rem;
+}
+.prose .divider { text-align: center; margin: 2.5rem 0; color: var(--green); font-family: 'Space Mono', monospace; font-size: 0.7rem; letter-spacing: 1em; }
+
+.margin { padding-top: 0.5rem; }
+.margin-note { margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid #ddd; }
+.margin-note:last-child { border-bottom: none; }
+.margin-note h4 {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 0.8rem;
+}
+.margin-note .mn-big {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 2.6rem;
+  line-height: 1;
+  color: var(--ink);
+}
+.margin-note .mn-unit { font-family: 'Space Mono', monospace; font-size: 0.6rem; color: var(--gray); margin-top: 0.2rem; }
+.margin-note .mn-text { font-size: 0.78rem; color: var(--gray); margin-top: 0.5rem; line-height: 1.55; }
+.mn-table { width: 100%; border-collapse: collapse; font-size: 0.76rem; margin-top: 0.6rem; }
+.mn-table td { padding: 0.35rem 0; border-bottom: 1px solid #e0dcd4; color: #555; }
+.mn-table td:last-child { font-family: 'Space Mono', monospace; font-weight: 700; font-size: 0.7rem; color: var(--green); text-align: right; }
+
+.outro {
+  background: var(--bg);
+  color: var(--ink);
+  padding: 4rem 3rem;
+  text-align: center;
+}
+@media (max-width: 700px) { .outro { padding: 3rem 2rem; } }
+.outro blockquote {
+  font-family: 'Literata', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 1.4rem;
+  line-height: 1.5;
+  max-width: 520px;
+  margin: 0 auto 0.6rem;
+}
+.outro cite { font-family: 'Space Mono', monospace; font-size: 0.62rem; color: var(--gray); letter-spacing: 0.1em; }
+
+.foot {
+  background: var(--ink);
+  padding: 1.5rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #222;
+}
+.foot-brand { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; color: var(--cream); }
+.foot-brand span { color: var(--green); }
+.foot a { color: var(--green); text-decoration: none; font-family: 'Space Mono', monospace; font-size: 0.65rem; }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+.cover { animation: fadeUp 0.8s ease-out; }
+.ribbon { animation: fadeUp 0.5s ease-out 0.2s both; }
+
+/* ISSUE NAVIGATION SIDEBAR */
+.issue-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+}
+.issue-nav-toggle {
+  display: none;
+  position: fixed;
+  top: 0.8rem;
+  left: 0.8rem;
+  z-index: 1001;
+  background: var(--paper, #f5f0e8);
+  border: 1px solid var(--rule, #c8bfb0);
+  width: 2.2rem;
+  height: 2.2rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink, #1a1714);
+}
+.issue-nav .nav-close { display: none; }
+.issue-nav.open .nav-close { display: inline; }
+.issue-nav.open .nav-hamburger { display: none; }
+.issue-nav-inner {
+  height: 100%;
+  background: var(--paper, #f5f0e8);
+  border-right: 1px solid var(--rule, #c8bfb0);
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 1rem;
+  overflow-y: auto;
+}
+.issue-nav-brand {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 1.1rem;
+  color: var(--ink, #1a1714);
+  text-decoration: none;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--ink, #1a1714);
+}
+.issue-nav-brand span { color: var(--accent, #c43e2a); }
+.issue-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  flex: 1;
+}
+.issue-nav-item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  padding: 0.5rem 0.6rem;
+  text-decoration: none;
+  color: var(--ink, #1a1714);
+  border-radius: 4px;
+  transition: background 0.15s;
+}
+.issue-nav-item:hover { background: var(--paper-dark, #ebe4d8); }
+.issue-nav-item.active {
+  background: var(--ink, #1a1714);
+  color: var(--paper, #f5f0e8);
+}
+.issue-nav-item.active .issue-nav-num { color: var(--accent, #c43e2a); }
+.issue-nav-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--accent, #c43e2a);
+  white-space: nowrap;
+}
+.issue-nav-topic {
+  font-size: 0.78rem;
+  line-height: 1.3;
+}
+.issue-nav-footer {
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule, #c8bfb0);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.issue-nav-footer a {
+  color: var(--accent, #c43e2a);
+  text-decoration: none;
+}
+
+/* Push content right to make room for sidebar */
+body { margin-left: 260px; }
+
+@media (max-width: 900px) {
+  .issue-nav { transform: translateX(-100%); }
+  .issue-nav.open { transform: translateX(0); }
+  .issue-nav-toggle { display: flex; }
+  body { margin-left: 0; }
+}
+
+</style>
+</head>
+<body>
+<nav class="issue-nav" id="issueNav">
+  <button class="issue-nav-toggle" onclick="document.getElementById('issueNav').classList.toggle('open')" aria-label="Toggle navigation">
+    <span class="nav-hamburger">&#9776;</span>
+    <span class="nav-close">&times;</span>
+  </button>
+  <div class="issue-nav-inner">
+    <a href="/" class="issue-nav-brand">The Switch <span>Stack</span></a>
+    <div class="issue-nav-list">
+      <a class="issue-nav-item" href="/issue-07/">
+        <span class="issue-nav-num">#07</span>
+        <span class="issue-nav-topic">Carbon, Methane & Nanoplastics</span>
+      </a>
+      <a class="issue-nav-item" href="/issue-06/">
+        <span class="issue-nav-num">#06</span>
+        <span class="issue-nav-topic">The Drug War Backwards</span>
+      </a>
+      <a class="issue-nav-item" href="/issue-05/">
+        <span class="issue-nav-num">#05</span>
+        <span class="issue-nav-topic">The Inconvenient Correlation</span>
+      </a>
+      <a class="issue-nav-item active" href="/issue-04/">
+        <span class="issue-nav-num">#04</span>
+        <span class="issue-nav-topic">The Safest Energy</span>
+      </a>
+      <a class="issue-nav-item" href="/issue-03/">
+        <span class="issue-nav-num">#03</span>
+        <span class="issue-nav-topic">The Safety Cage</span>
+      </a>
+      <a class="issue-nav-item" href="/issue-02/">
+        <span class="issue-nav-num">#02</span>
+        <span class="issue-nav-topic">Green Transition's Workforce</span>
+      </a>
+      <a class="issue-nav-item" href="/issue-01/">
+        <span class="issue-nav-num">#01</span>
+        <span class="issue-nav-topic">The Recycling Lie</span>
+      </a>
+    </div>
+    <div class="issue-nav-footer">
+      <a href="/feed.xml">RSS</a>
+    </div>
+  </div>
+</nav>
+
+<!-- COVER -->
+<section class="cover">
+  <div class="cover-tag">The Switch Stack &middot; Issue 04</div>
+  <h1>The Glowing <em>Paradise</em></h1>
+  <p class="cover-deck">In the Chernobyl exclusion zone, wolves and European bison roam through abandoned Soviet apartment blocks. Thirty-eight years after the worst nuclear disaster in history, nature is thriving&mdash;precisely because humans left.</p>
+  <div class="cover-meta"><span>February 2026</span><span>Biweekly</span></div>
+  <div class="scroll-hint">&darr; Scroll</div>
+</section>
+
+<!-- RIBBON -->
+<div class="ribbon">
+  <div class="ribbon-cell"><div class="ribbon-num">30</div><div class="ribbon-unit">immediate deaths</div><div class="ribbon-desc">Chernobyl, April 1986</div></div>
+  <div class="ribbon-cell"><div class="ribbon-num">30%</div><div class="ribbon-unit">more wildlife</div><div class="ribbon-desc">Than uncontaminated areas nearby</div></div>
+  <div class="ribbon-cell"><div class="ribbon-num">0.03</div><div class="ribbon-unit">deaths per TWh</div><div class="ribbon-desc">Nuclear: safest energy on Earth</div></div>
+  <div class="ribbon-cell"><div class="ribbon-num">1.84M</div><div class="ribbon-unit">lives saved</div><div class="ribbon-desc">By nuclear power since 1971</div></div>
+</div>
+
+<!-- MAIN CONTENT -->
+<section class="content">
+<div class="content-inner">
+
+<div class="prose">
+
+  <h2>Where the Wolves Run</h2>
+
+  <p class="lead">There is a place in northern Ukraine where the concrete is cracking and the birch trees are winning. It is a city built for 49,000 people, emptied in thirty-six hours, and left to the wind and the rain and the slow patient work of roots. Pripyat. The name still carries a charge. But the wolves who trot through its empty boulevards feel no charge at all.</p>
+
+  <p>In the spring of 1986, Reactor No. 4 at the Chernobyl Nuclear Power Plant suffered a catastrophic steam explosion and fire that blew the 1,000-tonne reactor lid into the air and scattered radioactive material across Europe. Approximately 350,000 people were evacuated. The immediate death toll was about 30&mdash;emergency workers and firefighters who absorbed lethal doses in the first hours. The WHO and UNSCEAR estimate that up to 4,000 people among the 600,000 most heavily exposed may eventually die of radiation-related cancers.</p>
+
+  <p>These are real numbers. They represent real suffering. But they are also, in the context of energy production, remarkably small.</p>
+
+  <div class="divider">&middot; &middot; &middot; &middot; &middot;</div>
+
+  <h2>The Exclusion Zone Experiment</h2>
+
+  <p>The Chernobyl Exclusion Zone covers approximately 2,600 square kilometers of what was once farmland, forest, and small towns. For thirty-eight years, with the exception of a few hundred elderly residents who refused to leave and a rotating crew of plant workers and scientists, it has been empty of humans.</p>
+
+  <p>The results of this unintended experiment are unambiguous.</p>
+
+  <p>Camera trap studies conducted in 2024 and 2025 by international teams of ecologists documented robust populations of Eurasian wolves, European bison, Eurasian lynx, wild boar, and red foxes. The pine plantations that covered much of the zone in 1986 have been replaced by biodiverse primary forests&mdash;more resilient to climate change, better at sequestering carbon, and richer in species than the managed landscape they replaced.</p>
+
+  <blockquote>
+    The lack of human activity&mdash;not radiation&mdash;is the main driver of biodiversity growth in this area.
+    <cite>&mdash; United Nations Environment Programme, 2024</cite>
+  </blockquote>
+
+  <p>Some animal populations in the zone are now <strong>30% more abundant</strong> than in nearby uncontaminated areas. Frogs in the exclusion zone have developed darker pigmentation&mdash;an adaptive response to radiation documented in a 2022 study. Follow-up research in 2024 found they show no signs of accelerated aging or elevated stress.</p>
+
+  <p>The most radioactive place in Europe has become, by several measures, its most ecologically alive.</p>
+
+  <div class="divider">&middot; &middot; &middot; &middot; &middot;</div>
+
+  <h2>The Lesson That Isn&rsquo;t About Radiation</h2>
+
+  <p>It would be dishonest to claim that radiation is harmless. It is not. The workers who fought the Chernobyl fire paid with their lives. The children who drank contaminated milk developed thyroid cancers. The long shadow of Chernobyl is real, and it falls on real people.</p>
+
+  <p>But the exclusion zone teaches a different, more uncomfortable lesson: that the ordinary presence of human beings&mdash;our agriculture, our industry, our roads, our noise, our fences&mdash;is more destructive to ecosystems than a nuclear disaster.</p>
+
+  <p>We emptied a landscape of people and filled it with cesium-137. And nature preferred the cesium.</p>
+
+  <div class="divider">&middot; &middot; &middot; &middot; &middot;</div>
+
+  <h2>Fear as a Weapon of Mass&nbsp;Destruction</h2>
+
+  <p>The Chernobyl zone is not the only place where fear of nuclear has proven more destructive than nuclear itself.</p>
+
+  <p>At Fukushima, the 2011 meltdowns killed one person through radiation exposure. The evacuation killed approximately 2,300. In Germany, the fear triggered by Fukushima led to the shutdown of 17 nuclear reactors. Economists at UC Berkeley and Carnegie Mellon calculate that the resulting increase in air pollution kills about 1,100 Germans every year. In Japan, the wholesale shutdown of 54 reactors and the switch to fossil fuels may have caused 28,000 excess deaths between 2011 and 2017.</p>
+
+  <p>And on February 28, 2026, the United States and Israel launched Operation Epic Fury against Iran. The stated goal: to "permanently deny them nuclear weapons forever." The cost by Day 13: $24.5 billion and at least 1,348 Iranian deaths, including 168 schoolgirls in Minab.</p>
+
+  <p>The technology they bombed is the same technology that gives France 95% clean electricity. That performs 50 million medical procedures per year. That has prevented, by NASA's calculation, 1.84 million deaths from air pollution since 1971.</p>
+
+  <p>Nuclear fission is a fact of physics. What we do with that fact&mdash;power cities, heal the sick, or build weapons&mdash;is a choice. And fear is making us choose badly.</p>
+
+  <div class="divider">&middot; &middot; &middot; &middot; &middot;</div>
+
+  <h2>The Football Field and the&nbsp;Continent</h2>
+
+  <p>All the spent nuclear fuel the United States has produced since the 1950s&mdash;seventy years of powering a nation&mdash;would fit on a single football field stacked about ten yards deep. That is 88,000 metric tons. It accounts for 0.01% of all hazardous waste.</p>
+
+  <p>Coal ash, meanwhile, is dumped in unlined pits across continents. It contains mercury, arsenic, lead, and&mdash;because coal concentrates naturally occurring uranium and thorium&mdash;it releases more radioactivity into the environment than nuclear power plants do.</p>
+
+  <p>The waste problem is real. No permanent geological repository is yet operational. But the scale of the problem is not what most people imagine. Nuclear waste is small, contained, and tracked. Fossil fuel waste is vast, uncontained, and invisible.</p>
+
+  <div class="divider">&middot; &middot; &middot; &middot; &middot;</div>
+
+  <h2>What the Wolves Know</h2>
+
+  <p>The wolves of the Chernobyl exclusion zone do not read UNSCEAR reports. They do not know that the soil beneath their paws contains strontium-90 and plutonium-239. They do not fear the atom.</p>
+
+  <p>They are not stupid. They are simply responding to reality rather than to narrative. In their reality, the absence of humans has created more food, more space, more silence, and more safety than the presence of radiation has taken away. The equation, for them, is simple.</p>
+
+  <p>For us, it should be too. Nuclear energy kills 0.03 people per terawatt-hour. Coal kills 820 times more. The exclusion zone is thriving. France has the cleanest grid in Europe. And the technology we fear most has saved nearly two million lives.</p>
+
+  <p>Perhaps the lesson of Chernobyl is not about nuclear at all. It is about us&mdash;about the stories we tell ourselves, the fears we nurse into policy, and the quiet, steady damage we do when we let those fears choose for us.</p>
+
+</div>
+
+<!-- MARGIN NOTES -->
+<aside class="margin">
+  <div class="margin-note">
+    <h4>Deaths per TWh</h4>
+    <table class="mn-table">
+      <tr><td>Brown coal</td><td>32.72</td></tr>
+      <tr><td>Coal</td><td>24.62</td></tr>
+      <tr><td>Oil</td><td>18.43</td></tr>
+      <tr><td>Gas</td><td>2.82</td></tr>
+      <tr><td>Hydropower</td><td>1.30</td></tr>
+      <tr><td>Solar</td><td>0.05</td></tr>
+      <tr><td>Wind</td><td>0.04</td></tr>
+      <tr><td><strong>Nuclear</strong></td><td><strong>0.03</strong></td></tr>
+    </table>
+    <p class="mn-text" style="font-size:0.65rem;color:#999;margin-top:0.5rem;">Markandya &amp; Wilkinson (2007), via Our World in Data. European estimates.</p>
+  </div>
+
+  <div class="margin-note">
+    <h4>Chernobyl Wildlife</h4>
+    <div class="mn-big" style="color:var(--green);">30%</div>
+    <div class="mn-unit">more abundant than uncontaminated areas</div>
+    <p class="mn-text">Wolves, bison, lynx, boar, foxes. Pine forests replaced by biodiverse primary growth. Frogs adapted darker pigmentation. No accelerated aging detected.</p>
+  </div>
+
+  <div class="margin-note">
+    <h4>Fear vs Reality</h4>
+    <table class="mn-table">
+      <tr><td>Fukushima radiation deaths</td><td>1</td></tr>
+      <tr><td>Fukushima evacuation deaths</td><td>~2,300</td></tr>
+      <tr><td>Germany phase-out deaths/yr</td><td>~1,100</td></tr>
+      <tr><td>Epic Fury deaths (13 days)</td><td>1,348+</td></tr>
+      <tr><td>Nuclear lives saved (1971-2009)</td><td>1.84M</td></tr>
+    </table>
+  </div>
+
+  <div class="margin-note">
+    <h4>Nuclear Waste</h4>
+    <div class="mn-big">1</div>
+    <div class="mn-unit">football field, ~10 yards deep</div>
+    <p class="mn-text">All US spent fuel, 70 years. 88,000 metric tons. 0.01% of hazardous waste. Contained, tracked, managed.</p>
+  </div>
+
+  <div class="margin-note">
+    <h4>Nuclear Medicine</h4>
+    <div class="mn-big">50M+</div>
+    <div class="mn-unit">procedures per year</div>
+    <p class="mn-text">PET scans, radiotherapy, bone imaging. 10,000+ hospitals. Same nuclear physics, different context.</p>
+  </div>
+
+  <div class="margin-note">
+    <h4>Sources</h4>
+    <p class="mn-text">OWID &middot; UNSCEAR (2008, 2020) &middot; WHO &middot; UNEP (2024) &middot; Jarvis et al. (NBER 2019) &middot; Kharecha &amp; Hansen (2013) &middot; Ember / Sfen &middot; US DOE &middot; WarCosts &middot; WNA</p>
+  </div>
+</aside>
+
+</div>
+</section>
+
+<!-- OUTRO -->
+<section class="outro">
+  <blockquote>&ldquo;I have never regarded nuclear radiation or nuclear power as anything other than a normal and inevitable part of the environment.&rdquo;</blockquote>
+  <cite>&mdash; James Lovelock, The Ages of Gaia (1988)</cite>
+</section>
+
+<footer class="foot">
+  <div class="foot-brand">Switch <span>Stack</span></div>
+  <a href="https://github.com/chocholous/switchstack">GitHub</a>
+</footer>
+
+</body>
+</html>

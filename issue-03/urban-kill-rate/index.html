@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://switchstack.cz/issue-03/urban-kill-rate/">
+<meta property="og:title" content="- Issue 03: Urban Kill Rate — The Switch Stack">
+<meta property="og:description" content="Per Vehicle, Per Km, Per Victim. The data on who dies in your city.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://switchstack.cz/issue-03/urban-kill-rate/">
+<meta property="og:site_name" content="The Switch Stack">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="- Issue 03: Urban Kill Rate — The Switch Stack">
+<meta name="twitter:description" content="Per Vehicle, Per Km, Per Victim. The data on who dies in your city.">
+<link rel="alternate" type="application/rss+xml" title="The Switch Stack" href="/feed.xml">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NewsArticle",
+  "headline": "- Issue 03: Urban Kill Rate",
+  "description": "Per Vehicle, Per Km, Per Victim. The data on who dies in your city.",
+  "datePublished": "2026-03-12",
+  "author": { "@type": "Organization", "name": "The Switch Stack" },
+  "publisher": { "@type": "Organization", "name": "The Switch Stack", "url": "https://switchstack.cz" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://switchstack.cz/issue-03/urban-kill-rate/" }
+}
+</script>
+<title>Switch Stack -- Issue 03: Urban Kill Rate</title>
+<meta name="description" content="Per Vehicle, Per Km, Per Victim. The data on who dies in your city.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,800;0,9..144,900;1,9..144,400&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0c0c0e;
+  --surface: #161619;
+  --surface2: #1e1e22;
+  --border: #2a2a30;
+  --text: #e8e6e1;
+  --text2: #9a978f;
+  --red: #e8453c;
+  --red-dim: #e8453c44;
+  --amber: #f0a830;
+  --green: #4a9e6e;
+  --blue: #4a7ab5;
+  --slate: #5a6a7a;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: 'Instrument Sans', system-ui, sans-serif; line-height: 1.6; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+.header { padding: 2rem 0 1.5rem; border-bottom: 1px solid var(--border); }
+.header-inner { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-family: 'Fraunces', serif; font-weight: 900; font-size: 1.4rem; color: var(--text); }
+.logo span { color: var(--red); }
+.header-tag { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--text2); letter-spacing: 0.15em; text-transform: uppercase; }
+
+.hero { padding: 4rem 0 3rem; text-align: center; position: relative; }
+.hero::after { content: ''; position: absolute; bottom: 0; left: 10%; right: 10%; height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); }
+.hero-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--red); margin-bottom: 1.2rem; }
+.hero h1 { font-family: 'Fraunces', serif; font-weight: 900; font-size: clamp(2.2rem, 5vw, 3.8rem); line-height: 1.08; max-width: 800px; margin: 0 auto 1.5rem; }
+.hero p { font-size: 1.05rem; color: var(--text2); max-width: 580px; margin: 0 auto; line-height: 1.7; }
+
+.big-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); margin: 3rem 0; }
+.big-card { background: var(--surface); padding: 2rem; }
+.big-card .num { font-family: 'Fraunces', serif; font-weight: 900; font-size: 3.4rem; line-height: 1; color: var(--red); }
+.big-card .unit { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--text2); letter-spacing: 0.1em; margin-top: 0.3rem; }
+.big-card .desc { font-size: 0.85rem; color: var(--text2); margin-top: 0.7rem; line-height: 1.5; }
+
+.scale-section { padding: 3rem 0; }
+.scale-title { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text2); margin-bottom: 1.5rem; }
+.scale-row { display: flex; align-items: flex-end; gap: 1rem; margin-bottom: 0.6rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--border); }
+.scale-row:last-child { border-bottom: none; }
+.scale-label { font-size: 0.82rem; color: var(--text2); width: 220px; flex-shrink: 0; padding-bottom: 0.2rem; }
+.scale-bar-wrap { flex: 1; position: relative; height: 28px; }
+.scale-bar { height: 100%; border-radius: 3px; display: flex; align-items: center; padding-left: 0.8rem; font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; font-weight: 600; color: var(--bg); min-width: 40px; }
+.scale-val { font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; font-weight: 600; color: var(--text); width: 140px; text-align: right; flex-shrink: 0; }
+@media (max-width: 600px) { .scale-label { width: 120px; font-size: 0.72rem; } .scale-val { width: 80px; font-size: 0.68rem; } }
+
+.versus { padding: 3rem 0; }
+.versus-title { font-family: 'Fraunces', serif; font-weight: 800; font-size: 1.8rem; margin-bottom: 0.4rem; }
+.versus-sub { font-size: 0.88rem; color: var(--text2); margin-bottom: 2rem; max-width: 600px; }
+.vs-row { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--border); }
+.vs-row:last-child { border-bottom: none; }
+.vs-left { text-align: right; }
+.vs-right { text-align: left; }
+.vs-num { font-family: 'Fraunces', serif; font-weight: 800; font-size: 1.8rem; line-height: 1; }
+.vs-num.red { color: var(--red); }
+.vs-num.dim { color: var(--text2); }
+.vs-label { font-size: 0.78rem; color: var(--text2); margin-top: 0.2rem; }
+.vs-badge { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; background: var(--surface2); color: var(--text2); padding: 0.25rem 0.6rem; border-radius: 2rem; white-space: nowrap; }
+@media (max-width: 600px) { .vs-num { font-size: 1.3rem; } }
+
+.attrib-section { padding: 3rem 0; border-top: 1px solid var(--border); }
+.attrib-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 1.5rem; }
+@media (max-width: 700px) { .attrib-pair { grid-template-columns: 1fr; } }
+.attrib-box { background: var(--surface); border: 1px solid var(--border); padding: 1.5rem; }
+.attrib-box h3 { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--red); margin-bottom: 1.2rem; }
+.abar-label { font-size: 0.72rem; color: var(--text2); margin-bottom: 0.3rem; }
+.abar { display: flex; height: 20px; border-radius: 2px; overflow: hidden; margin-bottom: 0.8rem; }
+.abar-seg { display: flex; align-items: center; justify-content: center; font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; font-weight: 600; color: #fff; min-width: 18px; }
+.abar-legend { display: flex; flex-wrap: wrap; gap: 0.2rem 0.6rem; font-size: 0.64rem; color: var(--text2); margin-bottom: 0.6rem; }
+.adot { display: inline-block; width: 6px; height: 6px; border-radius: 1px; margin-right: 3px; vertical-align: middle; }
+
+.closing { padding: 4rem 0 3rem; text-align: center; border-top: 1px solid var(--border); }
+.closing blockquote { font-family: 'Fraunces', serif; font-style: italic; font-size: 1.3rem; line-height: 1.5; max-width: 520px; margin: 0 auto 0.6rem; color: var(--text); }
+.closing cite { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--text2); letter-spacing: 0.1em; }
+.closing-message { margin-top: 2rem; font-size: 0.95rem; color: var(--text2); max-width: 560px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+
+.sources { padding: 2rem 0; border-top: 1px solid var(--border); }
+.sources p { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; color: var(--text2); line-height: 1.8; opacity: 0.6; }
+
+.footer { padding: 1.5rem 0; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+.footer a { color: var(--red); text-decoration: none; font-size: 0.72rem; }
+
+@keyframes slideIn { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+.hero, .big-grid, .versus, .attrib-section, .closing { animation: slideIn 0.5s ease-out both; }
+.big-grid { animation-delay: 0.1s; }
+.versus { animation-delay: 0.15s; }
+
+/* ISSUE NAVIGATION SIDEBAR */
+.issue-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+}
+.issue-nav-toggle {
+  display: none;
+  position: fixed;
+  top: 0.8rem;
+  left: 0.8rem;
+  z-index: 1001;
+  background: var(--bg, #0c0c0e);
+  border: 1px solid var(--border, #2a2a30);
+  width: 2.2rem;
+  height: 2.2rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  color: var(--text, #e8e6e1);
+}
+.issue-nav .nav-close { display: none; }
+.issue-nav.open .nav-close { display: inline; }
+.issue-nav.open .nav-hamburger { display: none; }
+.issue-nav-inner {
+  height: 100%;
+  background: var(--bg, #0c0c0e);
+  border-right: 1px solid var(--border, #2a2a30);
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 1rem;
+  overflow-y: auto;
+}
+.issue-nav-brand {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 1.1rem;
+  color: var(--text, #e8e6e1);
+  text-decoration: none;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--text, #e8e6e1);
+}
+.issue-nav-brand span { color: var(--red, #e8453c); }
+.issue-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  flex: 1;
+}
+.issue-nav-item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  padding: 0.5rem 0.6rem;
+  text-decoration: none;
+  color: var(--text, #e8e6e1);
+  border-radius: 4px;
+  transition: background 0.15s;
+}
+.issue-nav-item:hover { background: var(--surface, #1e1e22); }
+.issue-nav-item.active {
+  background: var(--text, #e8e6e1);
+  color: var(--bg, #0c0c0e);
+}
+.issue-nav-item.active .issue-nav-num { color: var(--red, #e8453c); }
+.issue-nav-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--red, #e8453c);
+  white-space: nowrap;
+}
+.issue-nav-topic {
+  font-size: 0.78rem;
+  line-height: 1.3;
+}
+.issue-nav-footer {
+  padding-top: 1rem;
+  border-top: 1px solid var(--border, #2a2a30);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.issue-nav-footer a {
+  color: var(--red, #e8453c);
+  text-decoration: none;
+}
+
+/* Push content right to make room for sidebar */
+body { margin-left: 260px; }
+
+@media (max-width: 900px) {
+  .issue-nav { transform: translateX(-100%); }
+  .issue-nav.open { transform: translateX(0); }
+  .issue-nav-toggle { display: flex; }
+  body { margin-left: 0; }
+}
+
+</style>
+</head>
+<body>
+<nav class="issue-nav" id="issueNav">
+  <button class="issue-nav-toggle" onclick="document.getElementById('issueNav').classList.toggle('open')" aria-label="Toggle navigation">
+    <span class="nav-hamburger">&#9776;</span>
+    <span class="nav-close">&times;</span>
+  </button>
+  <div class="issue-nav-inner">
+    <a href="/" class="issue-nav-brand">The Switch <span>Stack</span></a>
+    <div class="issue-nav-list">
+      <a class="issue-nav-item" href="/issue-07/">
+        <span class="issue-nav-num">#07</span>
+        <span class="issue-nav-topic">Carbon, Methane & Nanoplastics</span>
+      </a>
+      <a class="issue-nav-item" href="/issue-06/">
+        <span class="issue-nav-num">#06</span>
+        <span class="issue-nav-topic">The Drug War Backwards</span>
+      </a>
+      <a class="issue-nav-item" href="/issue-05/">
+        <span class="issue-nav-num">#05</span>
+        <span class="issue-nav-topic">The Inconvenient Correlation</span>
+      </a>
+      <a class="issue-nav-item" href="/issue-04/">
+        <span class="issue-nav-num">#04</span>
+        <span class="issue-nav-topic">The Safest Energy</span>
+      </a>
+      <a class="issue-nav-item active" href="/issue-03/">
+        <span class="issue-nav-num">#03</span>
+        <span class="issue-nav-topic">The Safety Cage</span>
+      </a>
+      <a class="issue-nav-item" href="/issue-02/">
+        <span class="issue-nav-num">#02</span>
+        <span class="issue-nav-topic">Green Transition's Workforce</span>
+      </a>
+      <a class="issue-nav-item" href="/issue-01/">
+        <span class="issue-nav-num">#01</span>
+        <span class="issue-nav-topic">The Recycling Lie</span>
+      </a>
+    </div>
+    <div class="issue-nav-footer">
+      <a href="/feed.xml">RSS</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+
+<header class="header">
+  <div class="header-inner">
+    <div class="logo">Switch <span>Stack</span></div>
+    <div class="header-tag">Issue 03 &middot; Jan 2026</div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-label">Urban Transport &middot; The Data</div>
+  <h1>Urban Kill Rate: Per Vehicle, Per Km, Per Victim</h1>
+  <p>1.19 million road deaths per year. 53% are vulnerable road users. SUV market share: 48%. Helsinki: zero deaths in 12 months. The numbers that flip the safety narrative.</p>
+</section>
+
+<!-- BIG NUMBERS -->
+<div class="big-grid">
+  <div class="big-card">
+    <div class="num">1.19M</div>
+    <div class="unit">road deaths per year</div>
+    <div class="desc">Global total. Down from 1.35M (2018). Still: 3,200+ deaths per day. WHO 2023.</div>
+  </div>
+  <div class="big-card">
+    <div class="num">53%</div>
+    <div class="unit">vulnerable road users</div>
+    <div class="desc">Pedestrians 23%. Motorcyclists 21%. Cyclists 6%. Micro-mobility 3%. WHO 2023.</div>
+  </div>
+  <div class="big-card">
+    <div class="num">70%</div>
+    <div class="unit">of EU urban deaths</div>
+    <div class="desc">Pedestrians, cyclists, powered two-wheelers. ETSC/European Commission 2024.</div>
+  </div>
+  <div class="big-card">
+    <div class="num">48%</div>
+    <div class="unit">SUV market share EU</div>
+    <div class="desc">Up from 10% in 2010. +300 kg = +23% pedestrian death risk. ICCT 2024/25.</div>
+  </div>
+</div>
+
+<!-- SELF-RISK: MOTORCYCLE vs CAR -->
+<section class="scale-section">
+  <div class="scale-title">Risk to Self: Deaths Per Km by Mode (Rider/Occupant)</div>
+  <div class="scale-row">
+    <div class="scale-label">Motorcycle (EU)</div>
+    <div class="scale-bar-wrap"><div class="scale-bar" style="width:100%;background:var(--red);">20&ndash;28x car baseline</div></div>
+    <div class="scale-val">20&ndash;28x</div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">Cycling / Walking</div>
+    <div class="scale-bar-wrap"><div class="scale-bar" style="width:35%;background:var(--amber);">7&ndash;9x</div></div>
+    <div class="scale-val">7&ndash;9x</div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">Car (baseline)</div>
+    <div class="scale-bar-wrap"><div class="scale-bar" style="width:5%;background:var(--green);">1x</div></div>
+    <div class="scale-val">1x</div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">Bus</div>
+    <div class="scale-bar-wrap"><div class="scale-bar" style="width:1%;background:var(--blue);">&nbsp;</div></div>
+    <div class="scale-val">~0.1x</div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">Rail</div>
+    <div class="scale-bar-wrap"><div class="scale-bar" style="width:0.5%;background:var(--blue);">&nbsp;</div></div>
+    <div class="scale-val">~0.04x</div>
+  </div>
+</section>
+
+<!-- RISK TO OTHERS -->
+<section class="scale-section" style="border-top:1px solid var(--border);padding-top:3rem;">
+  <div class="scale-title">Risk to Others: Third-Party Deaths Per Billion Vehicle-Km</div>
+  <div class="scale-row">
+    <div class="scale-label">Buses</div>
+    <div class="scale-bar-wrap"><div class="scale-bar" style="width:100%;background:var(--red);">19.18</div></div>
+    <div class="scale-val">19.18</div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">Lorries</div>
+    <div class="scale-bar-wrap"><div class="scale-bar" style="width:89%;background:var(--red);">17.07</div></div>
+    <div class="scale-val">17.07</div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">Motorcycles</div>
+    <div class="scale-bar-wrap"><div class="scale-bar" style="width:40%;background:var(--amber);">7.63</div></div>
+    <div class="scale-val">7.63</div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">Cars / Taxis</div>
+    <div class="scale-bar-wrap"><div class="scale-bar" style="width:17%;background:var(--blue);">3.25</div></div>
+    <div class="scale-val">3.25</div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">Vans</div>
+    <div class="scale-bar-wrap"><div class="scale-bar" style="width:14%;background:var(--slate);">2.59</div></div>
+    <div class="scale-val">2.59</div>
+  </div>
+  <div class="scale-row">
+    <div class="scale-label">Cycles</div>
+    <div class="scale-bar-wrap"><div class="scale-bar" style="width:6%;background:var(--green);">1.09</div></div>
+    <div class="scale-val">1.09</div>
+  </div>
+  <p style="font-size:0.72rem;color:var(--text2);margin-top:1rem;">Source: PMC7848050, Journal of Transport &amp; Health (2021). English road fatality data 2005&ndash;2015.</p>
+</section>
+
+<!-- SPEED vs SURVIVAL -->
+<section class="versus" style="border-top:1px solid var(--border);">
+  <div class="versus-title">Speed vs Pedestrian Survival</div>
+  <div class="versus-sub">The exponential relationship between impact speed and death.</div>
+
+  <div class="vs-row">
+    <div class="vs-left"><div class="vs-num dim">30 km/h</div><div class="vs-label">Urban residential zone</div></div>
+    <div class="vs-badge">survival</div>
+    <div class="vs-right"><div class="vs-num" style="color:var(--green);">~90%</div><div class="vs-label">pedestrian survives</div></div>
+  </div>
+  <div class="vs-row">
+    <div class="vs-left"><div class="vs-num dim">50 km/h</div><div class="vs-label">Standard urban limit</div></div>
+    <div class="vs-badge">survival</div>
+    <div class="vs-right"><div class="vs-num" style="color:var(--amber);">~50%</div><div class="vs-label">coin flip</div></div>
+  </div>
+  <div class="vs-row">
+    <div class="vs-left"><div class="vs-num dim">80 km/h</div><div class="vs-label">Suburban arterial</div></div>
+    <div class="vs-badge">survival</div>
+    <div class="vs-right"><div class="vs-num red">~10%</div><div class="vs-label">almost certain death</div></div>
+  </div>
+</section>
+
+<!-- SUV WEIGHT TREND -->
+<section class="versus" style="border-top:1px solid var(--border);">
+  <div class="versus-title">The Weight Arms Race</div>
+  <div class="versus-sub">Cars are getting heavier. Pedestrians are paying the price.</div>
+
+  <div class="vs-row">
+    <div class="vs-left"><div class="vs-num dim">2000</div><div class="vs-label">Average car weight (EU)</div></div>
+    <div class="vs-badge">weight</div>
+    <div class="vs-right"><div class="vs-num dim">1,186 kg</div><div class="vs-label">baseline</div></div>
+  </div>
+  <div class="vs-row">
+    <div class="vs-left"><div class="vs-num dim">2021</div><div class="vs-label">Average car weight (EU)</div></div>
+    <div class="vs-badge">+30%</div>
+    <div class="vs-right"><div class="vs-num" style="color:var(--amber);">1,521 kg</div><div class="vs-label">heavier</div></div>
+  </div>
+  <div class="vs-row">
+    <div class="vs-left"><div class="vs-num dim">2023</div><div class="vs-label">New cars tested (avg)</div></div>
+    <div class="vs-badge">+64%</div>
+    <div class="vs-right"><div class="vs-num red">1,947 kg</div><div class="vs-label">approaching 2 tonnes</div></div>
+  </div>
+  <div class="vs-row">
+    <div class="vs-left"><div class="vs-num dim">SUV share</div><div class="vs-label">EU new registrations</div></div>
+    <div class="vs-badge">growth</div>
+    <div class="vs-right"><div class="vs-num red">10% &rarr; 48%</div><div class="vs-label">2010 to 2023</div></div>
+  </div>
+</section>
+
+<!-- VISION ZERO -->
+<section class="attrib-section">
+  <div class="scale-title">The Proof: What Works</div>
+  <div class="attrib-pair">
+    <div class="attrib-box">
+      <h3>Helsinki &middot; Zero Deaths</h3>
+      <div class="abar-label">Jul 2024 &ndash; Jul 2025: 0 road fatalities</div>
+      <div class="abar-legend">
+        <span><span class="adot" style="background:var(--green)"></span>50%+ streets at 30 km/h</span>
+        <span><span class="adot" style="background:var(--blue)"></span>Elevated crosswalks</span>
+        <span><span class="adot" style="background:var(--amber)"></span>Separated bike lanes</span>
+        <span><span class="adot" style="background:var(--slate)"></span>Reliable public transit</span>
+      </div>
+      <p style="font-size:0.78rem;color:var(--text2);line-height:1.5;margin-top:0.8rem;">Not with better cars. With slower speeds and better streets. The technology that saved lives was not airbags. It was urban design.</p>
+    </div>
+    <div class="attrib-box">
+      <h3>Brussels &middot; 30 km/h City</h3>
+      <div class="abar-label">Implemented January 1, 2021</div>
+      <div class="abar" style="margin-bottom:0.4rem;">
+        <div class="abar-seg" style="width:50%;background:var(--green);">2021: 50% fewer deaths</div>
+        <div class="abar-seg" style="width:30%;background:var(--amber);">Cycling +20%</div>
+        <div class="abar-seg" style="width:20%;background:var(--blue);">Noise down</div>
+      </div>
+      <div class="abar-legend">
+        <span><span class="adot" style="background:var(--green)"></span>Fatalities: 11 (2020) &rarr; 5 (2021)</span>
+        <span><span class="adot" style="background:var(--amber)"></span>Accidents at lowest since 2010</span>
+      </div>
+      <p style="font-size:0.68rem;color:var(--text2);margin-top:0.8rem;font-style:italic;">Note: 2024 saw an increase to 11 fatalities (mostly pedestrians). Progress is not guaranteed.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="closing">
+  <blockquote>&ldquo;An advanced city is not one where the poor own a car, but one where the rich use public transport.&rdquo;</blockquote>
+  <cite>&mdash; Enrique Pe&ntilde;alosa</cite>
+  <p class="closing-message">Motorcyclists die more per km. But cars kill more people in total. The five-star safety cage protects you&mdash;not them. The difference between 90% survival and 50% survival is a speed sign. Helsinki proved that zero is possible. The question is not whether your car is safe. The question is: safe for whom?</p>
+</section>
+
+<section class="sources">
+  <p>WHO Global Status Report on Road Safety 2023 &middot; European Commission Road Safety 2024 &middot; PMC7848050 (ORU fatality rates, 2021) &middot; IIHS SUV pedestrian study &middot; FIA Foundation &middot; ETSC &middot; ICCT European Vehicle Market Statistics 2024/25 &middot; AAA Foundation &middot; Helsinki City &middot; Eurocities &middot; NHTSA</p>
+</section>
+
+<footer class="footer">
+  <div class="logo" style="font-size:1rem;">Switch <span>Stack</span></div>
+  <a href="index.html">All Articles</a>
+</footer>
+
+</div>
+</body>
+</html>

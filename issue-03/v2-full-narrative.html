@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Switch Stack -- Issue 03: The Safety Cage</title>
+<meta name="description" content="Who Your Car Protects and Who It Doesn't. An investigation into the asymmetry of road safety.">
+<meta property="og:title" content="The Safety Cage: Who Your Car Protects and Who It Doesn't">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;600&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1714;
+  --paper: #f5f0e8;
+  --paper-dark: #ebe4d8;
+  --accent: #c43e2a;
+  --accent-dark: #9a2f1f;
+  --muted: #7a7168;
+  --rule: #c8bfb0;
+  --highlight: #ffeaa7;
+  --asphalt: #3d4f5f;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 17px; scroll-behavior: smooth; }
+body { background: var(--paper); color: var(--ink); font-family: 'Source Serif 4', Georgia, serif; line-height: 1.72; -webkit-font-smoothing: antialiased; }
+
+.masthead { border-bottom: 4px double var(--ink); padding: 1.2rem 0 0.8rem; text-align: center; position: relative; background: var(--paper); }
+.masthead::before { content: ''; display: block; height: 6px; background: var(--accent); margin-bottom: 1rem; }
+.masthead-meta { font-family: 'DM Sans', sans-serif; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+.masthead-title { font-family: 'Playfair Display', serif; font-weight: 900; font-size: clamp(2.4rem, 5vw, 4rem); letter-spacing: -0.02em; line-height: 1; margin: 0.4rem 0; }
+.masthead-title span { color: var(--accent); }
+.masthead-subtitle { font-family: 'DM Sans', sans-serif; font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.6rem; }
+
+.share-strip { background: var(--ink); padding: 0.8rem 2rem; text-align: center; }
+.share-strip a { font-family: 'DM Sans', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--paper); text-decoration: none; margin: 0 1rem; transition: color 0.2s; cursor: pointer; }
+.share-strip a:hover { color: var(--accent); }
+
+.hero { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem 2rem; }
+.hero-kicker { font-family: 'DM Sans', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8rem; }
+.hero h1 { font-family: 'Playfair Display', serif; font-weight: 900; font-size: clamp(2rem, 4.5vw, 3.4rem); line-height: 1.12; letter-spacing: -0.015em; max-width: 820px; margin-bottom: 1.4rem; }
+.hero-deck { font-size: 1.18rem; line-height: 1.65; color: #3a3630; max-width: 680px; border-left: 3px solid var(--accent); padding-left: 1.2rem; }
+
+.stats-bar { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+.stats-bar-inner { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0; border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); }
+.stat-cell { padding: 1.2rem 1.4rem; border-right: 1px solid var(--rule); }
+.stat-cell:last-child { border-right: none; }
+.stat-number { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 2.4rem; line-height: 1; color: var(--accent); }
+.stat-unit { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--muted); letter-spacing: 0.05em; display: block; margin-top: 0.15rem; }
+.stat-label { font-family: 'DM Sans', sans-serif; font-size: 0.76rem; color: var(--muted); margin-top: 0.5rem; line-height: 1.4; }
+
+.content { max-width: 760px; margin: 0 auto; padding: 2.5rem 2rem; }
+.content h2 { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 1.6rem; margin: 2.6rem 0 0.8rem; line-height: 1.2; padding-left: 1rem; border-left: 4px solid var(--accent); }
+.content h2:first-child { margin-top: 0; }
+.content p { margin-bottom: 1.1rem; }
+.content p.lede { font-size: 1.08rem; }
+
+.content blockquote { margin: 1.8rem 0; padding: 1.4rem 1.6rem; background: var(--ink); color: var(--paper); position: relative; font-style: italic; font-size: 0.95rem; line-height: 1.7; }
+.content blockquote::before { content: '\201C'; position: absolute; top: -0.2rem; left: 0.6rem; font-family: 'Playfair Display', serif; font-size: 4rem; color: var(--accent); line-height: 1; }
+.content blockquote cite { display: block; font-style: normal; font-family: 'DM Sans', sans-serif; font-size: 0.72rem; letter-spacing: 0.05em; color: var(--rule); margin-top: 0.8rem; }
+
+.impact-box { margin: 2rem 0; border: 2px solid var(--ink); padding: 1.4rem 1.6rem; background: var(--paper-dark); }
+.impact-box h3 { font-family: 'DM Sans', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8rem; }
+.impact-item { display: flex; align-items: baseline; gap: 0.8rem; margin-bottom: 0.7rem; font-size: 0.92rem; }
+.impact-item strong { font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 0.82rem; color: var(--accent); white-space: nowrap; }
+
+.dropcap::first-letter { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 3.8rem; float: left; line-height: 0.78; margin: 0.08em 0.12em 0 0; color: var(--accent); }
+.sep { text-align: center; margin: 2rem 0; color: var(--rule); font-size: 1.2rem; letter-spacing: 0.6em; }
+
+.closing-quote { border-top: 2px solid var(--ink); margin-top: 2rem; padding-top: 1.6rem; text-align: center; }
+.closing-quote p { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.15rem; line-height: 1.6; max-width: 500px; margin: 0 auto 0.6rem; }
+.closing-quote cite { font-family: 'DM Sans', sans-serif; font-style: normal; font-size: 0.72rem; letter-spacing: 0.1em; color: var(--muted); }
+
+.note-sm { font-family: 'DM Sans', sans-serif; font-size: 0.68rem; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 0.6rem; margin-top: 0.4rem; line-height: 1.45; }
+
+.footer { max-width: 1100px; margin: 0 auto; padding: 2rem; border-top: 4px double var(--ink); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+.footer-brand { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 1.1rem; }
+.footer-brand span { color: var(--accent); }
+.footer-links { font-family: 'DM Sans', sans-serif; font-size: 0.72rem; color: var(--muted); letter-spacing: 0.1em; }
+.footer-links a { color: var(--accent); text-decoration: none; }
+
+@media print { body { font-size: 10pt; } .share-strip { display: none; } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.hero, .stats-bar-inner, .content { animation: fadeUp 0.6s ease-out both; }
+.stats-bar-inner { animation-delay: 0.15s; }
+.content { animation-delay: 0.3s; }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-meta"><span>Issue 03 &middot; January 15, 2026</span><span>Biweekly</span></div>
+  <div class="masthead-title">The Switch <span>Stack</span></div>
+  <div class="masthead-subtitle">Where the numbers flip the narrative</div>
+</header>
+
+<div class="share-strip">
+  <a href="https://twitter.com/intent/tweet?text=The%20Safety%20Cage%3A%20Who%20Your%20Car%20Protects%20and%20Who%20It%20Doesn%27t&url=" target="_blank" rel="noopener">Share on X</a>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url=" target="_blank" rel="noopener">Share on LinkedIn</a>
+  <a onclick="navigator.clipboard.writeText(window.location.href);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy Link',2000)">Copy Link</a>
+</div>
+
+<section class="hero">
+  <div class="hero-kicker">Urban Transport &middot; The Safety Myth</div>
+  <h1>The Safety Cage: Who Your Car Protects and Who It Doesn&rsquo;t</h1>
+  <p class="hero-deck">You chose your car because it was safe. Five stars. The crumple zones, the airbags, the lane-departure warnings. But have you ever wondered what the rating actually measures? It measures how well the car protects you. Not how well it protects the person you hit.</p>
+</section>
+
+<section class="stats-bar">
+  <div class="stats-bar-inner">
+    <div class="stat-cell">
+      <div class="stat-number">1.19M</div>
+      <span class="stat-unit">deaths per year</span>
+      <div class="stat-label">Global road fatalities (WHO, 2021)</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-number">70%</div>
+      <span class="stat-unit">of EU urban deaths</span>
+      <div class="stat-label">Are pedestrians, cyclists, PTW users</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-number">90%</div>
+      <span class="stat-unit">survival at 30 km/h</span>
+      <div class="stat-label">Pedestrian hit by car (vs &lt;50% at 50 km/h)</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-number">0</div>
+      <span class="stat-unit">deaths in 12 months</span>
+      <div class="stat-label">Helsinki, Jul 2024&ndash;Jul 2025</div>
+    </div>
+  </div>
+</section>
+
+<article class="content">
+
+  <h2>The Five-Star Question</h2>
+
+  <p class="lede dropcap">You are driving your children to school. The car is a recent model, an SUV&mdash;the kind that scored five stars in crash testing. You feel secure. The seatbelts are on. The airbags are ready. The automatic emergency braking system scans the road ahead. You are wrapped in two tonnes of engineered protection. But as you pass through the 50&nbsp;km/h zone near the school gates, consider this: if you hit a child at that speed, there is roughly a 40% chance they die. At 30&nbsp;km/h, the survival rate is 90%. The five-star rating on your windshield was never designed to measure that difference.</p>
+
+  <p>Euro NCAP, the European car safety rating system, has tested for pedestrian protection since 1997. This is true. But the overall star rating&mdash;the number that appears in advertisements, on dealer stickers, in purchase decisions&mdash;combines occupant protection, pedestrian protection, child safety, and safety assist into a single score. A vehicle with exceptional occupant protection and adequate but unremarkable pedestrian scores can still achieve five stars. The consumer sees the star. The sub-score disappears.</p>
+
+  <div class="sep">&middot; &middot; &middot;</div>
+
+  <h2>What the Global Numbers Show</h2>
+
+  <p>The World Health Organization&rsquo;s latest data reports 1.19 million road traffic deaths per year globally. More than half&mdash;53%&mdash;are vulnerable road users: pedestrians (23%), riders of powered two- and three-wheelers (21%), cyclists (6%), and users of micro-mobility devices (3%). Eighty percent of the world&rsquo;s roads fail pedestrian safety standards. Just 0.2% have cycle lanes.</p>
+
+  <p>In the European Union, approximately 19,800 people died on roads in 2024. Car occupants represented 44% of all fatalities. But in urban areas, the breakdown is dramatically different: vulnerable road users account for nearly 70% of deaths. The people dying in cities are overwhelmingly people outside cars.</p>
+
+  <blockquote>
+    What&rsquo;s happened in the last 50 years is that public spaces have been overrun by the motorcar. We have what I call the car invasion, and the city as a meeting place and marketplace has been squeezed out of many places.
+    <cite>&mdash; Jan Gehl, Danish architect and urban designer</cite>
+  </blockquote>
+
+  <div class="sep">&middot; &middot; &middot;</div>
+
+  <h2>The Motorcycle Truth&mdash;and the Motorcycle Lie</h2>
+
+  <p>We tell motorcyclists they are reckless. And the data supports part of this: motorcycle riders are 20 to 28 times more likely to die per kilometer traveled than car occupants. In the United States, the rate is 31.39 fatalities per 100 million vehicle miles for motorcycles versus 1.13 for cars. This is not a myth. A motorcycle offers zero crash protection.</p>
+
+  <p>But here is the data point that rarely enters the conversation. Researchers analyzing English road fatality data from 2005 to 2015 calculated the other-road-user (ORU) fatality rate per billion vehicle-kilometers&mdash;that is, how many people <em>outside</em> the vehicle each mode kills per distance traveled.</p>
+
+  <div class="impact-box">
+    <h3>Third-Party Deaths per Billion Vehicle-Km</h3>
+    <div class="impact-item"><strong>19.18</strong> Buses</div>
+    <div class="impact-item"><strong>17.07</strong> Lorries</div>
+    <div class="impact-item"><strong>7.63</strong> Motorcycles</div>
+    <div class="impact-item"><strong>3.25</strong> Cars / Taxis</div>
+    <div class="impact-item"><strong>2.59</strong> Vans</div>
+    <div class="impact-item"><strong>1.09</strong> Cycles</div>
+  </div>
+
+  <p>Per kilometer, motorcycles impose 2.3 times the third-party risk of cars. This is an inconvenient finding for motorcycle advocates. But it does not change the fundamental asymmetry: cars travel roughly 30 times more total kilometers than motorcycles. In absolute numbers, the car fleet is the dominant killer of pedestrians and cyclists. Not because each car is more dangerous per trip, but because the sheer volume of cars on the road overwhelms every other mode.</p>
+
+  <p>The motorcycle rider&rsquo;s risk is primarily personal: they bear the consequences of their own choice. The car fleet&rsquo;s risk is primarily externalized: pedestrians, cyclists, and children bear the consequences of someone else&rsquo;s vehicle.</p>
+
+  <div class="sep">&middot; &middot; &middot;</div>
+
+  <h2>The Weight Arms Race</h2>
+
+  <p>The average car sold in Europe weighed 1,186&nbsp;kg in 2000. By 2021, it had climbed to 1,521&nbsp;kg. New cars tested in 2023 averaged 1,947&nbsp;kg. SUVs now account for 48% of new registrations in the EU, up from 10% in 2010.</p>
+
+  <p>Every 300 kilograms added to a vehicle increases the probability of killing a pedestrian by 23%. Every 10 centimeters of additional bonnet height raises the death risk for vulnerable road users by 27%. The average bonnet height has risen from 76.9&nbsp;cm in 2010 to 83.8&nbsp;cm in 2024&mdash;climbing half a centimeter per year.</p>
+
+  <p>For a pedestrian hit by a pick-up truck, the risk of fatal injury increases by nearly 200% compared to a smaller car. The IIHS confirmed in 2024 that late-model SUVs remain more lethal to pedestrians than cars, despite two decades of design changes.</p>
+
+  <p>This is a collective action problem. Each driver who buys a heavier vehicle for &ldquo;safety&rdquo; makes the road incrementally more dangerous for everyone outside it. The rational individual choice&mdash;protect my family&mdash;produces an irrational collective outcome: a steadily more lethal vehicle fleet.</p>
+
+  <blockquote>
+    The essence of the conflict today, really, is cars versus people. We can have a city that is very friendly to cars, or a city that is very friendly to people.
+    <cite>&mdash; Enrique Pe&ntilde;alosa, former Mayor of Bogot&aacute;</cite>
+  </blockquote>
+
+  <div class="sep">&middot; &middot; &middot;</div>
+
+  <h2>The Speed Proof</h2>
+
+  <p>At 30&nbsp;km/h, a pedestrian struck by a car has approximately a 90% chance of survival. At 50&nbsp;km/h, the survival rate drops below 50%. The relationship between speed and fatality risk is not linear&mdash;it is exponential. The risk at 50&nbsp;km/h is more than five times higher than at 30&nbsp;km/h.</p>
+
+  <p>Helsinki implemented 30&nbsp;km/h limits on more than half its streets, combined with elevated crosswalks, separated cycling infrastructure, and reliable public transit. Between July 2024 and July 2025, the city recorded zero road fatalities. Brussels saw a 50% drop in fatalities in its first year of city-wide 30&nbsp;km/h limits. Paris expanded its 30&nbsp;km/h zone in 2021 and research shows a 40% reduction in severe and fatal crashes.</p>
+
+  <p>The technology that saves the most lives is not embedded in the car. It is embedded in the street.</p>
+
+  <div class="sep">&middot; &middot; &middot;</div>
+
+  <h2>The Devil&rsquo;s Advocate</h2>
+
+  <p>Cars have saved millions of lives. Seatbelts, airbags, crumple zones, electronic stability control&mdash;these technologies have driven EU road deaths from approximately 70,000 per year in 1990 to 19,800 in 2024. A parent transporting children in a modern car is objectively safer than on a motorcycle. The motorcycle community has its own blind spots: in the US, 41% of motorcyclists killed in single-vehicle crashes were alcohol-impaired, and 34% had no valid license.</p>
+
+  <p>All of this is true. And none of it addresses the structural asymmetry. Car safety improvements protect <em>occupants</em>. The externalized risk&mdash;the danger posed to people outside the car&mdash;has increased as vehicles grew heavier, taller, and faster. We celebrated the falling death toll inside cars while ignoring the rising death toll outside them. US pedestrian fatalities have risen 75% since 2009. The first federal vehicle design standard for pedestrian protection was proposed in 2024&mdash;27 years after Euro NCAP began testing for it.</p>
+
+  <div class="sep">&middot; &middot; &middot;</div>
+
+  <h2>Safe for Whom?</h2>
+
+  <p>The motorcycle rider you judge is risking their own life. Your car is risking everyone else&rsquo;s. The five-star rating on your windshield measures how well the cage protects you from the consequences of your own speed. It does not measure how well it protects the person you hit.</p>
+
+  <p>This is not a conspiracy. It is a measurement problem. And measurement problems shape markets, policy, and the physical design of cities. When we measure safety only from the perspective of the person creating the danger, we build cities that are optimized for the cage and lethal for the exposed.</p>
+
+  <p>Helsinki proved it does not have to be this way. Zero deaths. Not with better cars. With slower speeds, better streets, and a city designed for people who are not inside a two-tonne steel shell.</p>
+
+  <div class="closing-quote">
+    <p>&ldquo;As a fish needs to swim, a bird to fly, a deer to run, we need to walk, not in order to survive, but to be happy.&rdquo;</p>
+    <cite>&mdash; Enrique Pe&ntilde;alosa</cite>
+  </div>
+
+  <p class="note-sm">Data sources: WHO Global Status Report on Road Safety 2023. European Commission 2024 road safety data. PMC7848050 (ORU fatality rates, English data 2005&ndash;2015). IIHS SUV pedestrian study (2024). FIA Foundation vehicle size report. Helsinki City / EU Urban Mobility Observatory. AAA Foundation speed-fatality study. NHTSA motorcycle and pedestrian data. ICCT European Vehicle Market Statistics 2024/25.</p>
+
+</article>
+
+<footer class="footer">
+  <div class="footer-brand">The Switch <span>Stack</span></div>
+  <div class="footer-links">Issue 03 &middot; January 15, 2026 &middot; <a href="index.html">All Articles</a></div>
+</footer>
+
+</body>
+</html>

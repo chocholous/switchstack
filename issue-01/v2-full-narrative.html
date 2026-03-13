@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Switch Stack — The Recycling Lie</title>
+<meta name="description" content="How the Plastic Industry Sold You a Symbol. In 1988, the plastics industry introduced the recycling symbol — not because plastic was recyclable, but because it made you feel better about buying it.">
+<meta property="og:title" content="The Switch Stack — The Recycling Lie">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;600&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1714;
+  --paper: #f5f0e8;
+  --paper-dark: #ebe4d8;
+  --accent: #1a7a5c;
+  --accent-dark: #145e47;
+  --muted: #7a7168;
+  --rule: #c8bfb0;
+  --highlight: #ffeaa7;
+  --toxic: #c43e2a;
+  --plastic: #2563eb;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 17px; scroll-behavior: smooth; }
+body { background: var(--paper); color: var(--ink); font-family: 'Source Serif 4', Georgia, serif; line-height: 1.78; -webkit-font-smoothing: antialiased; }
+
+/* MASTHEAD */
+.masthead { border-bottom: 4px double var(--ink); padding: 1.2rem 0 0.8rem; text-align: center; position: relative; background: var(--paper); }
+.masthead::before { content: ''; display: block; height: 6px; background: var(--accent); margin-bottom: 1rem; }
+.masthead-meta { font-family: 'DM Sans', sans-serif; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+.masthead-title { font-family: 'Playfair Display', serif; font-weight: 900; font-size: clamp(2.4rem, 5vw, 4rem); letter-spacing: -0.02em; line-height: 1; margin: 0.4rem 0; }
+.masthead-title span { color: var(--accent); }
+.masthead-subtitle { font-family: 'DM Sans', sans-serif; font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.6rem; }
+
+/* SHARE */
+.share-strip { background: var(--ink); padding: 0.8rem 2rem; text-align: center; }
+.share-strip a { font-family: 'DM Sans', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--paper); text-decoration: none; margin: 0 1rem; transition: color 0.2s; cursor: pointer; }
+.share-strip a:hover { color: var(--accent); }
+
+/* HERO */
+.hero { max-width: 780px; margin: 0 auto; padding: 3rem 2rem 2rem; }
+.hero-kicker { font-family: 'DM Sans', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8rem; }
+.hero h1 { font-family: 'Playfair Display', serif; font-weight: 900; font-size: clamp(2rem, 4.5vw, 3.2rem); line-height: 1.12; letter-spacing: -0.015em; margin-bottom: 1.4rem; }
+.hero-deck { font-size: 1.15rem; line-height: 1.7; color: #3a3630; border-left: 3px solid var(--accent); padding-left: 1.2rem; }
+
+/* CHAPTER NAV */
+.chapter-nav { max-width: 780px; margin: 0 auto; padding: 0 2rem 2rem; }
+.chapter-nav-inner { border-top: 2px solid var(--ink); border-bottom: 1px solid var(--rule); padding: 1rem 0; display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; }
+.chapter-nav a { font-family: 'DM Sans', sans-serif; font-size: 0.7rem; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+.chapter-nav a:hover { color: var(--accent); }
+.chapter-nav a span { font-family: 'JetBrains Mono', monospace; color: var(--accent); margin-right: 0.3rem; }
+
+/* ARTICLE */
+.article { max-width: 780px; margin: 0 auto; padding: 0 2rem 3rem; }
+.article h2 { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 1.8rem; margin: 3.5rem 0 1rem; line-height: 1.15; }
+.article h2:first-child { margin-top: 0; }
+.article p { margin-bottom: 1.2rem; }
+.article p.lede { font-size: 1.1rem; font-weight: 400; }
+.dropcap::first-letter { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 4rem; float: left; line-height: 0.78; margin: 0.08em 0.12em 0 0; color: var(--accent); }
+
+/* PULL QUOTE */
+.pull-quote { margin: 2.5rem -2rem; padding: 2rem 2.5rem; background: var(--ink); color: var(--paper); position: relative; }
+.pull-quote::before { content: '\201C'; position: absolute; top: -0.4rem; left: 1rem; font-family: 'Playfair Display', serif; font-size: 5rem; color: var(--accent); line-height: 1; opacity: 0.6; }
+.pull-quote p { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.2rem; line-height: 1.55; margin-bottom: 0.8rem; }
+.pull-quote cite { font-family: 'DM Sans', sans-serif; font-style: normal; font-size: 0.72rem; letter-spacing: 0.08em; color: var(--rule); display: block; }
+
+/* DATA CALLOUT */
+.data-callout { margin: 2rem 0; border: 2px solid var(--ink); padding: 1.5rem; background: var(--paper-dark); }
+.data-callout h3 { font-family: 'DM Sans', sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+.data-row { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 0.6rem; font-size: 0.92rem; }
+.data-row strong { font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 0.82rem; color: var(--toxic); white-space: nowrap; min-width: 80px; }
+
+/* FOOTNOTES */
+.footnote-ref { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--accent); vertical-align: super; text-decoration: none; }
+.footnotes { max-width: 780px; margin: 0 auto; padding: 0 2rem 2rem; border-top: 1px solid var(--rule); }
+.footnotes h3 { font-family: 'DM Sans', sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin: 1.5rem 0 1rem; }
+.footnotes ol { font-size: 0.78rem; color: var(--muted); line-height: 1.6; padding-left: 1.5rem; }
+.footnotes li { margin-bottom: 0.5rem; }
+
+/* SEPARATOR */
+.sep { text-align: center; margin: 2.5rem 0; color: var(--rule); font-size: 1.2rem; letter-spacing: 0.6em; }
+
+/* CLOSING */
+.closing-section { max-width: 780px; margin: 0 auto; padding: 0 2rem 3rem; text-align: center; border-top: 2px solid var(--ink); padding-top: 2rem; }
+.closing-section blockquote { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.25rem; line-height: 1.55; max-width: 540px; margin: 0 auto 0.6rem; }
+.closing-section cite { font-family: 'DM Sans', sans-serif; font-style: normal; font-size: 0.72rem; letter-spacing: 0.1em; color: var(--muted); }
+
+/* FOOTER */
+.footer { max-width: 780px; margin: 0 auto; padding: 2rem; border-top: 4px double var(--ink); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+.footer-brand { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 1.1rem; }
+.footer-brand span { color: var(--accent); }
+.footer-links { font-family: 'DM Sans', sans-serif; font-size: 0.72rem; color: var(--muted); letter-spacing: 0.1em; }
+.footer-links a { color: var(--accent); text-decoration: none; }
+
+@media print { body { font-size: 10pt; } .share-strip, .chapter-nav { display: none; } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.hero, .article { animation: fadeUp 0.6s ease-out both; }
+.article { animation-delay: 0.2s; }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-meta"><span>Issue 01 &middot; December 15, 2025</span><span>Biweekly</span></div>
+  <div class="masthead-title">The Switch <span>Stack</span></div>
+  <div class="masthead-subtitle">Where the numbers flip the narrative</div>
+</header>
+
+<div class="share-strip">
+  <a href="https://twitter.com/intent/tweet?text=The%20Recycling%20Lie%3A%20How%20the%20Plastic%20Industry%20Sold%20You%20a%20Symbol&url=" target="_blank" rel="noopener">Share on X</a>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url=" target="_blank" rel="noopener">Share on LinkedIn</a>
+  <a onclick="navigator.clipboard.writeText(window.location.href);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy Link',2000)">Copy Link</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-kicker">The Investigation &middot; 12 min read</div>
+  <h1>The Recycling Lie: How the Plastic Industry Sold You a Symbol</h1>
+  <p class="hero-deck">In 1988, the plastics industry introduced the recycling symbol&mdash;not because plastic was recyclable, but because it made you feel better about buying it. Thirty-seven years later, microplastics are found in every human organ tested. The concentrations are doubling every 10 to 15 years. And 91% of your carefully sorted waste was never recycled at all.</p>
+</section>
+
+<!-- CHAPTER NAV -->
+<nav class="chapter-nav">
+  <div class="chapter-nav-inner">
+    <a href="#ch1"><span>I</span> The Symbol</a>
+    <a href="#ch2"><span>II</span> The Campaign</a>
+    <a href="#ch3"><span>III</span> The Documents</a>
+    <a href="#ch4"><span>IV</span> The Body</a>
+    <a href="#ch5"><span>V</span> The Circle</a>
+    <a href="#ch6"><span>VI</span> The Reckoning</a>
+  </div>
+</nav>
+
+<!-- ARTICLE -->
+<article class="article">
+
+  <h2 id="ch1">I. The Symbol</h2>
+
+  <p class="lede dropcap">In 1988, the Society of the Plastics Industry faced a problem. Public polls showed that an increasing percentage of Americans believed plastic was harmful to the environment. Municipalities were beginning to consider bans. The industry needed a way to make plastic feel safe.</p>
+
+  <p>Their solution was elegant. They introduced the Voluntary Plastic Container Coding System: a number, from 1 to 7, printed inside a triangle of three chasing arrows. The code was, technically, a resin identification system&mdash;a way for sorting facilities to distinguish between polymer types. But the arrows were not an accident. They were designed to look identical to the universal recycling symbol, the Mobius loop, which had been in use since the early 1970s.</p>
+
+  <p>The distinction mattered. The Mobius loop means a material is recyclable or contains recycled content. The resin identification code means only that the material is made of a specific type of plastic. The number 5, for instance, means polypropylene. It does not mean recyclable. Most polypropylene is not recycled. But the arrows on the bottom of the container tell a different story&mdash;one the industry was counting on consumers to believe.</p>
+
+  <p>The EPA has since acknowledged the deception: the codes &ldquo;do not accurately represent recyclability as many plastics (especially 3&ndash;7) do not have end markets and are not financially viable to recycle.&rdquo;<a class="footnote-ref" href="#fn1">1</a></p>
+
+  <p>In 2013, the ASTM International quietly updated the standard, replacing the chasing arrows with a solid equilateral triangle. Most manufacturers ignored the change. In 2021, California became the first state to explicitly prohibit the use of chasing arrows on products that are not actually recyclable. The rest of the country still uses the 1988 symbol.</p>
+
+  <div class="sep">&middot; &middot; &middot;</div>
+
+  <h2 id="ch2">II. The Campaign</h2>
+
+  <p>The recycling symbol did not emerge in a vacuum. It was the culmination of a decades-long campaign to transfer environmental responsibility from producers to consumers.</p>
+
+  <p>In 1953, a group of major corporations&mdash;Coca-Cola, Anheuser-Busch, Philip Morris, and others&mdash;founded an organization called Keep America Beautiful. Its public mission was to reduce litter. Its strategic function was to redirect the conversation about waste. Before Keep America Beautiful, the dominant policy solution to packaging waste was producer responsibility: deposit systems, refillable bottles, packaging standards. After Keep America Beautiful, the dominant frame became personal responsibility: don&rsquo;t litter, sort your waste, do your part.</p>
+
+  <p>The organization introduced a word&mdash;&ldquo;litterbug&rdquo;&mdash;and a worldview: the problem was not the companies making disposable containers, but the individuals disposing of them. In 1971, the &ldquo;Crying Indian&rdquo; advertisement sealed this narrative into American culture. A Native American man paddles a canoe through polluted waters, walks along a litter-strewn highway, and sheds a single tear. The message was unmistakable: <em>this is your fault.</em></p>
+
+  <p>Behind the scenes, the same companies were spending millions to kill the policy solutions that would have actually worked. William Coors, president of Coors Brewing Company, testified that the industry spent &ldquo;a minimum of $20 million a year fighting container deposit legislation&rdquo;&mdash;the equivalent of roughly $143 million today.<a class="footnote-ref" href="#fn2">2</a> Between 1991 and 2011, the beverage industry outspent proponents of bottle-deposit legislation by as much as 30 to 1.</p>
+
+  <div class="pull-quote">
+    <p>If the public thinks recycling is working, then they&rsquo;re not going to be as concerned about the environment.</p>
+    <cite>&mdash; Former plastic industry executive, to NPR/PBS Frontline (2020)</cite>
+  </div>
+
+  <div class="sep">&middot; &middot; &middot;</div>
+
+  <h2 id="ch3">III. The Documents</h2>
+
+  <p>In 2020, NPR reporter Laura Sullivan and PBS Frontline spent months examining internal industry documents and interviewing former executives for an investigation called &ldquo;Plastic Wars.&rdquo; What they found was not ambiguous.</p>
+
+  <p>As early as 1974, an industry insider had acknowledged in a speech that there was &ldquo;serious doubt that [recycling plastic] can ever be made viable on an economic basis.&rdquo; The economics were straightforward: virgin plastic, made from cheap petroleum, was almost always less expensive than recycled plastic. The sorting, cleaning, and reprocessing of mixed plastic waste was labor-intensive, contamination-prone, and produced an inferior product. The industry knew this. They promoted recycling anyway.</p>
+
+  <p>Larry Thomas, former president of the Society of the Plastics Industry, told NPR directly: &ldquo;The industry sold the public on an idea it knew wouldn&rsquo;t work.&rdquo; Lewis Freeman, former SPI vice president, confirmed the strategy: recycling messaging was designed to sell more plastic, not to recycle it. &ldquo;Selling recycling sold plastic.&rdquo;<a class="footnote-ref" href="#fn3">3</a></p>
+
+  <p>The numbers bear this out. Over 9.2 billion tonnes of plastic have been produced since 1950. Nine percent has been recycled. Twelve percent has been incinerated. Seventy-nine percent&mdash;roughly 7.3 billion tonnes&mdash;has accumulated in landfills or leaked into the natural environment. These figures, from the OECD and confirmed in 2024&ndash;2025 follow-up data, have not meaningfully changed in the decades since tracking began.</p>
+
+  <div class="data-callout">
+    <h3>The Fate of All Plastic Ever Produced</h3>
+    <div class="data-row"><strong>9.2B tonnes</strong> Total plastic produced since 1950</div>
+    <div class="data-row"><strong>9%</strong> Recycled</div>
+    <div class="data-row"><strong>12%</strong> Incinerated</div>
+    <div class="data-row"><strong>79%</strong> Accumulated in landfills or the natural environment</div>
+    <div class="data-row"><strong>15%</strong> Collected for recycling&mdash;but 40% of that is lost as residues</div>
+    <div class="data-row"><strong>1,231 Mt/yr</strong> Projected global plastic consumption by 2060 (vs. 460 Mt in 2019)</div>
+  </div>
+
+  <p>In 2017, China&rsquo;s &ldquo;National Sword&rdquo; policy banned the import of most plastic waste, exposing what many in the industry already knew: much of what Western countries called &ldquo;recycling&rdquo; was simply shipping containers of mixed plastic to developing nations, where they were often dumped or burned. The global system of plastic recycling was, in significant part, a system of plastic displacement.</p>
+
+  <div class="sep">&middot; &middot; &middot;</div>
+
+  <h2 id="ch4">IV. The Body</h2>
+
+  <p>While the industry spent five decades telling consumers to sort their waste, the waste was finding new places to accumulate. Not just landfills. Not just oceans. Inside the human body.</p>
+
+  <p>In 2022, researchers at Vrije Universiteit Amsterdam published a study in <em>Environment International</em> that detected microplastics in human blood for the first time. Polyethylene, PET, and PVC were identified in 77% of donor samples. The plastic was circulating through the bloodstream&mdash;a finding that had been theorized but never confirmed in living humans.<a class="footnote-ref" href="#fn4">4</a></p>
+
+  <p>In February 2024, a team at the University of New Mexico published results in <em>Nature Medicine</em> that were even more alarming. They found microplastics in every human brain sample they examined&mdash;at concentrations 7 to 30 times higher than in the kidneys or liver. Brain samples from early 2024 contained roughly 50% more microplastics than samples from 2016. The rate of accumulation, the researchers noted, doubles approximately every 10 to 15 years. Patients with documented dementia had 3 to 5 times more plastic in their brains.<a class="footnote-ref" href="#fn5">5</a></p>
+
+  <p>That same month, microplastics were found in every human placenta tested&mdash;all 62 samples. Concentrations ranged from 6.5 to 790 micrograms per gram of tissue. Polyethylene accounted for 54% of the plastic found. A 2025 follow-up study found higher concentrations in the placentae of infants born prematurely, suggesting a potential link between microplastic accumulation and preterm birth.</p>
+
+  <p>In March 2024, the <em>New England Journal of Medicine</em> published what may be the most consequential finding to date: patients with microplastics detected in their carotid artery plaque had a 4.5 times higher risk of heart attack, stroke, or death over a 34-month follow-up. This was the first study to link microplastics to measurable cardiovascular outcomes in humans.<a class="footnote-ref" href="#fn6">6</a></p>
+
+  <p>By mid-2024, microplastics had been found in every human testicle sample examined (23 of 23), every semen sample tested (40 of 40), and in lungs, liver, kidneys, bone marrow, and breast milk. The WWF estimates that a person may consume up to 5 grams of microplastics per week&mdash;the weight of a credit card&mdash;through water, food, salt, and air, though this figure is an upper-bound estimate and the actual amount is debated among researchers.<a class="footnote-ref" href="#fn7">7</a></p>
+
+  <div class="pull-quote">
+    <p>We have subjected enormous numbers of people to contact with these poisons, without their consent and often without their knowledge.</p>
+    <cite>&mdash; Rachel Carson, Silent Spring (1962)</cite>
+  </div>
+
+  <div class="sep">&middot; &middot; &middot;</div>
+
+  <h2 id="ch5">V. The Circle</h2>
+
+  <p>There is one more irony, and it is perhaps the most bitter.</p>
+
+  <p>A 2024 study published in <em>Environmental Science &amp; Technology</em> found 68 PFAS compounds&mdash;per- and polyfluoroalkyl substances, known as &ldquo;forever chemicals&rdquo;&mdash;in food packaging across 17 countries. Sixty-one of those compounds are specifically banned from use in food packaging. Over half of the 119 samples tested contained PFAS.</p>
+
+  <p>When the researchers tested recycled paper packaging, 4 out of 12 samples showed unintentional PFAS contamination. The contamination came from the recycling process itself. The circular economy, it turns out, is also circulating toxins. The very act of recycling food packaging can introduce forever chemicals into the new product&mdash;chemicals that, by definition, do not break down.</p>
+
+  <p>In February 2024, the FDA announced that grease-proofing materials containing PFAS would no longer be used in new food packaging sold to US consumers. This was a voluntary industry phase-out, not a ban. Existing stock remains in circulation.</p>
+
+  <div class="sep">&middot; &middot; &middot;</div>
+
+  <h2 id="ch6">VI. The Reckoning</h2>
+
+  <p>In fairness: not all plastic is the same. PET bottles (#1) and HDPE containers (#2) have genuine recycling markets, especially in countries with deposit-return systems. Some European nations achieve PET recycling rates above 90%. Chemical recycling technologies&mdash;pyrolysis and depolymerization&mdash;are being developed, though they currently process approximately 1% of plastic waste and remain economically unproven at scale.</p>
+
+  <p>The problem was never that recycling is impossible. The problem is that the industry promoted recycling as <em>the</em> solution while knowing it could never be one. Recycling was the alibi. It allowed unlimited production of single-use plastic&mdash;which accounts for roughly 40% of all plastic made&mdash;while placing the burden of disposal on municipalities and consumers. It preempted regulation. It sold product. It worked, just not in the way you were told.</p>
+
+  <p>In 2024, California filed a lawsuit against ExxonMobil, alleging the company engaged in a decades-long campaign of deception about the recyclability of its plastic products. The state&rsquo;s attorney general alleged that ExxonMobil knew its products were not meaningfully recyclable but promoted recycling to increase sales. The case is ongoing.</p>
+
+  <p>Meanwhile, the microplastics in your brain are not going anywhere. There is no known method to remove them. The concentrations will continue to rise. Global plastic production is projected by the OECD to nearly triple by 2060. The recycling rate is projected to reach, at best, 17%.</p>
+
+  <p>The symbol on the bottom of the bottle will still be there. The arrows will still chase each other. And nothing, at the end of the chase, will catch anything at all.</p>
+
+</article>
+
+<!-- FOOTNOTES -->
+<section class="footnotes">
+  <h3>Notes &amp; Sources</h3>
+  <ol>
+    <li id="fn1">EPA statement on Resin Identification Codes; ASTM D7611/D7611M-21; California SB 343 (2021).</li>
+    <li id="fn2">William Coors testimony, Congressional record. Inflation adjustment to 2024 dollars. Outspending ratio: documented lobbying records, 1991&ndash;2011.</li>
+    <li id="fn3">NPR / PBS Frontline, &ldquo;Plastic Wars,&rdquo; September 2020. Interviews with Larry Thomas (former SPI president) and Lewis Freeman (former SPI vice president).</li>
+    <li id="fn4">Leslie et al., &ldquo;Discovery and quantification of plastic particle pollution in human blood,&rdquo; <em>Environment International</em>, 2022. Vrije Universiteit Amsterdam.</li>
+    <li id="fn5">Campen et al., &ldquo;Bioaccumulation of microplastics in decedent human brains,&rdquo; <em>Nature Medicine</em>, 2024. University of New Mexico.</li>
+    <li id="fn6">Marfella et al., &ldquo;Microplastics and Nanoplastics in Atheromas and Cardiovascular Events,&rdquo; <em>New England Journal of Medicine</em>, March 7, 2024. DOI: 10.1056/NEJMoa2309822.</li>
+    <li id="fn7">Senathirajah et al. / WWF / University of Newcastle, &ldquo;No Plastic in Nature,&rdquo; 2019. The 5g/week figure is described as an upper estimate. Conservative estimates range from 0.1 to 5 grams per week depending on geography, diet, and water source.</li>
+  </ol>
+</section>
+
+<!-- CLOSING -->
+<section class="closing-section">
+  <blockquote>&ldquo;The &lsquo;control of nature&rsquo; is a phrase conceived in arrogance, born of the Neanderthal age of biology and philosophy, when it was supposed that nature exists for the convenience of man.&rdquo;</blockquote>
+  <cite>&mdash; Rachel Carson, Silent Spring (1962)</cite>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-brand">The Switch <span>Stack</span></div>
+  <div class="footer-links">Issue 01 &middot; December 15, 2025 &middot; <a href="index.html">All Articles</a></div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://switchstack.cz/issue-03/the-cage-and-the-exposed/">
+<meta property="og:title" content="- Issue 03: The Cage and the Exposed — The Switch Stack">
+<meta property="og:description" content="Every safety feature in your car was designed to protect you from the consequences of your own speed. None were designed to protect the person you hit.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://switchstack.cz/issue-03/the-cage-and-the-exposed/">
+<meta property="og:site_name" content="The Switch Stack">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="- Issue 03: The Cage and the Exposed — The Switch Stack">
+<meta name="twitter:description" content="Every safety feature in your car was designed to protect you from the consequences of your own speed. None were designed to protect the person you hit.">
+<link rel="alternate" type="application/rss+xml" title="The Switch Stack" href="/feed.xml">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NewsArticle",
+  "headline": "- Issue 03: The Cage and the Exposed",
+  "description": "Every safety feature in your car was designed to protect you from the consequences of your own speed. None were designed to protect the person you hit.",
+  "datePublished": "2026-03-12",
+  "author": { "@type": "Organization", "name": "The Switch Stack" },
+  "publisher": { "@type": "Organization", "name": "The Switch Stack", "url": "https://switchstack.cz" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://switchstack.cz/issue-03/the-cage-and-the-exposed/" }
+}
+</script>
+<title>Switch Stack -- Issue 03: The Cage and the Exposed</title>
+<meta name="description" content="Every safety feature in your car was designed to protect you from the consequences of your own speed. None were designed to protect the person you hit.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,300;0,7..72,400;0,7..72,700;0,7..72,900;1,7..72,300;1,7..72,400&family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f8f4ee;
+  --ink: #111;
+  --gray: #666;
+  --light: #ccc;
+  --red: #d62828;
+  --red-bg: #d6282812;
+  --blue: #003049;
+  --cream: #f8f4ee;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 17px; }
+body { background: var(--ink); color: var(--cream); font-family: 'Literata', Georgia, serif; line-height: 1.75; }
+
+.cover {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 3rem;
+  position: relative;
+  overflow: hidden;
+  background: var(--ink);
+}
+.cover::before {
+  content: 'SAFE';
+  position: absolute;
+  top: -5%;
+  right: -3%;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(15rem, 30vw, 40rem);
+  color: #ffffff06;
+  line-height: 0.85;
+  pointer-events: none;
+}
+.cover-tag { font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--red); margin-bottom: 1rem; }
+.cover h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2.6rem, 6vw, 5.5rem); line-height: 0.95; max-width: 900px; margin-bottom: 1.5rem; letter-spacing: -0.03em; }
+.cover h1 em { font-style: normal; color: var(--red); }
+.cover-deck { font-size: 1.15rem; font-weight: 300; max-width: 560px; color: #aaa; line-height: 1.7; margin-bottom: 2rem; }
+.cover-meta { font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; color: #555; text-transform: uppercase; display: flex; gap: 2rem; }
+.scroll-hint { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); font-family: 'Space Mono', monospace; font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: #444; animation: pulse 2s ease-in-out infinite; }
+@keyframes pulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 0.8; } }
+
+.ribbon { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 3px solid var(--red); border-bottom: 1px solid #222; }
+@media (max-width: 700px) { .ribbon { grid-template-columns: repeat(2, 1fr); } }
+.ribbon-cell { padding: 1.5rem 2rem; border-right: 1px solid #222; }
+.ribbon-cell:last-child { border-right: none; }
+.ribbon-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.2rem; color: var(--red); line-height: 1; }
+.ribbon-unit { font-family: 'Space Mono', monospace; font-size: 0.58rem; color: #666; letter-spacing: 0.08em; margin-top: 0.2rem; }
+.ribbon-desc { font-size: 0.72rem; color: #888; margin-top: 0.4rem; }
+
+.content { background: var(--bg); color: var(--ink); padding: 4rem 0; }
+.content-inner { max-width: 1200px; margin: 0 auto; padding: 0 3rem; display: grid; grid-template-columns: 2fr 1fr; gap: 4rem; }
+@media (max-width: 840px) { .content-inner { grid-template-columns: 1fr; padding: 0 2rem; } }
+
+.prose h2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.6rem; margin: 3rem 0 0.8rem; line-height: 1.15; letter-spacing: -0.02em; }
+.prose h2:first-child { margin-top: 0; }
+.prose h2::before { content: '\2014'; display: block; color: var(--red); font-size: 1.2rem; margin-bottom: 0.3rem; }
+.prose p { margin-bottom: 1.1rem; color: #333; }
+.prose p.lead { font-size: 1.1rem; color: var(--ink); font-weight: 400; }
+.prose p.lead::first-letter { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 4rem; float: left; line-height: 0.75; margin: 0.1em 0.12em 0 0; color: var(--red); }
+.prose blockquote { margin: 2rem 0; padding: 1.5rem 2rem; border-left: 4px solid var(--red); background: var(--red-bg); font-style: italic; font-size: 0.95rem; line-height: 1.7; color: #333; }
+.prose blockquote cite { display: block; font-style: normal; font-family: 'Space Mono', monospace; font-size: 0.62rem; letter-spacing: 0.05em; color: var(--gray); margin-top: 0.7rem; }
+.prose .divider { text-align: center; margin: 2.5rem 0; color: var(--red); font-family: 'Space Mono', monospace; font-size: 0.7rem; letter-spacing: 1em; }
+
+.margin { padding-top: 0.5rem; }
+.margin-note { margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid #ddd; }
+.margin-note:last-child { border-bottom: none; }
+.margin-note h4 { font-family: 'Space Mono', monospace; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); margin-bottom: 0.8rem; }
+.margin-note .mn-big { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.6rem; line-height: 1; color: var(--ink); }
+.margin-note .mn-unit { font-family: 'Space Mono', monospace; font-size: 0.6rem; color: var(--gray); margin-top: 0.2rem; }
+.margin-note .mn-text { font-size: 0.78rem; color: var(--gray); margin-top: 0.5rem; line-height: 1.55; }
+.mn-table { width: 100%; border-collapse: collapse; font-size: 0.76rem; margin-top: 0.6rem; }
+.mn-table td { padding: 0.35rem 0; border-bottom: 1px solid #e0dcd4; color: #555; }
+.mn-table td:last-child { font-family: 'Space Mono', monospace; font-weight: 700; font-size: 0.7rem; color: var(--red); text-align: right; }
+
+.outro { background: var(--bg); color: var(--ink); padding: 4rem 3rem; text-align: center; }
+@media (max-width: 700px) { .outro { padding: 3rem 2rem; } }
+.outro blockquote { font-family: 'Literata', serif; font-style: italic; font-weight: 300; font-size: 1.4rem; line-height: 1.5; max-width: 520px; margin: 0 auto 0.6rem; }
+.outro cite { font-family: 'Space Mono', monospace; font-size: 0.62rem; color: var(--gray); letter-spacing: 0.1em; }
+
+.foot { background: var(--ink); padding: 1.5rem 3rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #222; }
+.foot-brand { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; color: var(--cream); }
+.foot-brand span { color: var(--red); }
+.foot a { color: var(--red); text-decoration: none; font-family: 'Space Mono', monospace; font-size: 0.65rem; }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+.cover { animation: fadeUp 0.8s ease-out; }
+.ribbon { animation: fadeUp 0.5s ease-out 0.2s both; }
+
+/* ISSUE NAVIGATION SIDEBAR */
+.issue-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+}
+.issue-nav-toggle {
+  display: none;
+  position: fixed;
+  top: 0.8rem;
+  left: 0.8rem;
+  z-index: 1001;
+  background: var(--paper, #f5f0e8);
+  border: 1px solid var(--rule, #c8bfb0);
+  width: 2.2rem;
+  height: 2.2rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink, #1a1714);
+}
+.issue-nav .nav-close { display: none; }
+.issue-nav.open .nav-close { display: inline; }
+.issue-nav.open .nav-hamburger { display: none; }
+.issue-nav-inner {
+  height: 100%;
+  background: var(--paper, #f5f0e8);
+  border-right: 1px solid var(--rule, #c8bfb0);
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 1rem;
+  overflow-y: auto;
+}
+.issue-nav-brand {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 1.1rem;
+  color: var(--ink, #1a1714);
+  text-decoration: none;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--ink, #1a1714);
+}
+.issue-nav-brand span { color: var(--accent, #c43e2a); }
+.issue-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  flex: 1;
+}
+.issue-nav-item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  padding: 0.5rem 0.6rem;
+  text-decoration: none;
+  color: var(--ink, #1a1714);
+  border-radius: 4px;
+  transition: background 0.15s;
+}
+.issue-nav-item:hover { background: var(--paper-dark, #ebe4d8); }
+.issue-nav-item.active {
+  background: var(--ink, #1a1714);
+  color: var(--paper, #f5f0e8);
+}
+.issue-nav-item.active .issue-nav-num { color: var(--accent, #c43e2a); }
+.issue-nav-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--accent, #c43e2a);
+  white-space: nowrap;
+}
+.issue-nav-topic {
+  font-size: 0.78rem;
+  line-height: 1.3;
+}
+.issue-nav-footer {
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule, #c8bfb0);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.issue-nav-footer a {
+  color: var(--accent, #c43e2a);
+  text-decoration: none;
+}
+
+/* Push content right to make room for sidebar */
+body { margin-left: 260px; }
+
+@media (max-width: 900px) {
+  .issue-nav { transform: translateX(-100%); }
+  .issue-nav.open { transform: translateX(0); }
+  .issue-nav-toggle { display: flex; }
+  body { margin-left: 0; }
+}
+
+</style>
+</head>
+<body>
+<nav class="issue-nav" id="issueNav">
+  <button class="issue-nav-toggle" onclick="document.getElementById('issueNav').classList.toggle('open')" aria-label="Toggle navigation">
+    <span class="nav-hamburger">&#9776;</span>
+    <span class="nav-close">&times;</span>
+  </button>
+  <div class="issue-nav-inner">
+    <a href="/" class="issue-nav-brand">The Switch <span>Stack</span></a>
+    <div class="issue-nav-list">
+      <a class="issue-nav-item" href="/issue-07/">
+        <span class="issue-nav-num">#07</span>
+        <span class="issue-nav-topic">Carbon, Methane & Nanoplastics</span>
+      </a>
+      <a class="issue-nav-item" href="/issue-06/">
+        <span class="issue-nav-num">#06</span>
+        <span class="issue-nav-topic">The Drug War Backwards</span>
+      </a>
+      <a class="issue-nav-item" href="/issue-05/">
+        <span class="issue-nav-num">#05</span>
+        <span class="issue-nav-topic">The Inconvenient Correlation</span>
+      </a>
+      <a class="issue-nav-item" href="/issue-04/">
+        <span class="issue-nav-num">#04</span>
+        <span class="issue-nav-topic">The Safest Energy</span>
+      </a>
+      <a class="issue-nav-item active" href="/issue-03/">
+        <span class="issue-nav-num">#03</span>
+        <span class="issue-nav-topic">The Safety Cage</span>
+      </a>
+      <a class="issue-nav-item" href="/issue-02/">
+        <span class="issue-nav-num">#02</span>
+        <span class="issue-nav-topic">Green Transition's Workforce</span>
+      </a>
+      <a class="issue-nav-item" href="/issue-01/">
+        <span class="issue-nav-num">#01</span>
+        <span class="issue-nav-topic">The Recycling Lie</span>
+      </a>
+    </div>
+    <div class="issue-nav-footer">
+      <a href="/feed.xml">RSS</a>
+    </div>
+  </div>
+</nav>
+
+<!-- COVER -->
+<section class="cover">
+  <div class="cover-tag">The Switch Stack &middot; Issue 03</div>
+  <h1>The Cage<br>and the <em>Exposed</em></h1>
+  <p class="cover-deck">Every safety feature in your car was designed to protect you from the consequences of your own speed. None were designed to protect the person you hit.</p>
+  <div class="cover-meta"><span>January 15, 2026</span><span>Biweekly</span></div>
+  <div class="scroll-hint">&darr; Scroll</div>
+</section>
+
+<!-- RIBBON -->
+<div class="ribbon">
+  <div class="ribbon-cell"><div class="ribbon-num">1.19M</div><div class="ribbon-unit">deaths / year</div><div class="ribbon-desc">Global road fatalities (WHO)</div></div>
+  <div class="ribbon-cell"><div class="ribbon-num">53%</div><div class="ribbon-unit">vulnerable road users</div><div class="ribbon-desc">Walking, cycling, riding</div></div>
+  <div class="ribbon-cell"><div class="ribbon-num">90%</div><div class="ribbon-unit">survival at 30 km/h</div><div class="ribbon-desc">vs &lt;50% at 50 km/h</div></div>
+  <div class="ribbon-cell"><div class="ribbon-num">0</div><div class="ribbon-unit">deaths / 12 months</div><div class="ribbon-desc">Helsinki, 2024&ndash;2025</div></div>
+</div>
+
+<!-- MAIN CONTENT -->
+<section class="content">
+<div class="content-inner">
+
+<div class="prose">
+
+  <h2>The Two Species of the Road</h2>
+
+  <p class="lead">There are two species on the modern road: the caged and the exposed. The caged sit inside two tonnes of engineered protection&mdash;seatbelts, airbags, crumple zones, a steel shell designed to absorb the consequences of their own velocity. The exposed&mdash;pedestrians, cyclists, motorcyclists, children&mdash;have nothing between them and the physics of impact except air and the decisions of others.</p>
+
+  <p>We call the cage &ldquo;safe.&rdquo; We test it, rate it, advertise it. Five stars. But the safety we measure is the safety of the person creating the danger, not the person exposed to it. This is not an engineering failure. It is a philosophical one. We built an entire mobility system around the premise that the person inside the machine matters more than the person outside it.</p>
+
+  <blockquote>
+    Beyond a critical speed, no one can save time without forcing another to lose it. The man who claims a seat in a faster vehicle insists that his time is worth more than that of the passenger in a slower one.
+    <cite>&mdash; Ivan Illich, Energy and Equity (1973)</cite>
+  </blockquote>
+
+  <div class="divider">&middot; &middot; &middot; &middot; &middot;</div>
+
+  <h2>The Myth of the Dangerous Motorcycle</h2>
+
+  <p>The conventional narrative is clean and simple: motorcycles are dangerous, cars are safe. The data supports the first half. Motorcycle riders die at 20 to 28 times the rate of car occupants per kilometer. In the United States, the disparity is even worse&mdash;28 times, driven by inconsistent helmet laws, alcohol, and a culture of unlicensed riding. The motorcycle community has earned some of its reputation.</p>
+
+  <p>But the second half of the narrative&mdash;&ldquo;cars are safe&rdquo;&mdash;is incomplete to the point of dishonesty. Safe for whom? The word &ldquo;safe&rdquo; when applied to a car means: safe for the person inside the car. It does not account for the pedestrian at the crosswalk, the cyclist in the bike lane, the child on the sidewalk.</p>
+
+  <p>English road fatality data reveals that per billion vehicle-kilometers, cars kill 3.25 other road users. Motorcycles kill 7.63. Lorries kill 17.07. Buses kill 19.18. Cycles kill 1.09. Per kilometer, motorcycles impose higher third-party risk than cars. This is an honest and inconvenient data point that we include here because this publication does not cherry-pick.</p>
+
+  <p>But total kilometers traveled by cars dwarf motorcycles by a factor of roughly 30. In the aggregate, the car fleet is the dominant killer of people outside vehicles. The motorcycle rider risks primarily themselves. The car fleet externalizes its risk onto everyone else&mdash;and the scale of that externalization is what shapes our cities, our health statistics, and our children&rsquo;s freedom to walk to school.</p>
+
+  <blockquote>
+    Streets and their sidewalks&mdash;the main public places of a city&mdash;are its most vital organs.
+    <cite>&mdash; Jane Jacobs, The Death and Life of Great American Cities (1961)</cite>
+  </blockquote>
+
+  <div class="divider">&middot; &middot; &middot; &middot; &middot;</div>
+
+  <h2>The Autobesity of Safety</h2>
+
+  <p>In 2000, the average car sold in Europe weighed 1,186 kilograms. By 2023, new cars tested averaged 1,947 kilograms. SUVs account for nearly half of all new registrations. The average bonnet height has risen by seven centimeters in 14 years, climbing half a centimeter per year. The cars we buy to protect our families are becoming more lethal to everyone else&rsquo;s families.</p>
+
+  <p>Every 300 kilograms added to a vehicle increases the probability of killing a pedestrian by 23%. Every 10 centimeters of bonnet height raises the death risk for pedestrians and cyclists by 27%. For a pedestrian hit by a pick-up truck, the risk of fatal injury increases by nearly 200% compared to a smaller car.</p>
+
+  <p>This is a tragedy of the commons. Each individual driver makes a rational choice: buy a heavier car, protect my family. But the collective result of millions of rational choices is an irrational outcome: a vehicle fleet that is systematically more lethal to every person not inside one of its members.</p>
+
+  <blockquote>
+    A protected bikeway is a symbol of democracy. It shows that a citizen on a $30 bike is as important as a citizen in a $30,000 car.
+    <cite>&mdash; Enrique Pe&ntilde;alosa</cite>
+  </blockquote>
+
+  <div class="divider">&middot; &middot; &middot; &middot; &middot;</div>
+
+  <h2>The Speed That Separates Life from Death</h2>
+
+  <p>At 30&nbsp;km/h, a pedestrian struck by a car has a 90% chance of surviving. At 50&nbsp;km/h, the survival rate drops below 50%. At 80&nbsp;km/h, it falls to approximately 10%. The relationship is not linear&mdash;it is exponential. A modest reduction in speed produces a disproportionate reduction in death.</p>
+
+  <p>Helsinki understood this. More than half the city&rsquo;s streets now have 30&nbsp;km/h limits. Elevated crosswalks force drivers to slow. Separated cycling infrastructure removes the conflict between modes. Between July 2024 and July 2025, Helsinki recorded zero road fatalities. Not with better cars. With better streets. The technology that eliminated road death was not embedded in the vehicle. It was embedded in the urban fabric.</p>
+
+  <div class="divider">&middot; &middot; &middot; &middot; &middot;</div>
+
+  <h2>Illich&rsquo;s Bicycle</h2>
+
+  <p>In 1973, Ivan Illich calculated that the average American, when you include the hours spent earning money to pay for the car, insurance, fuel, maintenance, and the time lost in traffic, moves at an effective speed of less than five miles per hour. A bicycle, he argued, is faster in every meaningful sense: it uses five times less energy than walking per kilometer, carries one gram of body weight over a kilometer at 0.15 calories, and eighteen of them can be parked in the space of a single car.</p>
+
+  <p>&ldquo;Participatory democracy demands low-energy technology,&rdquo; he wrote, &ldquo;and free people must travel the road to productive social relations at the speed of a bicycle.&rdquo;</p>
+
+  <p>Fifty-three years later, the data confirms what Illich intuited: the bicycle imposes the lowest third-party risk of any vehicle on the road&mdash;1.09 deaths per billion kilometers, compared to 3.25 for cars, 7.63 for motorcycles, and 19.18 for buses. The safest vehicle for others is the one with no cage at all.</p>
+
+  <div class="divider">&middot; &middot; &middot; &middot; &middot;</div>
+
+  <h2>The Moral Architecture</h2>
+
+  <p>We do not lack the technology to eliminate road death. Helsinki proved it. We do not lack the data to understand who dies and what kills them. The WHO, the ETSC, the IIHS, and dozens of peer-reviewed studies have mapped it precisely. What we lack is the willingness to redistribute risk.</p>
+
+  <p>Every safety feature in your car was designed to protect you from the consequences of your own speed. None were designed to protect the person you hit. This is not a conspiracy. It is a market. Occupant safety sells cars. Pedestrian safety does not. The five-star rating that reassures you at the dealership measures how well the cage absorbs the impact for the person inside it. The person outside the cage&mdash;the pedestrian, the cyclist, the child&mdash;is measured, if at all, on a sub-score that no consumer ever sees.</p>
+
+  <p>The motorcycle rider you call reckless is risking their own life. The SUV you call safe is risking everyone else&rsquo;s.</p>
+
+</div>
+
+<!-- MARGIN NOTES -->
+<aside class="margin">
+  <div class="margin-note">
+    <h4>WHO Global Data</h4>
+    <div class="mn-big">1.19M</div>
+    <div class="mn-unit">road deaths per year (2021)</div>
+    <p class="mn-text">53% are vulnerable road users. 80% of roads fail pedestrian safety standards. Leading cause of death ages 5&ndash;29.</p>
+  </div>
+
+  <div class="margin-note">
+    <h4>Third-Party Risk (ORU/Billion vkm)</h4>
+    <table class="mn-table">
+      <tr><td>Buses</td><td>19.18</td></tr>
+      <tr><td>Lorries</td><td>17.07</td></tr>
+      <tr><td>Motorcycles</td><td>7.63</td></tr>
+      <tr><td>Cars</td><td>3.25</td></tr>
+      <tr><td>Vans</td><td>2.59</td></tr>
+      <tr><td>Cycles</td><td>1.09</td></tr>
+    </table>
+    <p class="mn-text" style="font-size:0.65rem;color:#999;">English data 2005&ndash;2015. PMC7848050.</p>
+  </div>
+
+  <div class="margin-note">
+    <h4>Speed vs Survival</h4>
+    <table class="mn-table">
+      <tr><td>30 km/h</td><td>~90%</td></tr>
+      <tr><td>50 km/h</td><td>~50%</td></tr>
+      <tr><td>80 km/h</td><td>~10%</td></tr>
+    </table>
+    <p class="mn-text">Pedestrian survival probability after vehicle impact.</p>
+  </div>
+
+  <div class="margin-note">
+    <h4>The Weight Trend</h4>
+    <table class="mn-table">
+      <tr><td>Avg car 2000 (EU)</td><td>1,186 kg</td></tr>
+      <tr><td>Avg car 2021</td><td>1,521 kg</td></tr>
+      <tr><td>New cars 2023</td><td>1,947 kg</td></tr>
+      <tr><td>SUV share 2023</td><td>48%</td></tr>
+    </table>
+    <p class="mn-text">+300 kg = +23% pedestrian death risk. +10 cm bonnet = +27% death risk.</p>
+  </div>
+
+  <div class="margin-note">
+    <h4>Helsinki</h4>
+    <div class="mn-big">0</div>
+    <div class="mn-unit">deaths in 12 months</div>
+    <p class="mn-text">Jul 2024&ndash;Jul 2025. 30 km/h limits on 50%+ of streets. Elevated crosswalks. Separated cycling infrastructure.</p>
+  </div>
+
+  <div class="margin-note">
+    <h4>Sources</h4>
+    <p class="mn-text">WHO 2023 &middot; European Commission 2024 &middot; PMC7848050 &middot; IIHS &middot; FIA Foundation &middot; ICCT &middot; ETSC &middot; AAA Foundation &middot; Helsinki City &middot; Ivan Illich, Energy and Equity (1973)</p>
+  </div>
+</aside>
+
+</div>
+</section>
+
+<!-- OUTRO -->
+<section class="outro">
+  <blockquote>&ldquo;First life, then spaces, then buildings&mdash;the other way around never works.&rdquo;</blockquote>
+  <cite>&mdash; Jan Gehl, Cities for People (2010)</cite>
+</section>
+
+<footer class="foot">
+  <div class="foot-brand">Switch <span>Stack</span></div>
+  <a href="index.html">All Articles</a>
+</footer>
+
+</body>
+</html>

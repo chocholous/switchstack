@@ -3,29 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Switch Stack — Where the Numbers Flip the Narrative</title>
-<meta name="description" content="Data-driven investigative journalism, biweekly. Plastics, child labor, nuclear fear, drug policy, conflict emissions — the data nobody publishes.">
-<link rel="canonical" href="https://switchstack.cz/">
-<meta property="og:title" content="The Switch Stack — Where the Numbers Flip the Narrative">
-<meta property="og:description" content="Data-driven investigative journalism, biweekly. The data nobody publishes.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://switchstack.cz/">
-<meta property="og:site_name" content="The Switch Stack">
-<meta property="og:locale" content="en_US">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="The Switch Stack — Where the Numbers Flip the Narrative">
-<meta name="twitter:description" content="Data-driven investigative journalism, biweekly. The data nobody publishes.">
-<link rel="alternate" type="application/rss+xml" title="The Switch Stack" href="/feed.xml">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "The Switch Stack",
-  "url": "https://switchstack.cz",
-  "description": "Where the numbers flip the narrative. Data-driven investigative journalism, biweekly.",
-  "publisher": { "@type": "Organization", "name": "The Switch Stack" }
-}
-</script>
+<title>The Switch Stack — Issue 06</title>
+<meta name="description" content="The Drug Ledger: Legal vs Illegal, Deaths vs Policy. Where the numbers flip the narrative.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -41,6 +20,55 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { font-size: 17px; }
 body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', system-ui, sans-serif; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+/* QUOTE TICKER */
+.quote-ticker {
+  background: #1a1714;
+  border-bottom: 2px solid #8b6914;
+  overflow: hidden;
+  position: relative;
+  height: 2rem;
+  line-height: 2rem;
+}
+.quote-ticker::before,
+.quote-ticker::after {
+  content: '\2699';
+  position: absolute;
+  top: 0;
+  height: 2rem;
+  line-height: 2rem;
+  width: 2rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #8b6914;
+  background: #1a1714;
+  z-index: 2;
+}
+.quote-ticker::before { left: 0; border-right: 1px solid #5a4420; }
+.quote-ticker::after { right: 0; border-left: 1px solid #5a4420; }
+.quote-ticker__track {
+  display: flex;
+  white-space: nowrap;
+  animation: tickerScroll 52s linear infinite;
+  width: max-content;
+}
+.quote-ticker:hover .quote-ticker__track { animation-play-state: paused; }
+.quote-ticker__track span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+  color: #c4a35a;
+  padding: 0 0.6rem;
+}
+.quote-ticker__track .ticker-sep {
+  color: #8b6914;
+  padding: 0 0.5rem;
+  font-size: 0.75rem;
+}
+@keyframes tickerScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
 
 /* MASTHEAD */
 .masthead {
@@ -58,10 +86,7 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
   color: var(--muted);
   padding-bottom: 0.8rem;
 }
-.masthead-bar {
-  height: 5px;
-  background: var(--accent);
-}
+.masthead-bar { height: 5px; background: var(--accent); }
 .masthead-title {
   font-family: 'Playfair Display', serif;
   font-weight: 900;
@@ -80,10 +105,7 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
   color: var(--muted);
   padding-bottom: 1rem;
 }
-.masthead-rule {
-  border: none;
-  border-top: 3px double var(--ink);
-}
+.masthead-rule { border: none; border-top: 3px double var(--ink); }
 
 /* ISSUE STRIP */
 .issue-strip {
@@ -100,7 +122,7 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
   color: var(--muted);
 }
 
-/* HERO — featured article */
+/* HERO */
 .hero {
   max-width: 1100px;
   margin: 0 auto;
@@ -111,8 +133,6 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
   align-items: center;
 }
 @media (max-width: 780px) { .hero { grid-template-columns: 1fr; } }
-
-.hero-text { }
 .hero-kicker {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.62rem;
@@ -130,12 +150,20 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
   letter-spacing: -0.015em;
   margin-bottom: 1rem;
 }
-.hero h2 a {
-  color: inherit;
-  text-decoration: none;
-  transition: color 0.2s;
-}
+.hero h2 a { color: inherit; text-decoration: none; transition: color 0.2s; }
 .hero h2 a:hover { color: var(--accent); }
+.hero-readtime {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1rem;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid var(--rule);
+  display: inline-block;
+  border-radius: 2px;
+}
 .hero-deck {
   font-family: 'Playfair Display', serif;
   font-style: italic;
@@ -156,7 +184,6 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
   transition: opacity 0.2s;
 }
 .hero-link:hover { opacity: 0.7; }
-
 .hero-preview {
   position: relative;
   aspect-ratio: 4/3;
@@ -178,29 +205,14 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
   background: linear-gradient(180deg, transparent 50%, var(--paper) 100%);
   pointer-events: none;
 }
-.hero-preview a {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-}
+.hero-preview a { position: absolute; inset: 0; z-index: 2; }
 
 /* DIVIDER */
-.section-rule {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-.section-rule hr {
-  border: none;
-  border-top: 1px solid var(--rule);
-}
+.section-rule { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+.section-rule hr { border: none; border-top: 1px solid var(--rule); }
 
 /* ARTICLES GRID */
-.articles {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 2rem 2rem 1rem;
-}
+.articles { max-width: 1100px; margin: 0 auto; padding: 2rem 2rem 1rem; }
 .articles-label {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.6rem;
@@ -217,7 +229,6 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
   gap: 2rem;
 }
 @media (max-width: 780px) { .articles-grid { grid-template-columns: 1fr; } }
-
 .article-card {
   text-decoration: none;
   color: inherit;
@@ -226,7 +237,6 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
   transition: transform 0.2s;
 }
 .article-card:hover { transform: translateY(-3px); }
-
 .article-card-preview {
   aspect-ratio: 16/10;
   overflow: hidden;
@@ -249,7 +259,6 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
   background: linear-gradient(180deg, transparent 60%, var(--paper) 100%);
   pointer-events: none;
 }
-
 .article-card-kicker {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.58rem;
@@ -267,16 +276,7 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
   letter-spacing: -0.01em;
   margin-bottom: 0.5rem;
 }
-.article-card p {
-  font-size: 0.82rem;
-  color: var(--muted);
-  line-height: 1.55;
-  flex: 1;
-}
-
-/* READ TIME */
-.article-card-readtime,
-.hero-readtime {
+.article-card-readtime {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.6rem;
   letter-spacing: 0.1em;
@@ -288,8 +288,11 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
   display: inline-block;
   border-radius: 2px;
 }
-.hero-readtime {
-  margin-bottom: 1rem;
+.article-card p {
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.55;
+  flex: 1;
 }
 
 /* ABOUT */
@@ -316,16 +319,6 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
   color: var(--muted);
   line-height: 1.65;
 }
-
-/* NEWSLETTER */
-.newsletter { max-width:1100px; margin:0 auto; padding:2.5rem 2rem; border-top:1px solid var(--rule); text-align:center; }
-.newsletter h3 { font-family:'Playfair Display',serif; font-weight:900; font-size:1.4rem; margin-bottom:0.4rem; }
-.newsletter p { font-size:0.82rem; color:var(--muted); margin-bottom:1.2rem; }
-.newsletter-form { display:flex; gap:0.5rem; justify-content:center; flex-wrap:wrap; }
-.newsletter-form input[type="email"] { font-family:'DM Sans',system-ui,sans-serif; font-size:0.85rem; padding:0.6rem 1rem; border:1px solid var(--rule); background:#fff; color:var(--ink); width:280px; outline:none; }
-.newsletter-form input[type="email"]:focus { border-color:var(--accent); }
-.newsletter-form button { font-family:'JetBrains Mono',monospace; font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; padding:0.6rem 1.5rem; background:var(--accent); color:#fff; border:none; cursor:pointer; }
-.newsletter-form button:hover { opacity:0.85; }
 
 /* FOOTER */
 .footer {
@@ -360,58 +353,6 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
 .articles-grid .article-card:nth-child(1) { animation-delay: 0.1s; }
 .articles-grid .article-card:nth-child(2) { animation-delay: 0.2s; }
 .articles-grid .article-card:nth-child(3) { animation-delay: 0.3s; }
-
-/* VONNEGUT TICKER — steampunk style */
-.vonnegut-ticker {
-  background: #2a2118;
-  border-bottom: 2px solid #8b6914;
-  overflow: hidden;
-  position: relative;
-  height: 2rem;
-  line-height: 2rem;
-}
-.vonnegut-ticker::before,
-.vonnegut-ticker::after {
-  content: '⚙';
-  position: absolute;
-  top: 0;
-  height: 2rem;
-  line-height: 2rem;
-  width: 2rem;
-  text-align: center;
-  font-size: 0.9rem;
-  color: #8b6914;
-  background: #2a2118;
-  z-index: 2;
-}
-.vonnegut-ticker::before { left: 0; border-right: 1px solid #5a4420; }
-.vonnegut-ticker::after { right: 0; border-left: 1px solid #5a4420; }
-
-.vonnegut-ticker__track {
-  display: flex;
-  white-space: nowrap;
-  animation: tickerScroll 38s linear infinite;
-  width: max-content;
-}
-.vonnegut-ticker:hover .vonnegut-ticker__track {
-  animation-play-state: paused;
-}
-.vonnegut-ticker__track span {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.72rem;
-  letter-spacing: 0.03em;
-  color: #c4a35a;
-  padding: 0 0.6rem;
-}
-.vonnegut-ticker__track .ticker-sep {
-  color: #8b6914;
-  padding: 0 0.5rem;
-  font-size: 0.75rem;
-}
-@keyframes tickerScroll {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
 
 /* ISSUE NAVIGATION SIDEBAR */
 .issue-nav {
@@ -530,11 +471,11 @@ body { margin-left: 260px; }
   <div class="issue-nav-inner">
     <a href="/" class="issue-nav-brand">The Switch <span>Stack</span></a>
     <div class="issue-nav-list">
-      <a class="issue-nav-item active" href="/issue-07/">
+      <a class="issue-nav-item" href="/issue-07/">
         <span class="issue-nav-num">#07</span>
         <span class="issue-nav-topic">Carbon, Methane & Nanoplastics</span>
       </a>
-      <a class="issue-nav-item" href="/issue-06/">
+      <a class="issue-nav-item active" href="/issue-06/">
         <span class="issue-nav-num">#06</span>
         <span class="issue-nav-topic">The Drug War Backwards</span>
       </a>
@@ -565,11 +506,11 @@ body { margin-left: 260px; }
   </div>
 </nav>
 
-<!-- VONNEGUT QUOTE TICKER -->
-<div class="vonnegut-ticker">
-  <div class="vonnegut-ticker__track">
-    <span>"So it goes." — Slaughterhouse-Five</span><span class="ticker-sep">⚙</span><span>"Everything was beautiful and nothing hurt." — Slaughterhouse-Five</span><span class="ticker-sep">⚙</span><span>"We are what we pretend to be, so we must be careful about what we pretend to be." — Mother Night</span><span class="ticker-sep">⚙</span><span>"I was a victim of a series of accidents, as are we all." — The Sirens of Titan</span><span class="ticker-sep">⚙</span><span>"One of the few good things about modern times: If you die horribly on television, you will not have died in vain." — Cold Turkey</span><span class="ticker-sep">⚙</span><span>"Another flaw in the human character is that everybody wants to build and nobody wants to do maintenance." — Hocus Pocus</span><span class="ticker-sep">⚙</span><span>"Dear future generations: Please accept our apologies. We were rolling drunk on petroleum." — attributed</span><span class="ticker-sep">⚙</span>
-    <span>"So it goes." — Slaughterhouse-Five</span><span class="ticker-sep">⚙</span><span>"Everything was beautiful and nothing hurt." — Slaughterhouse-Five</span><span class="ticker-sep">⚙</span><span>"We are what we pretend to be, so we must be careful about what we pretend to be." — Mother Night</span><span class="ticker-sep">⚙</span><span>"I was a victim of a series of accidents, as are we all." — The Sirens of Titan</span><span class="ticker-sep">⚙</span><span>"One of the few good things about modern times: If you die horribly on television, you will not have died in vain." — Cold Turkey</span><span class="ticker-sep">⚙</span><span>"Another flaw in the human character is that everybody wants to build and nobody wants to do maintenance." — Hocus Pocus</span><span class="ticker-sep">⚙</span><span>"Dear future generations: Please accept our apologies. We were rolling drunk on petroleum." — attributed</span><span class="ticker-sep">⚙</span>
+<!-- QUOTE TICKER -->
+<div class="quote-ticker">
+  <div class="quote-ticker__track">
+    <span>"The opioid problem is not really about opioids. It's mainly about cultural, social, and environmental factors." &mdash; Carl Hart, Drug Use for Grown-Ups</span><span class="ticker-sep">&bull;</span><span>"The core of addiction doesn't lie in what you swallow or inject &mdash; it's in the pain you feel in your head." &mdash; Johann Hari, Chasing the Scream</span><span class="ticker-sep">&bull;</span><span>"Psychedelic drugs don't change you &mdash; they don't change your character &mdash; unless you want to be changed." &mdash; Alexander Shulgin</span><span class="ticker-sep">&bull;</span><span>"I am 100 percent in favor of the intelligent use of drugs, and 1,000 percent against the thoughtless use of them." &mdash; Timothy Leary</span><span class="ticker-sep">&bull;</span><span>"The revolution will not be televised." &mdash; Gil Scott-Heron</span><span class="ticker-sep">&bull;</span><span>"Many of our most basic assumptions about this subject are wrong. Drugs are not what we think they are." &mdash; Johann Hari</span><span class="ticker-sep">&bull;</span><span>"The potential of the psychedelic drugs to provide access to the interior universe is, I believe, their most valuable property." &mdash; Alexander Shulgin, PIHKAL</span><span class="ticker-sep">&bull;</span>
+    <span>"The opioid problem is not really about opioids. It's mainly about cultural, social, and environmental factors." &mdash; Carl Hart, Drug Use for Grown-Ups</span><span class="ticker-sep">&bull;</span><span>"The core of addiction doesn't lie in what you swallow or inject &mdash; it's in the pain you feel in your head." &mdash; Johann Hari, Chasing the Scream</span><span class="ticker-sep">&bull;</span><span>"Psychedelic drugs don't change you &mdash; they don't change your character &mdash; unless you want to be changed." &mdash; Alexander Shulgin</span><span class="ticker-sep">&bull;</span><span>"I am 100 percent in favor of the intelligent use of drugs, and 1,000 percent against the thoughtless use of them." &mdash; Timothy Leary</span><span class="ticker-sep">&bull;</span><span>"The revolution will not be televised." &mdash; Gil Scott-Heron</span><span class="ticker-sep">&bull;</span><span>"Many of our most basic assumptions about this subject are wrong. Drugs are not what we think they are." &mdash; Johann Hari</span><span class="ticker-sep">&bull;</span><span>"The potential of the psychedelic drugs to provide access to the interior universe is, I believe, their most valuable property." &mdash; Alexander Shulgin, PIHKAL</span><span class="ticker-sep">&bull;</span>
   </div>
 </div>
 
@@ -577,8 +518,8 @@ body { margin-left: 260px; }
 <div class="masthead-bar"></div>
 <header class="masthead">
   <div class="masthead-top">
-    <span>Issue 07 &middot; March 15, 2026</span>
-    <span>Biweekly &middot; Investigative Data Journalism</span>
+    <span>Issue 06 &middot; March 2026</span>
+    <span>Biweekly &middot; Drug Policy Intelligence</span>
   </div>
   <div class="masthead-title">The Switch <span>Stack</span></div>
   <div class="masthead-subtitle">Where the numbers flip the narrative</div>
@@ -586,22 +527,22 @@ body { margin-left: 260px; }
 </header>
 
 <div class="issue-strip">
-  <span>Conflict &amp; Climate Special</span>
-  <span>4 Articles &middot; Carbon, Methane &amp; Nanoplastics</span>
+  <span>Drug Policy &amp; Public Health Special</span>
+  <span>4 Articles &middot; Legalization, Criminalization &amp; The Pharma Ledger</span>
 </div>
 
-<!-- HERO — Featured Article (Full Narrative) -->
+<!-- HERO -->
 <section class="hero">
   <div class="hero-text">
     <div class="hero-kicker">The Investigation</div>
-    <h2><a href="/issue-07/carbon-methane-nanoplastics-household-footprint/">Carbon, Methane, and Nanoplastics: Why Your Household Footprint Doesn't Stand a Chance</a></h2>
-    <div class="hero-readtime">12 min read</div>
-    <p class="hero-deck">Ukraine and Gaza are the first wars in human history with real-time environmental tracking. The CEO of Europe&rsquo;s largest missile maker boasts about &ldquo;doubling production without compromising sustainability.&rdquo; Meanwhile, 200 US cargo flights to Israel emitted more CO&#8322; than the entire nation of Grenada does in a&nbsp;year.</p>
-    <a class="hero-link" href="/issue-07/carbon-methane-nanoplastics-household-footprint/">Read the full story &rarr;</a>
+    <h2><a href="/issue-06/legal-prescribed-lethal/">Legal, Prescribed, Lethal: How the Drug War Got It&nbsp;Backwards</a></h2>
+    <div class="hero-readtime">14 min read</div>
+    <p class="hero-deck">Tobacco kills 480,000 Americans a year. Alcohol kills 178,000. Cannabis has zero documented fatal overdoses &mdash; and remains Schedule&nbsp;I. Fentanyl was synthesized in a Belgian pharmaceutical lab in 1960, approved by the FDA, and marketed by sales reps. The War on Drugs has cost $1&nbsp;trillion since 1971. The&nbsp;ledger doesn&rsquo;t&nbsp;balance.</p>
+    <a class="hero-link" href="/issue-06/legal-prescribed-lethal/">Read the full investigation &rarr;</a>
   </div>
   <div class="hero-preview">
-    <a href="/issue-07/carbon-methane-nanoplastics-household-footprint/" aria-label="Read the full investigation"></a>
-    <iframe src="/issue-07/v2-full-narrative.html" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+    <a href="/issue-06/legal-prescribed-lethal/" aria-label="Read the full investigation"></a>
+    <iframe src="v2-full-narrative.html" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
     <div class="hero-preview-overlay"></div>
   </div>
 </section>
@@ -614,39 +555,39 @@ body { margin-left: 260px; }
   <div class="articles-grid">
 
     <!-- V1 — Compact / Briefing -->
-    <a class="article-card" href="/issue-07/how-to-conduct-genocide-sustainably/">
+    <a class="article-card" href="/issue-06/the-patent-on-pain/">
       <div class="article-card-preview">
-        <iframe src="/issue-07/v1-magazine-compact.html" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+        <iframe src="v1-magazine-compact.html" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
         <div class="card-overlay"></div>
       </div>
       <div class="article-card-kicker">The Briefing</div>
-      <h3>How to Conduct a Genocide, Sustainably</h3>
+      <h3>The Patent on Pain</h3>
       <div class="article-card-readtime">8 min read</div>
-      <p>Oct 7 killed 1,200 people at 0.03 tonnes of CO&#8322; per death. Israel&rsquo;s operation in Gaza: 4 tonnes per kill, 81% of structures destroyed, up to 61 Mt long-term CO&#8322;&mdash;and an arms industry that files ESG reports about it. Russia burns 460 tonnes per kill in Ukraine. The most carbon-efficient atrocity leaves no trace in any climate framework.</p>
+      <p>Fentanyl was patented in 1964 by Janssen Pharmaceutica. OxyContin launched in 1996 with the claim that &ldquo;fewer than 1% become addicted.&rdquo; By 2023, 806,000 Americans had died from opioid overdoses. The Sackler family settlement: $7.4&nbsp;billion &mdash; roughly $9,180 per&nbsp;death.</p>
     </a>
 
     <!-- V3 — Infographic -->
-    <a class="article-card" href="/issue-07/precision-warfare-esg-compliant-numbers/">
+    <a class="article-card" href="/issue-06/the-drug-ledger/">
       <div class="article-card-preview">
-        <iframe src="/issue-07/v3-infographic-light.html" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+        <iframe src="v3-infographic-light.html" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
         <div class="card-overlay"></div>
       </div>
       <div class="article-card-kicker">The Data</div>
-      <h3>Precision Warfare, ESG Compliant: The Numbers Behind the&nbsp;Narrative</h3>
-      <div class="article-card-readtime">4 min read</div>
-      <p>In Gaza&rsquo;s first 60 days, Israel and its US supply chain produced over 99% of all war emissions. 81% of structures destroyed. Up to 61 Mt CO&#8322;. Hamas rockets have killed roughly 60 people in 22 years&mdash;and zero since mid-2024. 713 tonnes of CO&#8322; for nothing. The most carbon-inefficient weapon in modern warfare, aimed at the most carbon-efficient genocide.</p>
+      <h3>The Drug Ledger: Every Number, Every&nbsp;Source</h3>
+      <div class="article-card-readtime">5 min read</div>
+      <p>480,000 tobacco deaths. 178,000 alcohol deaths. Zero cannabis overdose deaths. $1&nbsp;trillion spent on the War on Drugs. 45% of federal prisoners locked up for drug offenses. Portugal&rsquo;s HIV infections from drug use: down 98.8%. The numbers, side by side.</p>
     </a>
 
-    <!-- V4 — Noir / Editorial -->
-    <a class="article-card" href="/issue-07/futures-breadbasket-heavy-metals-ukraine/">
+    <!-- V4 — Dark Editorial -->
+    <a class="article-card" href="/issue-06/the-pharma-cartel/">
       <div class="article-card-preview">
-        <iframe src="/issue-07/v4-dark-editorial.html" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+        <iframe src="v4-dark-editorial.html" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
         <div class="card-overlay"></div>
       </div>
       <div class="article-card-kicker">The Editorial</div>
-      <h3>Future&rsquo;s Breadbasket, Rich on Heavy&nbsp;Metals</h3>
-      <div class="article-card-readtime">9 min read</div>
-      <p>Nanoplastics from pulverized drone casings. Lead, cadmium, and mercury from 26,000 detonated shells. All of it saturating Ukraine&rsquo;s soil&mdash;Europe&rsquo;s most fertile farmland. 100 to 300 years to clean naturally. The choice: spend billions on remediation, or harvest the metals and serve them for dinner.</p>
+      <h3>The Pharma Cartel</h3>
+      <div class="article-card-readtime">10 min read</div>
+      <p>The most dangerous drug dealer in American history wore a lab coat, not a bandana. Purdue Pharma made $35&nbsp;billion selling OxyContin. The Sacklers extracted $10&nbsp;billion. Their penalty: a settlement worth 20% of what they took. Meanwhile, 45% of federal prisoners sit in cells for drug&nbsp;offenses.</p>
     </a>
 
   </div>
@@ -656,22 +597,12 @@ body { margin-left: 260px; }
 <section class="about">
   <div>
     <h3>About This Issue</h3>
-    <p>All articles share the same fact-checked dataset. Key figures: Gaza long-term total up to 61&nbsp;Mt CO&#8322;e (281k tCO&#8322;e first 60 days, ~32&nbsp;Mt direct over 15 months, 47&ndash;60&nbsp;Mt reconstruction of 123,000+ destroyed structures). Ukraine: ~237&nbsp;Mt CO&#8322;e over 3 years. New in this edition: CO&#8322;/atrocity ratio analysis showing carbon footprint and human suffering are decoupled.</p>
+    <p>All articles share the same verified dataset. Key sources: CDC/NIDA overdose data (2023), NIAAA alcohol deaths (2020&ndash;2021), EMCDDA Portugal data, NEJM Carhart-Harris psilocybin trial (2021), DOJ Purdue Pharma court records, BOP incarceration statistics, Swiss FOPH psychedelic therapy program data (2024). Every number is traceable to analysis.md. Items not verified from primary sources are flagged [UNVERIFIED].</p>
   </div>
   <div>
     <h3>Data Sources</h3>
-    <p>IGAW &mdash; Initiative on GHG Accounting of War (Feb 2025). CEOBS &amp; SGR &mdash; Global military emissions (Nov 2022). UNEP &mdash; Conflict zone environmental assessments. SSRN / Queen Mary / Lancaster &mdash; Gaza carbon tracking (2024&ndash;2025). Hobbs &amp; Radke &mdash; Kuwait oil fires, Science (1992).</p>
+    <p>CDC &amp; NIDA &mdash; Drug overdose death rates. NIAAA &mdash; Alcohol-related deaths. EMCDDA &mdash; Portugal country drug report. NEJM &mdash; Carhart-Harris et al. (2021). DOJ &mdash; Purdue Pharma criminal charges. PMC &mdash; OxyContin marketing analysis. BOP/USSC &mdash; Federal incarceration data. Swiss FOPH &mdash; Limited medical use program. RAND &mdash; Netherlands coffeeshop analysis. Brown University &mdash; Oregon M110 fentanyl analysis.</p>
   </div>
-</section>
-
-<!-- NEWSLETTER -->
-<section class="newsletter">
-  <h3>Get the next issue in your inbox</h3>
-  <p>Data that flips the narrative, biweekly. No spam, no fluff — just the numbers that matter.</p>
-  <form class="newsletter-form" action="#" method="post">
-    <input type="email" name="email" placeholder="your@email.com" required>
-    <button type="submit">Subscribe</button>
-  </form>
 </section>
 
 <!-- FOOTER -->
