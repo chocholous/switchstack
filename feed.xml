@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>The Switch Stack</title>
+    <link>https://switchstack.cz</link>
+    <description>Where the numbers flip the narrative. Environmental intelligence, biweekly.</description>
+    <language>en</language>
+    <lastBuildDate>Thu, 12 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://switchstack.cz/feed.xml" rel="self" type="application/rss+xml"/>
+
+    <item>
+      <title>Carbon, Methane, and Nanoplastics: Why Your Household Footprint Doesn't Stand a Chance</title>
+      <link>https://switchstack.cz/issue-01/carbon-methane-nanoplastics-household-footprint/</link>
+      <guid isPermaLink="true">https://switchstack.cz/issue-01/carbon-methane-nanoplastics-household-footprint/</guid>
+      <pubDate>Thu, 12 Mar 2026 00:00:00 +0000</pubDate>
+      <description>Ukraine and Gaza are the first wars in human history with real-time environmental tracking. The CEO of Europe's largest missile maker boasts about "doubling production without compromising sustainability." Meanwhile, 200 US cargo flights to Israel emitted more CO₂ than the entire nation of Grenada does in a year.</description>
+      <category>Investigation</category>
+    </item>
+
+    <item>
+      <title>How to Conduct a Genocide, Sustainably</title>
+      <link>https://switchstack.cz/issue-01/how-to-conduct-genocide-sustainably/</link>
+      <guid isPermaLink="true">https://switchstack.cz/issue-01/how-to-conduct-genocide-sustainably/</guid>
+      <pubDate>Thu, 12 Mar 2026 00:00:00 +0000</pubDate>
+      <description>Oct 7 killed 1,200 people at 0.03 tonnes of CO₂ per death. Israel's operation in Gaza: 4 tonnes per kill, 81% of structures destroyed, up to 61 Mt long-term CO₂ — and an arms industry that files ESG reports about it.</description>
+      <category>Briefing</category>
+    </item>
+
+    <item>
+      <title>Precision Warfare, ESG Compliant: The Numbers Behind the Narrative</title>
+      <link>https://switchstack.cz/issue-01/precision-warfare-esg-compliant-numbers/</link>
+      <guid isPermaLink="true">https://switchstack.cz/issue-01/precision-warfare-esg-compliant-numbers/</guid>
+      <pubDate>Thu, 12 Mar 2026 00:00:00 +0000</pubDate>
+      <description>In Gaza's first 60 days, Israel and its US supply chain produced over 99% of all war emissions. 81% of structures destroyed. Up to 61 Mt CO₂. Hamas rockets: 713 tonnes of CO₂ for nothing.</description>
+      <category>Data</category>
+    </item>
+
+    <item>
+      <title>Future's Breadbasket, Rich on Heavy Metals</title>
+      <link>https://switchstack.cz/issue-01/futures-breadbasket-heavy-metals-ukraine/</link>
+      <guid isPermaLink="true">https://switchstack.cz/issue-01/futures-breadbasket-heavy-metals-ukraine/</guid>
+      <pubDate>Thu, 12 Mar 2026 00:00:00 +0000</pubDate>
+      <description>Nanoplastics from pulverized drone casings. Lead, cadmium, and mercury from 26,000 detonated shells — all saturating Ukraine's soil, Europe's most fertile farmland. 100 to 300 years to clean naturally.</description>
+      <category>Editorial</category>
+    </item>
+
+  </channel>
+</rss>

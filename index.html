@@ -3,8 +3,41 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Switch Stack — Issue 01</title>
-<meta name="description" content="Where the numbers flip the narrative. Environmental intelligence, biweekly.">
+<title>The Switch Stack — Environmental Intelligence, Biweekly</title>
+<meta name="description" content="Where the numbers flip the narrative. Data-driven environmental journalism covering conflict emissions, climate accountability, and the carbon cost of war.">
+<link rel="canonical" href="https://switchstack.cz/">
+<meta property="og:title" content="The Switch Stack — Environmental Intelligence">
+<meta property="og:description" content="Data-driven environmental journalism covering conflict emissions, climate accountability, and the carbon cost of war.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://switchstack.cz/">
+<meta property="og:site_name" content="The Switch Stack">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Switch Stack — Environmental Intelligence">
+<meta name="twitter:description" content="Data-driven environmental journalism covering conflict emissions, climate accountability, and the carbon cost of war.">
+<link rel="alternate" type="application/rss+xml" title="The Switch Stack" href="/feed.xml">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "The Switch Stack",
+  "url": "https://switchstack.cz",
+  "description": "Where the numbers flip the narrative. Environmental intelligence, biweekly.",
+  "publisher": { "@type": "Organization", "name": "The Switch Stack" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "url": "https://switchstack.cz/issue-01/carbon-methane-nanoplastics-household-footprint/" },
+    { "@type": "ListItem", "position": 2, "url": "https://switchstack.cz/issue-01/how-to-conduct-genocide-sustainably/" },
+    { "@type": "ListItem", "position": 3, "url": "https://switchstack.cz/issue-01/precision-warfare-esg-compliant-numbers/" },
+    { "@type": "ListItem", "position": 4, "url": "https://switchstack.cz/issue-01/futures-breadbasket-heavy-metals-ukraine/" }
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -296,6 +329,58 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
   line-height: 1.65;
 }
 
+/* NEWSLETTER */
+.newsletter {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem;
+  border-top: 1px solid var(--rule);
+  text-align: center;
+}
+.newsletter h3 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 1.4rem;
+  margin-bottom: 0.4rem;
+}
+.newsletter p {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-bottom: 1.2rem;
+}
+.newsletter-form {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.newsletter-form input[type="email"] {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 0.85rem;
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--rule);
+  background: #fff;
+  color: var(--ink);
+  width: 280px;
+  outline: none;
+}
+.newsletter-form input[type="email"]:focus {
+  border-color: var(--accent);
+}
+.newsletter-form button {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.6rem 1.5rem;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.newsletter-form button:hover { opacity: 0.85; }
+
 /* FOOTER */
 .footer {
   max-width: 1100px;
@@ -414,13 +499,13 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
 <section class="hero">
   <div class="hero-text">
     <div class="hero-kicker">The Investigation</div>
-    <h2><a href="v2-full-narrative.html">Carbon, Methane, and Nanoplastics: Why Your Household Footprint Doesn't Stand a Chance</a></h2>
+    <h2><a href="/issue-01/carbon-methane-nanoplastics-household-footprint/">Carbon, Methane, and Nanoplastics: Why Your Household Footprint Doesn't Stand a Chance</a></h2>
     <div class="hero-readtime">12 min read</div>
     <p class="hero-deck">Ukraine and Gaza are the first wars in human history with real-time environmental tracking. The CEO of Europe&rsquo;s largest missile maker boasts about &ldquo;doubling production without compromising sustainability.&rdquo; Meanwhile, 200 US cargo flights to Israel emitted more CO&#8322; than the entire nation of Grenada does in a&nbsp;year.</p>
-    <a class="hero-link" href="v2-full-narrative.html">Read the full story &rarr;</a>
+    <a class="hero-link" href="/issue-01/carbon-methane-nanoplastics-household-footprint/">Read the full story &rarr;</a>
   </div>
   <div class="hero-preview">
-    <a href="v2-full-narrative.html" aria-label="Read the full investigation"></a>
+    <a href="/issue-01/carbon-methane-nanoplastics-household-footprint/" aria-label="Read the full investigation"></a>
     <iframe src="v2-full-narrative.html" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
     <div class="hero-preview-overlay"></div>
   </div>
@@ -434,7 +519,7 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
   <div class="articles-grid">
 
     <!-- V1 — Compact / Briefing -->
-    <a class="article-card" href="v1-magazine-compact.html">
+    <a class="article-card" href="/issue-01/how-to-conduct-genocide-sustainably/">
       <div class="article-card-preview">
         <iframe src="v1-magazine-compact.html" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
         <div class="card-overlay"></div>
@@ -446,7 +531,7 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
     </a>
 
     <!-- V3 — Infographic -->
-    <a class="article-card" href="v3-infographic-light.html">
+    <a class="article-card" href="/issue-01/precision-warfare-esg-compliant-numbers/">
       <div class="article-card-preview">
         <iframe src="v3-infographic-light.html" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
         <div class="card-overlay"></div>
@@ -458,7 +543,7 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
     </a>
 
     <!-- V4 — Noir / Editorial -->
-    <a class="article-card" href="v4-dark-editorial.html">
+    <a class="article-card" href="/issue-01/futures-breadbasket-heavy-metals-ukraine/">
       <div class="article-card-preview">
         <iframe src="v4-dark-editorial.html" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
         <div class="card-overlay"></div>
@@ -482,6 +567,16 @@ body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', syst
     <h3>Data Sources</h3>
     <p>IGAW &mdash; Initiative on GHG Accounting of War (Feb 2025). CEOBS &amp; SGR &mdash; Global military emissions (Nov 2022). UNEP &mdash; Conflict zone environmental assessments. SSRN / Queen Mary / Lancaster &mdash; Gaza carbon tracking (2024&ndash;2025). Hobbs &amp; Radke &mdash; Kuwait oil fires, Science (1992).</p>
   </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <h3>Get the next issue in your inbox</h3>
+  <p>Environmental intelligence, biweekly. No spam, no fluff — just the numbers that matter.</p>
+  <form class="newsletter-form" action="#" method="post">
+    <input type="email" name="email" placeholder="your@email.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
 </section>
 
 <!-- FOOTER -->
